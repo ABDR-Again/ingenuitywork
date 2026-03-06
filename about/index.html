@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 
 <html lang="en"><head>
+
+    <!-- Performance Preloads -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700;800&display=swap">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
+    <link rel="preload" href="/src/index.css" as="style">
+    <link rel="preload" href="/src/components/site-header.js" as="script" type="module">
+    <link rel="preload" href="/src/components/site-footer.js" as="script" type="module">
+    <link rel="preload" href="/src/components/site-modal.js" as="script" type="module">
+    <link rel="preload" href="https://cdn.tailwindcss.com?plugins=forms,container-queries" as="script">
+
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>About Us - Ingenuity Works</title>
@@ -58,7 +70,7 @@
 <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 <div class="order-2 lg:order-1 relative">
 <div class="absolute -inset-4 bg-primary/5 rounded-xl -z-10 transform rotate-2"></div>
-<img alt="Team collaborating on a project whiteboard" class="w-full h-[500px] object-cover rounded-xl shadow-xl" data-alt="People collaborating on a whiteboard in a casual office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACHH7yTACCXU7tfzJRKyNnZy_rnDXtV2J31uWyMepKSIbPgdPEsdeLFP-sNEDzWKF2Xq07_fBG23A72JWl17kLMltmG8IOd3LmgVPzLvgAPwr97kP8se-8Pbqyb17iDFh_CcB1b1bGRq1M7saoaOeo5OdlpnSY6g6NXyIjPeAJ-Q_SvS8QeKr9b4Hj4gkPZ7abgSZX_cgG-7n-Ri3pXUYbrG_DQHTQUOFezgMZJ2UhUxorj0oUHCyYEaKXq0xOznxCNXMbmPhXOP4"/>
+<img alt="Team collaborating on a project whiteboard" class="w-full h-[500px] object-cover rounded-xl shadow-xl" data-alt="People collaborating on a whiteboard in a casual office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACHH7yTACCXU7tfzJRKyNnZy_rnDXtV2J31uWyMepKSIbPgdPEsdeLFP-sNEDzWKF2Xq07_fBG23A72JWl17kLMltmG8IOd3LmgVPzLvgAPwr97kP8se-8Pbqyb17iDFh_CcB1b1bGRq1M7saoaOeo5OdlpnSY6g6NXyIjPeAJ-Q_SvS8QeKr9b4Hj4gkPZ7abgSZX_cgG-7n-Ri3pXUYbrG_DQHTQUOFezgMZJ2UhUxorj0oUHCyYEaKXq0xOznxCNXMbmPhXOP4"/ loading="eager">
 </div>
 <div class="flex flex-col gap-6 order-1 lg:order-2">
 <div class="flex items-center gap-2 text-primary font-bold uppercase tracking-wider text-sm">
@@ -182,18 +194,11 @@
 <p class="text-slate-600 dark:text-slate-400 text-lg">The people behind the pixels.</p>
 </div>
 <div class="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 text-center">
-<!-- Member 1 -->
-<div class="flex flex-col items-center">
-<div class="w-32 h-32 lg:w-40 lg:h-40 rounded-full mb-6 overflow-hidden border-4 border-white dark:border-slate-800 shadow-md">
-<img alt="Portrait of Shoaib Hassan, Founder and CEO" class="w-full h-full object-cover" data-alt="Smiling man in casual shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAszj3DfO5xgWKN17W1zpdQdRE59endokPhDPqIBuFenOFpB6FrNB1ObQy8TujqT1wW7lS__Iow-Mm7rSAZkpFbl8F-SQwTsP0Iphc_z1V9BsY6drWqeLcSH5ysUQt_BxeES6D4EEts9jKQ8jzUoXegmiX6TJZdRNXMxmvg5C51CDTYOtx8uZiVotCrUtmp3ZQMwDTtOT5QpT06WY2m0l9h4CSeDUHUxmj_648qZVL_kkiQihuiw9CPa3Yt02y1LUKn2F3PCQ8jvEg"/>
-</div>
-<h3 class="text-slate-900 dark:text-white text-lg font-bold">Shoaib Hassan</h3>
-<p class="text-primary text-sm font-medium mb-3 flex items-center gap-1 justify-center"><span class="material-symbols-outlined text-sm">social_leaderboard</span> Founder &amp; CEO</p>
-</div>
+
 <!-- Member 2 -->
 <div class="flex flex-col items-center">
 <div class="w-32 h-32 lg:w-40 lg:h-40 rounded-full mb-6 overflow-hidden border-4 border-white dark:border-slate-800 shadow-md">
-<img alt="Portrait of Raheem Ullah, Team Member" class="w-full h-full object-cover grayscale" data-alt="Team member" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRhocsdE2zgletpYPnIZMd_t9acRy7IAHhUuX9N8yZ53VS2Ti3TytTwcOXsLXEanEiCoSEyvYc2_YHFqHZziP4cmkm2z9P1SMX2hl2vYEzMAPJKSBSCq9oh0368ZLx9KnBhtU57-tJ7HXwahgxAun6j0r4tHhCBuMsYz7mK4AEDeQKnVvNkzs3U7aG5oVU_ZR9X5CTU7f2UPJ4QI1Cg2R8IuZ-7wcwrV9YYV2gaGwahgLHVES1HX_bDU-pgTUG3h9nYbBNM9_bs-k"/>
+<img alt="Portrait of Raheem Ullah, Team Member" class="w-full h-full object-cover grayscale" data-alt="Team member" src="" loading="lazy">
 </div>
 <h3 class="text-slate-900 dark:text-white text-lg font-bold">Raheem Ullah</h3>
 <p class="text-primary text-sm font-medium mb-3 flex items-center gap-1 justify-center"><span class="material-symbols-outlined text-sm">engineering</span> Team Member</p>
@@ -201,7 +206,7 @@
 <!-- Member 3 -->
 <div class="flex flex-col items-center">
 <div class="w-32 h-32 lg:w-40 lg:h-40 rounded-full mb-6 overflow-hidden border-4 border-white dark:border-slate-800 shadow-md">
-<img alt="Portrait of Abdul Razzaq, Team Member" class="w-full h-full object-cover grayscale" data-alt="Team Member" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmBWk0mzg33RQXrkOa1wbQKtrj_T6H_sJcRnUncVefPEwrpWW4gzz8YPdoAEst39pnROs3aa0VdP6Rl5CJVUdA03i-XehXuH4_QPqmJv0-E1c5OTrEQrPd3s-PT2G-tG6g4I2bJ2lGDqQ1L-MMwygJCnGCleOLey9iJKmyHHu6UFLFXqloRUmtASaCehXCbWMX21LSyDeKunv5cVP6oL9hJX7SuZO4u6Go_nhkD7vOTMUJYYbDZvUd81tsHDCoAuNv-UW5kNAT09s"/>
+<img alt="Portrait of Abdul Razzaq, Team Member" class="w-full h-full object-cover grayscale" data-alt="Team Member" src="" loading="lazy">
 </div>
 <h3 class="text-slate-900 dark:text-white text-lg font-bold">Abdul Razzaq</h3>
 <p class="text-primary text-sm font-medium mb-3 flex items-center gap-1 justify-center"><span class="material-symbols-outlined text-sm">engineering</span> Team Member</p>
@@ -209,7 +214,7 @@
 <!-- Member 4 -->
 <div class="flex flex-col items-center">
 <div class="w-32 h-32 lg:w-40 lg:h-40 rounded-full mb-6 overflow-hidden border-4 border-white dark:border-slate-800 shadow-md">
-<img alt="Portrait of Sajid, Team Member" class="w-full h-full object-cover grayscale" data-alt="Team member" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDROtyDBOXnO1_xPkp6KUhCzkK5CHy-I563TY3CjIh5xAnoFIPUAnc-ajuoMC-QM1wxvMnuhoj97IsuD1dGbbnVR9e65kAcVkQq-4-Y1QFWF1pDbuDPGS2ENdz_F1ZvPm-2n__1AGj6uEiGI8RDHYwcc9SyC2Kwuj57P1woGhDsd7e_ldFdpdwZFVKY-jaZRPe87jHDSq9dRxyMc3o_3tkZKJ5-gwUfElXdk02XBNiK7hq59c4dsgXNBituzgavNoBs8MU1qHa8wxY"/>
+<img alt="Portrait of Sajid, Team Member" class="w-full h-full object-cover grayscale" data-alt="Team member" src="" loading="lazy">
 </div>
 <h3 class="text-slate-900 dark:text-white text-lg font-bold">Sajid</h3>
 <p class="text-primary text-sm font-medium mb-3 flex items-center gap-1 justify-center"><span class="material-symbols-outlined text-sm">engineering</span> Team Member</p>

@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 
 <html lang="en"><head>
+
+    <!-- Performance Preloads -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700;800&display=swap">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
+    <link rel="preload" href="/src/index.css" as="style">
+    <link rel="preload" href="/src/components/site-header.js" as="script" type="module">
+    <link rel="preload" href="/src/components/site-footer.js" as="script" type="module">
+    <link rel="preload" href="/src/components/site-modal.js" as="script" type="module">
+    <link rel="preload" href="https://cdn.tailwindcss.com?plugins=forms,container-queries" as="script">
+
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Ingenuity Work - Web Development &amp; Growth Services</title>
@@ -161,36 +173,13 @@
 </div>
 <div class="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
 <!-- Card 1 -->
-<div class="wcu-card p-8 rounded-2xl bg-surface-light border border-slate-100 hover:border-slate-200 transition-all group">
-<div class="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined">star</span>
-</div>
-<h3 class="font-display font-bold text-xl text-primary mb-3">Quality</h3>
-<p class="text-slate-600">Top-tier code standards, accessible design, and pixel-perfect implementation for every project.</p>
-</div>
+<why-choose-us-card icon="star" title="Quality" description="Top-tier code standards, accessible design, and pixel-perfect implementation for every project."></why-choose-us-card>
 <!-- Card 2 -->
-<div class="wcu-card p-8 rounded-2xl bg-surface-light border border-slate-100 hover:border-slate-200 transition-all group">
-<div class="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined">bolt</span>
-</div>
-<h3 class="font-display font-bold text-xl text-primary mb-3">Speed</h3>
-<p class="text-slate-600">Rapid delivery timelines without cutting corners. We use modern stacks to deploy faster.</p>
-</div>
+<why-choose-us-card icon="bolt" title="Speed" description="Rapid delivery timelines without cutting corners. We use modern stacks to deploy faster."></why-choose-us-card>
 <!-- Card 3 -->
-<div class="wcu-card p-8 rounded-2xl bg-surface-light border border-slate-100 hover:border-slate-200 transition-all group">
-<div class="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined">visibility</span>
-</div>
-<h3 class="font-display font-bold text-xl text-primary mb-3">Clarity</h3>
-<p class="text-slate-600">Transparent communication from day one. No jargon, just clear updates and strategy.</p>
-</div>
+<why-choose-us-card icon="visibility" title="Clarity" description="Transparent communication from day one. No jargon, just clear updates and strategy."></why-choose-us-card>
 <!-- Card 4 -->
-<div class="wcu-card p-8 rounded-2xl bg-surface-light border border-slate-100 hover:border-slate-200 transition-all group">
-<div class="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined">support_agent</span>
-</div>
-<h3 class="font-display font-bold text-xl text-primary mb-3">After-Support</h3>
-<p class="text-slate-600">We don't disappear after launch. Ongoing maintenance and support are part of our DNA.</p>
+<why-choose-us-card icon="support_agent" title="After-Support" description="We don't disappear after launch. Ongoing maintenance and support are part of our DNA."></why-choose-us-card>
 </div>
 </div>
 </div>
@@ -205,61 +194,18 @@
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 <!-- Service 1 -->
-<div class="service-card bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col h-full hover:shadow-md transition-shadow">
-<div class="h-48 rounded-xl bg-slate-100 mb-6 overflow-hidden relative">
-<div class="absolute inset-0 bg-gradient-to-tr from-blue-50 to-indigo-100" data-alt="Abstract blue gradient representing WordPress structure"></div>
-<div class="absolute bottom-4 left-4 bg-white p-2 rounded-lg shadow-sm">
-<span class="material-symbols-outlined text-primary">web</span>
-</div>
-</div>
-<h3 class="font-display font-bold text-xl text-primary mb-2">WordPress</h3>
-<p class="text-slate-600 text-sm mb-6 flex-grow">Custom themes and plugins built for performance and ease of management.</p>
-<a class="text-primary font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all" href="#">
-                            Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
-</div>
+<service-growth-card url="/services/web-design/" icon="web" title="WordPress" description="Custom themes and plugins built for performance and ease of management." gradient="from-blue-50 to-indigo-100"></service-growth-card>
 <!-- Service 2 -->
-<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col h-full hover:shadow-md transition-shadow">
-<div class="h-48 rounded-xl bg-slate-100 mb-6 overflow-hidden relative">
-<div class="absolute inset-0 bg-gradient-to-tr from-green-50 to-emerald-100" data-alt="Abstract green gradient representing Shopify growth"></div>
-<div class="absolute bottom-4 left-4 bg-white p-2 rounded-lg shadow-sm">
-<span class="material-symbols-outlined text-primary">shopping_bag</span>
-</div>
-</div>
-<h3 class="font-display font-bold text-xl text-primary mb-2">Shopify</h3>
-<p class="text-slate-600 text-sm mb-6 flex-grow">High-converting stores designed to maximize your e-commerce revenue.</p>
-<a class="text-primary font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all" href="#">
-                            Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
-</div>
+<service-growth-card url="/services/shopify/" icon="shopping_bag" title="Shopify" description="High-converting stores designed to maximize your e-commerce revenue." gradient="from-green-50 to-emerald-100"></service-growth-card>
 <!-- Service 3 -->
-<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col h-full hover:shadow-md transition-shadow">
-<div class="h-48 rounded-xl bg-slate-100 mb-6 overflow-hidden relative">
-<div class="absolute inset-0 bg-gradient-to-tr from-purple-50 to-fuchsia-100" data-alt="Abstract purple gradient representing Custom Code"></div>
-<div class="absolute bottom-4 left-4 bg-white p-2 rounded-lg shadow-sm">
-<span class="material-symbols-outlined text-primary">code_blocks</span>
-</div>
-</div>
-<h3 class="font-display font-bold text-xl text-primary mb-2">Custom Dev</h3>
-<p class="text-slate-600 text-sm mb-6 flex-grow">Tailor-made web applications solving unique business challenges.</p>
-<a class="text-primary font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all" href="#">
-                            Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
-</div>
+<service-growth-card url="/services/custom-dev/" icon="code_blocks" title="Custom Dev" description="Tailor-made web applications solving unique business challenges." gradient="from-purple-50 to-fuchsia-100"></service-growth-card>
 <!-- Service 4 -->
-<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col h-full hover:shadow-md transition-shadow">
-<div class="h-48 rounded-xl bg-slate-100 mb-6 overflow-hidden relative">
-<div class="absolute inset-0 bg-gradient-to-tr from-orange-50 to-amber-100" data-alt="Abstract orange gradient representing SEO visibility"></div>
-<div class="absolute bottom-4 left-4 bg-white p-2 rounded-lg shadow-sm">
-<span class="material-symbols-outlined text-primary">search</span>
+<service-growth-card url="/services/seo/" icon="search" title="SEO Growth" description="Data-driven strategies to rank higher and attract qualified leads." gradient="from-orange-50 to-amber-100"></service-growth-card>
 </div>
-</div>
-<h3 class="font-display font-bold text-xl text-primary mb-2">SEO Growth</h3>
-<p class="text-slate-600 text-sm mb-6 flex-grow">Data-driven strategies to rank higher and attract qualified leads.</p>
-<a class="text-primary font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all" href="#">
-                            Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
-</div>
+<div class="mt-12 text-center">
+    <a href="/services/" class="bg-primary hover:bg-slate-800 text-white px-8 py-4 rounded-xl text-base font-bold transition-all shadow-xl shadow-primary/25 inline-flex items-center gap-2 no-underline">
+        See All Services <span class="material-symbols-outlined text-sm">arrow_forward</span>
+    </a>
 </div>
 </div>
 </section>
@@ -267,88 +213,47 @@
 <section id="process" class="py-24 bg-white">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="section-header mb-16">
-<h2 class="font-display font-bold text-3xl md:text-4xl text-primary mb-4">How We Work</h2>
-<p class="text-slate-600 text-lg max-w-2xl">A proven 4-step framework to take your project from concept to completion.</p>
+<h2 class="font-display font-bold text-3xl md:text-4xl text-primary mb-4 text-center">How We Work</h2>
+<p class="text-slate-600 text-lg max-w-2xl mx-auto text-center">A proven 4-step framework to take your project from concept to completion.</p>
 </div>
 <div class="relative">
 <!-- Line -->
 <div class="process-line hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-100 -translate-y-1/2 z-0"></div>
 <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
 <!-- Step 1 -->
-<div class="step-card bg-white p-6 border border-slate-100 rounded-2xl shadow-sm text-center md:text-left">
-<div class="w-12 h-12 bg-primary text-white rounded-xl flex items-center justify-center font-bold text-xl mb-4 mx-auto md:mx-0">1</div>
-<h3 class="font-display font-bold text-lg text-primary mb-2">Discovery</h3>
-<p class="text-slate-600 text-sm">We analyze your needs, goals, and target audience.</p>
-</div>
+<process-card step="1" title="Discovery" description="We analyze your needs, goals, and target audience."></process-card>
 <!-- Step 2 -->
-<div class="bg-white p-6 border border-slate-100 rounded-2xl shadow-sm text-center md:text-left">
-<div class="w-12 h-12 bg-white border-2 border-primary text-primary rounded-xl flex items-center justify-center font-bold text-xl mb-4 mx-auto md:mx-0">2</div>
-<h3 class="font-display font-bold text-lg text-primary mb-2">Strategy</h3>
-<p class="text-slate-600 text-sm">We plan the architecture, design, and roadmap.</p>
-</div>
+<process-card step="2" title="Strategy" description="We plan the architecture, design, and roadmap."></process-card>
 <!-- Step 3 -->
-<div class="bg-white p-6 border border-slate-100 rounded-2xl shadow-sm text-center md:text-left">
-<div class="w-12 h-12 bg-white border-2 border-primary text-primary rounded-xl flex items-center justify-center font-bold text-xl mb-4 mx-auto md:mx-0">3</div>
-<h3 class="font-display font-bold text-lg text-primary mb-2">Build</h3>
-<p class="text-slate-600 text-sm">We code and develop using premium standards.</p>
-</div>
+<process-card step="3" title="Build" description="We code and develop using premium standards."></process-card>
 <!-- Step 4 -->
-<div class="bg-white p-6 border border-slate-100 rounded-2xl shadow-sm text-center md:text-left">
-<div class="w-12 h-12 bg-white border-2 border-primary text-primary rounded-xl flex items-center justify-center font-bold text-xl mb-4 mx-auto md:mx-0">4</div>
-<h3 class="font-display font-bold text-lg text-primary mb-2">Launch</h3>
-<p class="text-slate-600 text-sm">We deploy, test, and hand over your asset.</p>
-</div>
+<process-card step="4" title="Launch" description="We deploy, test, and hand over your asset."></process-card>
 </div>
 </div>
 </div>
 </section>
-<!-- Trusted By Brands -->
-<section id="trusted" class="py-16 bg-surface-light border-y border-slate-100">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-<p class="text-sm font-semibold text-slate-400 uppercase tracking-widest mb-10">Trusted by innovative companies</p>
-<div class="flex flex-wrap justify-center items-center gap-12 opacity-60 grayscale">
-<!-- Brand 1 -->
-<div class="brand-item h-8 w-32 bg-slate-300 rounded" data-alt="Placeholder for Brand Logo 1"></div>
-<!-- Brand 2 -->
-<div class="brand-item h-8 w-32 bg-slate-300 rounded" data-alt="Placeholder for Brand Logo 2"></div>
-<!-- Brand 3 -->
-<div class="brand-item h-10 w-10 rounded-full bg-slate-300" data-alt="Placeholder for Brand Icon 3"></div>
-<!-- Brand 4 -->
-<div class="brand-item h-8 w-32 bg-slate-300 rounded" data-alt="Placeholder for Brand Logo 4"></div>
-<!-- Brand 5 -->
-<div class="brand-item h-8 w-32 bg-slate-300 rounded" data-alt="Placeholder for Brand Logo 5"></div>
-</div>
-</div>
-</section>
-<!-- Testimonials -->
-<section id="testimonials" class="py-24 bg-white">
+<!-- Testimonials (NEW) -->
+<section id="testimonials" class="py-24 bg-white overflow-hidden">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-<!-- Testimonial 1 -->
-<div class="testimonial-left bg-surface-light p-8 rounded-2xl border border-slate-100 relative">
-<span class="material-symbols-outlined text-4xl text-slate-200 absolute top-6 right-6">format_quote</span>
-<p class="text-slate-700 text-lg mb-6 leading-relaxed italic">"Ingenuity Work transformed our online presence. The speed of the site and the custom automation they built saved us hours every week."</p>
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full bg-slate-200" data-alt="Avatar of Sarah Jenkins"></div>
-<div>
-<div class="font-bold text-primary">Sarah Jenkins</div>
-<div class="text-sm text-slate-500">CEO, TechFlow</div>
-</div>
-</div>
-</div>
-<!-- Testimonial 2 -->
-<div class="testimonial-right bg-surface-light p-8 rounded-2xl border border-slate-100 relative">
-<span class="material-symbols-outlined text-4xl text-slate-200 absolute top-6 right-6">format_quote</span>
-<p class="text-slate-700 text-lg mb-6 leading-relaxed italic">"The team is incredibly transparent and skilled. Our Shopify store conversion rate doubled within a month of their redesign."</p>
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full bg-slate-200" data-alt="Avatar of Mark Davies"></div>
-<div>
-<div class="font-bold text-primary">Mark Davies</div>
-<div class="text-sm text-slate-500">Founder, RetailPro</div>
-</div>
-</div>
-</div>
-</div>
+    <div class="section-header text-center mb-16">
+        <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Client Feedback</span>
+        <h2 class="font-display font-bold text-3xl md:text-5xl text-primary mb-4">What Our Partners Say</h2>
+        <p class="text-slate-600 text-lg max-w-2xl mx-auto">Discover how we've helped businesses like yours engineer growth through custom development and strategic marketing.</p>
+    </div>
+    
+    <div class="testimonials-grid flex flex-wrap justify-center gap-6">
+        <testimonial-card client-name="Sarah Jenkins" client-role="CEO, TechFlow" avatar-url="https://i.pravatar.cc/150?u=1" quote="Ingenuity Work transformed our online presence. The speed of the site and the custom automation they built saved us hours every week." color-index="0"></testimonial-card>
+        <testimonial-card client-name="Mark Davies" client-role="Founder, RetailPro" avatar-url="https://i.pravatar.cc/150?u=2" quote="The team is incredibly transparent and skilled. Our Shopify store conversion rate doubled within a month of their redesign." color-index="1"></testimonial-card>
+        <testimonial-card client-name="Elena Rodriguez" client-role="CMO, HealthFirst" avatar-url="https://i.pravatar.cc/150?u=3" quote="Their SEO growth strategies are unmatched. We're finally ranking on page one for our most competitive keywords." color-index="2"></testimonial-card>
+        <testimonial-card client-name="David Chen" client-role="Director, FinEdge" avatar-url="https://i.pravatar.cc/150?u=4" quote="The custom software they developed completely streamlined our backend operations. A truly premium experience." color-index="3"></testimonial-card>
+        <testimonial-card client-name="Jessica Sterling" client-role="VP Marketing, LuxeWear" avatar-url="https://i.pravatar.cc/150?u=5" quote="Our Meta Ads ROI skyrocketed after Ingenuity Work took over. They understand data-driven marketing better than anyone." color-index="4"></testimonial-card>
+        <testimonial-card client-name="Michael Chang" client-role="Founder, PropVault" avatar-url="https://i.pravatar.cc/150?u=6" quote="Top-tier code standards and a beautiful design language. We couldn't be happier with our new brand identity and web app." color-index="0"></testimonial-card>
+    </div>
+    <div class="mt-16 text-center">
+        <a href="/testimonials/" class="bg-primary hover:bg-slate-800 text-white px-8 py-4 rounded-xl text-base font-bold transition-all shadow-xl shadow-primary/25 inline-flex items-center gap-2 no-underline">
+            See All Testimonials <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+    </div>
 </div>
 </section>
 <!-- Final CTA -->
@@ -373,5 +278,9 @@
 <script src="/src/components/site-header.js" type="module"></script>
 <script src="/src/components/site-footer.js" type="module"></script>
 <script src="/src/components/site-modal.js" type="module"></script>
+<script src="/src/components/why-choose-us-card.js" type="module"></script>
+<script src="/src/components/service-growth-card.js" type="module"></script>
+<script src="/src/components/process-card.js" type="module"></script>
+<script src="/src/components/testimonial-card.js" type="module"></script>
 <site-modal></site-modal>
 </body></html>

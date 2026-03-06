@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Performance Preloads -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700;800&display=swap">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
+    <link rel="preload" href="/src/index.css" as="style">
+    <link rel="preload" href="/src/components/site-header.js" as="script" type="module">
+    <link rel="preload" href="/src/components/site-footer.js" as="script" type="module">
+    <link rel="preload" href="/src/components/site-modal.js" as="script" type="module">
+    <link rel="preload" href="https://cdn.tailwindcss.com?plugins=forms,container-queries" as="script">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials - Ingenuity Work</title>
+    <!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Sora:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0b111e",
+                        secondary: "#334155",
+                        "background-light": "#ffffff",
+                        "background-dark": "#0f172a",
+                        "surface-light": "#f8fafc",
+                        "surface-dark": "#1e293b",
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Sora', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        lg: "0.75rem",
+                        xl: "1rem",
+                        "2xl": "1.5rem",
+                    },
+                },
+            },
+        }
+</script>
+<style>
+    /* Custom scrollbar for clean look */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    
+    .hidden-row {
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .reveal-active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased selection:bg-primary selection:text-white flex flex-col min-h-screen">
+    
+    <site-header></site-header>
+
+    <main class="flex-grow pt-32 pb-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-header text-center mb-16">
+                <h1 id="testimonials-heading" class="font-display font-bold text-4xl md:text-5xl text-primary mb-4 opacity-0 translate-y-8">Testimonials</h1>
+                <p id="testimonials-subheading" class="text-slate-600 text-lg max-w-2xl mx-auto opacity-0 translate-y-8">Hear from the innovative companies we've partnered with to engineer digital excellence.</p>
+            </div>
+            
+            <div id="testimonials-container" class="flex flex-col items-center">
+                <div class="flex flex-wrap justify-center gap-6 w-full mb-6 testimonials-row visible-row">
+        <testimonial-card client-name="James Smith" client-role="CEO, TechFlow" avatar-url="https://i.pravatar.cc/150?u=20" quote="Working with Ingenuity Work was the best decision for our company. The development phase was flawless." color-index="0"></testimonial-card>
+        <testimonial-card client-name="Mary Johnson" client-role="Founder, RetailPro" avatar-url="https://i.pravatar.cc/150?u=21" quote="Working with Ingenuity Work was the best decision for our company. The design phase was flawless." color-index="1"></testimonial-card>
+        <testimonial-card client-name="Robert Williams" client-role="CMO, HealthFirst" avatar-url="https://i.pravatar.cc/150?u=22" quote="Working with Ingenuity Work was the best decision for our company. The development phase was flawless." color-index="2"></testimonial-card>
+    </div><div class="flex flex-wrap justify-center gap-6 w-full mb-6 testimonials-row hidden-row opacity-0 translate-y-8">
+        <testimonial-card client-name="Patricia Brown" client-role="CTO, FinEdge" avatar-url="https://i.pravatar.cc/150?u=23" quote="Working with Ingenuity Work was the best decision for our company. The design phase was flawless." color-index="3"></testimonial-card>
+        <testimonial-card client-name="John Jones" client-role="Director, LuxeWear" avatar-url="https://i.pravatar.cc/150?u=24" quote="Working with Ingenuity Work was the best decision for our company. The development phase was flawless." color-index="4"></testimonial-card>
+        <testimonial-card client-name="Jennifer Garcia" client-role="VP Marketing, PropVault" avatar-url="https://i.pravatar.cc/150?u=25" quote="Working with Ingenuity Work was the best decision for our company. The design phase was flawless." color-index="0"></testimonial-card>
+    </div><div class="flex flex-wrap justify-center gap-6 w-full mb-6 testimonials-row hidden-row opacity-0 translate-y-8">
+        <testimonial-card client-name="Michael Miller" client-role="COO, EduSpark" avatar-url="https://i.pravatar.cc/150?u=26" quote="Working with Ingenuity Work was the best decision for our company. The development phase was flawless." color-index="1"></testimonial-card>
+        <testimonial-card client-name="Linda Davis" client-role="Head of Content, LogisticsAI" avatar-url="https://i.pravatar.cc/150?u=27" quote="Working with Ingenuity Work was the best decision for our company. The design phase was flawless." color-index="2"></testimonial-card>
+        <testimonial-card client-name="David Rodriguez" client-role="Owner, CraftBrew" avatar-url="https://i.pravatar.cc/150?u=28" quote="Working with Ingenuity Work was the best decision for our company. The development phase was flawless." color-index="3"></testimonial-card>
+    </div><div class="flex flex-wrap justify-center gap-6 w-full mb-6 testimonials-row hidden-row opacity-0 translate-y-8">
+        <testimonial-card client-name="Elizabeth Martinez" client-role="Creative Director, ActiveLife" avatar-url="https://i.pravatar.cc/150?u=29" quote="Working with Ingenuity Work was the best decision for our company. The design phase was flawless." color-index="4"></testimonial-card>
+        <testimonial-card client-name="William Hernandez" client-role="Operations Manager, EcoHome" avatar-url="https://i.pravatar.cc/150?u=30" quote="Working with Ingenuity Work was the best decision for our company. The development phase was flawless." color-index="0"></testimonial-card>
+        <testimonial-card client-name="Barbara Lopez" client-role="Product Lead, StartupHub" avatar-url="https://i.pravatar.cc/150?u=31" quote="Working with Ingenuity Work was the best decision for our company. The design phase was flawless." color-index="1"></testimonial-card>
+    </div><div class="flex flex-wrap justify-center gap-6 w-full mb-6 testimonials-row hidden-row opacity-0 translate-y-8">
+        <testimonial-card client-name="Richard Gonzalez" client-role="CEO, StudioB" avatar-url="https://i.pravatar.cc/150?u=32" quote="Working with Ingenuity Work was the best decision for our company. The development phase was flawless." color-index="2"></testimonial-card>
+        <testimonial-card client-name="Susan Wilson" client-role="Founder, BuildRight" avatar-url="https://i.pravatar.cc/150?u=33" quote="Working with Ingenuity Work was the best decision for our company. The design phase was flawless." color-index="3"></testimonial-card>
+        <testimonial-card client-name="Joseph Anderson" client-role="CMO, TechFlow" avatar-url="https://i.pravatar.cc/150?u=34" quote="Working with Ingenuity Work was the best decision for our company. The development phase was flawless." color-index="4"></testimonial-card>
+    </div><div class="flex flex-wrap justify-center gap-6 w-full mb-6 testimonials-row hidden-row opacity-0 translate-y-8">
+        <testimonial-card client-name="Jessica Thomas" client-role="CTO, RetailPro" avatar-url="https://i.pravatar.cc/150?u=35" quote="Working with Ingenuity Work was the best decision for our company. The design phase was flawless." color-index="0"></testimonial-card>
+        <testimonial-card client-name="Thomas Taylor" client-role="Director, HealthFirst" avatar-url="https://i.pravatar.cc/150?u=36" quote="Working with Ingenuity Work was the best decision for our company. The development phase was flawless." color-index="1"></testimonial-card>
+        <testimonial-card client-name="Sarah Moore" client-role="VP Marketing, FinEdge" avatar-url="https://i.pravatar.cc/150?u=37" quote="Working with Ingenuity Work was the best decision for our company. The design phase was flawless." color-index="2"></testimonial-card>
+    </div><div class="flex flex-wrap justify-center gap-6 w-full mb-6 testimonials-row hidden-row opacity-0 translate-y-8">
+        <testimonial-card client-name="Charles Jackson" client-role="COO, LuxeWear" avatar-url="https://i.pravatar.cc/150?u=38" quote="Working with Ingenuity Work was the best decision for our company. The development phase was flawless." color-index="3"></testimonial-card>
+        <testimonial-card client-name="Karen Martin" client-role="Head of Content, PropVault" avatar-url="https://i.pravatar.cc/150?u=39" quote="Working with Ingenuity Work was the best decision for our company. The design phase was flawless." color-index="4"></testimonial-card>
+        <testimonial-card client-name="Christopher Lee" client-role="Owner, EduSpark" avatar-url="https://i.pravatar.cc/150?u=40" quote="Working with Ingenuity Work was the best decision for our company. The development phase was flawless." color-index="0"></testimonial-card>
+    </div><div class="flex flex-wrap justify-center gap-6 w-full mb-6 testimonials-row hidden-row opacity-0 translate-y-8">
+        <testimonial-card client-name="Lisa Perez" client-role="Creative Director, LogisticsAI" avatar-url="https://i.pravatar.cc/150?u=41" quote="Working with Ingenuity Work was the best decision for our company. The design phase was flawless." color-index="1"></testimonial-card>
+        <testimonial-card client-name="Daniel Thompson" client-role="Operations Manager, CraftBrew" avatar-url="https://i.pravatar.cc/150?u=42" quote="Working with Ingenuity Work was the best decision for our company. The development phase was flawless." color-index="2"></testimonial-card>
+        <testimonial-card client-name="Nancy White" client-role="Product Lead, ActiveLife" avatar-url="https://i.pravatar.cc/150?u=43" quote="Working with Ingenuity Work was the best decision for our company. The design phase was flawless." color-index="3"></testimonial-card>
+    </div><div class="flex flex-wrap justify-center gap-6 w-full mb-6 testimonials-row hidden-row opacity-0 translate-y-8">
+        <testimonial-card client-name="Matthew Harris" client-role="CEO, EcoHome" avatar-url="https://i.pravatar.cc/150?u=44" quote="Working with Ingenuity Work was the best decision for our company. The development phase was flawless." color-index="4"></testimonial-card>
+        <testimonial-card client-name="Betty Sanchez" client-role="Founder, StartupHub" avatar-url="https://i.pravatar.cc/150?u=45" quote="Working with Ingenuity Work was the best decision for our company. The design phase was flawless." color-index="0"></testimonial-card>
+        <testimonial-card client-name="Anthony Clark" client-role="CMO, StudioB" avatar-url="https://i.pravatar.cc/150?u=46" quote="Working with Ingenuity Work was the best decision for our company. The development phase was flawless." color-index="1"></testimonial-card>
+    </div>
+            </div>
+            
+        </div>
+        
+        <!-- Final CTA (Reused from homepage as requested) -->
+        <section id="cta" class="py-24 px-4 sm:px-6 lg:px-8 mt-12 opacity-0 translate-y-8">
+            <div class="cta-box max-w-7xl mx-auto rounded-3xl overflow-hidden relative text-center py-20 px-6 bg-primary">
+                <!-- Decorative Gradient -->
+                <div class="absolute inset-0 bg-gradient-to-br from-slate-800 to-black opacity-50"></div>
+                <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-blue-500 rounded-full blur-[100px] opacity-20"></div>
+                
+                <div class="cta-content relative z-10 max-w-2xl mx-auto">
+                    <h2 class="font-display font-bold text-4xl md:text-5xl text-white mb-6">Ready to scale your business?</h2>
+                    <p class="text-slate-300 text-lg mb-10">Let's discuss how we can engineer a better future for your company.</p>
+                    <button id="testimonials-cta-btn" class="modal-trigger bg-white text-primary hover:bg-slate-100 px-8 py-4 rounded-xl text-base font-bold transition-all shadow-xl inline-flex items-center gap-2">
+                        <span class="material-symbols-outlined">chat</span>
+                        Start Conversation
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <site-footer></site-footer>
+
+    <script src="/src/components/site-header.js" type="module"></script>
+    <script src="/src/components/site-footer.js" type="module"></script>
+    <script src="/src/components/site-modal.js" type="module"></script>
+    <script src="/src/components/testimonial-card.js" type="module"></script>
+    <site-modal></site-modal>
+
+     <!-- Sequential Reveal Logic (No GSAP) -->
+    <script>
+        window.addEventListener('load', () => {
+             const heading = document.getElementById('testimonials-heading');
+             const subheading = document.getElementById('testimonials-subheading');
+             const cta = document.getElementById('cta');
+             const ctaBtn = document.getElementById('testimonials-cta-btn');
+             const siteModal = document.querySelector('site-modal');
+             
+             // 1. Reveal Headings First
+             setTimeout(() => {
+                 heading.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+                 heading.style.opacity = '1';
+                 heading.style.transform = 'translateY(0)';
+                 
+                 setTimeout(() => {
+                     subheading.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+                     subheading.style.opacity = '1';
+                     subheading.style.transform = 'translateY(0)';
+                 }, 200);
+             }, 100);
+
+             // Wait for the custom element to be defined so its inner DOM is ready
+             customElements.whenDefined('testimonial-card').then(() => {
+                 // 2. Clear out row-level hiding logic because we are animating cards individually
+                 const rows = document.querySelectorAll('.testimonials-row');
+                 rows.forEach(row => {
+                     row.classList.remove('opacity-0', 'translate-y-8', 'hidden-row', 'visible-row');
+                     row.style.opacity = '1';
+                     row.style.transform = 'none';
+                 });
+
+                 // 3. Sequentially reveal all cards one by one
+                 const cards = document.querySelectorAll('testimonial-card');
+                 cards.forEach((card, index) => {
+                     setTimeout(() => {
+                         const innerCard = card.querySelector('.card');
+                         if (innerCard) {
+                             innerCard.classList.add('appear');
+                         }
+                     }, 600 + (index * 150)); // Start revealing cards after headings show
+                 });
+
+                 // 4. Reveal the final CTA section after all cards have appeared
+                 setTimeout(() => {
+                     if (cta) {
+                         cta.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+                         cta.style.opacity = '1';
+                         cta.style.transform = 'translateY(0)';
+                     }
+                 }, 600 + (cards.length * 150) + 300);
+             });
+        });
+    </script>
+</body>
+</html>

@@ -19,6 +19,7 @@ export default defineConfig({
         pricing: resolve(__dirname, "pricing/index.html"),
         process: resolve(__dirname, "process/index.html"),
         services: resolve(__dirname, "services/index.html"),
+        testimonials: resolve(__dirname, "testimonials/index.html"),
 
         service_web_design: resolve(__dirname, "services/web-design/index.html"),
         service_seo: resolve(__dirname, "services/seo/index.html"),

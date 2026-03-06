@@ -1,63 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <!-- Performance Preloads -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700;800&display=swap">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
+    <link rel="preload" href="/src/index.css" as="style">
+    <link rel="preload" href="/src/components/site-header.js" as="script" type="module">
+    <link rel="preload" href="/src/components/site-footer.js" as="script" type="module">
+    <link rel="preload" href="/src/components/site-modal.js" as="script" type="module">
+    <link rel="preload" href="https://cdn.tailwindcss.com?plugins=forms,container-queries" as="script">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liquid Hover Card</title>
+    <title>Premium Testimonial Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Basic reset and layout */
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            /* Background/Base colors */
+            --bg-body: #0a0e17;
+            --card-base: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            
+            /* Text colors */
+            --text-main: #e0e6ed;
+            --text-muted: #94a3b8;
+            --text-on-dark: #ffffff;
+            
+            /* Liquid/Accent color */
+            --liquid-color: #6366f1; /* Indigo */
+            --liquid-color-alt: #4f46e5; /* Slightly darker Indigo */
+            
+            /* Fonts */
+            --font-family: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
+            font-family: var(--font-family);
+            background-color: var(--bg-body);
+            color: var(--text-main);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #e2e8f0;
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            perspective: 1000px; /* Essential for 3D tilt effect */
+            overflow: hidden;
         }
 
-        /* The Card Container */
-        .card {
+        /* --- THE TESTIMONIAL CARD --- */
+        .testimonial-card {
             position: relative;
-            width: 300px;
-            height: 400px;
-            background-color: #ffffff;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden; /* This keeps the liquid contained inside the card */
+            width: 350px;
+            padding: 40px;
+            background: var(--card-base);
+            border-radius: 24px;
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(10px); /* Glassmorphism effect */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            overflow: hidden; /* Contains liquid and ripple */
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            
+            /* Initial state for entry animation */
+            opacity: 0;
+            transform: translateY(50px) rotateX(-10deg);
+            transition: 
+                transform 0.1s ease-out, /* Faster for JS tilt */
+                box-shadow 0.3s ease,
+                border-color 0.3s ease,
+                opacity 0.8s ease-out; /* Slower for entry */
         }
 
-        /* Slight lift effect on the whole card */
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        /* State when JS adds the 'appear' class */
+        .testimonial-card.appear {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
         }
 
-        /* --- THE LIQUID MAGIC --- */
+        .testimonial-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        /* --- THE LIQUID HOVER EFFECT --- */
         .liquid {
             position: absolute;
-            width: 800px; /* Much larger than the card */
-            height: 800px;
-            background-color: #1a1a2e; /* The dark fill color */
-            
-            /* Hide it way up in the top-left corner initially */
-            top: -850px;
-            left: -850px;
-            
-            /* The uneven border-radius that creates the "wave" shape */
+            width: 900px; 
+            height: 900px;
+            background-color: var(--liquid-color);
+            /* Positioned off-screen top-left */
+            top: -950px;
+            left: -950px;
             border-radius: 40%;
-            
-            /* Continuous rotation creates the wobble */
-            animation: spin 5s linear infinite;
-            
-            /* When hovered, transition the top and left positions smoothly */
-            transition: top 0.8s ease-in-out, left 0.8s ease-in-out;
+            animation: spin 6s linear infinite;
+            transition: top 1s ease-in-out, left 1s ease-in-out;
             z-index: 1;
+            pointer-events: none; /* Allows clicks to pass through */
         }
 
-        /* A second liquid layer for depth and extra wobbliness */
+        /* Second liquid layer for depth */
         .liquid::after {
             content: '';
             position: absolute;
@@ -65,72 +114,204 @@
             left: 5%;
             width: 90%;
             height: 90%;
-            background-color: #16213e; /* Slightly different dark shade */
-            border-radius: 45%;
-            animation: spin 7s linear infinite reverse; /* Spins the opposite way */
+            background-color: var(--liquid-color-alt);
+            border-radius: 42%;
+            animation: spin 8s linear infinite reverse;
         }
 
-        /* The Hover Trigger: Move the liquid down and right */
-        .card:hover .liquid {
-            top: -200px; 
-            left: -200px;
+        /* Trigger liquid on hover */
+        .testimonial-card:hover .liquid {
+            top: -250px; 
+            left: -250px;
         }
 
-        /* --- CONTENT STYLING --- */
-        .content {
+        /* --- CARD CONTENT --- */
+        .card-content {
             position: relative;
-            z-index: 2; /* Keeps the text above the liquid */
-            padding: 40px 30px;
-            height: 100%;
-            box-sizing: border-box;
+            z-index: 2; /* Keeps content above liquid */
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            color: #333333;
-            transition: color 0.5s ease; /* Smooth text color change */
+            align-items: center;
+            text-align: center;
+            transition: color 0.4s ease;
         }
 
-        /* Change text to white when the dark liquid fills in */
-        .card:hover .content {
-            color: #ffffff;
+        /* Change text color to white when dark liquid fills in */
+        .testimonial-card:hover .card-content {
+            color: var(--text-on-dark);
         }
 
-        .icon {
-            font-size: 40px;
-            margin-bottom: auto; /* Pushes the text down, keeps icon at the top */
+        /* Avatar styling */
+        .avatar-container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 25px;
         }
 
-        .content h2 {
-            margin: 0 0 10px 0;
-            font-size: 26px;
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--card-border);
+            transition: border-color 0.4s ease;
+        }
+
+        .testimonial-card:hover .avatar-img {
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Quote Icon styling */
+        .quote-icon {
+            font-size: 50px;
+            color: var(--liquid-color);
+            line-height: 1;
+            margin-bottom: 15px;
+            opacity: 0.6;
+            transition: color 0.4s ease, transform 0.4s ease;
+        }
+
+        .testimonial-card:hover .quote-icon {
+            color: var(--text-on-dark);
+            transform: translateY(-5px);
+        }
+
+        /* Testimonial Text */
+        .testimonial-text {
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        /* Client Info */
+        .client-name {
             font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
-        .content p {
-            margin: 0;
-            font-size: 15px;
-            line-height: 1.6;
-            opacity: 0.9;
+        .client-role {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 400;
+            transition: color 0.4s ease;
         }
 
-        /* The Spin Animation */
+        .testimonial-card:hover .client-role {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* --- CLICK RIPPLE EFFECT --- */
+        .ripple {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+            z-index: 3; /* Above everything */
+        }
+
+        /* --- ANIMATIONS --- */
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
+    <div class="testimonial-card" id="card">
         <div class="liquid"></div>
         
-        <div class="content">
-            <div class="icon">💧</div>
-            <h2>Dark Wave</h2>
-            <p>Hover over this card to see the dark, wobbly liquid fill it from the top left down to the bottom right.</p>
+        <div class="card-content">
+            <div class="avatar-container">
+                <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="Client Avatar" class="avatar-img" loading="eager">
+            </div>
+            
+            <div class="quote-icon">“</div>
+            
+            <p class="testimonial-text">
+                "ProfitRX transformed our workflow. The integration was seamless, and the results were immediate. I can't imagine going back to our old methods."
+            </p>
+            
+            <h3 class="client-name">Sarah Chen</h3>
+            <p class="client-role">Director of Operations, InnovateCo</p>
         </div>
     </div>
 
+    <script>
+        const card = document.getElementById('card');
+
+        // --- 1. INITIAL ENTRY ANIMATION ---
+        // We use setTimeout to ensure the card animates in *after* the page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                card.classList.add('appear');
+            }, 300);
+        });
+
+
+        // --- 2. JS HOVER ANIMATION (3D TILT EFFECT) ---
+        card.addEventListener('mousemove', (e) => {
+            // Get card dimensions and position
+            const cardRect = card.getBoundingClientRect();
+            const cardWidth = cardRect.width;
+            const cardHeight = cardRect.height;
+            
+            // Get mouse position relative to the center of the card
+            const centerX = cardRect.left + cardWidth / 2;
+            const centerY = cardRect.top + cardHeight / 2;
+            const mouseX = e.clientX - centerX;
+            const mouseY = e.clientY - centerY;
+            
+            // Calculate rotation values (degrees) based on mouse position
+            // Dividing by a number controls the intensity of the tilt
+            const rotateX = (+mouseY / (cardHeight / 2)) * -10; // Tilt up/down
+            const rotateY = (+mouseX / (cardWidth / 2)) * 10;  // Tilt left/right
+            
+            // Apply the 3D transformation
+            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+        });
+
+        // Reset the tilt when the mouse leaves the card
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = `rotateX(0deg) rotateY(0deg) translateY(0)`;
+        });
+
+
+        // --- 3. CLICK ANIMATION (RIPPLE EFFECT) ---
+        card.addEventListener('click', function(e) {
+            // Create the ripple element
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            this.appendChild(ripple);
+
+            // Calculate the diameter and position of the ripple
+            const d = Math.max(this.clientWidth, this.clientHeight);
+            ripple.style.width = ripple.style.height = d + 'px';
+
+            // Position the ripple relative to the click coordinates
+            const rect = this.getBoundingClientRect();
+            ripple.style.left = e.clientX - rect.left - d/2 + 'px';
+            ripple.style.top = e.clientY - rect.top - d/2 + 'px';
+
+            // Remove the ripple element after the animation finishes
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    </script>
 </body>
 </html>

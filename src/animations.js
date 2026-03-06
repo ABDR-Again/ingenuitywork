@@ -132,44 +132,31 @@ document.querySelectorAll("#process .step-card").forEach((card, i) => {
 });
 
 /* ----------------------------------------------------------
-   6.  TRUSTED BY BRANDS
+   6.  NEW TESTIMONIALS SECTION
    ---------------------------------------------------------- */
-gsap.from("#trusted p", {
-  y: 30,
+gsap.from("#testimonials .section-header", {
+  y: 50,
   opacity: 0,
-  duration: 0.6,
+  duration: 0.7,
   ease: "power2.out",
-  scrollTrigger: defaultTrigger("#trusted"),
+  scrollTrigger: defaultTrigger("#testimonials"),
 });
 
-document.querySelectorAll("#trusted .brand-item").forEach((item, i) => {
-  gsap.from(item, {
-    x: -40,
+document.querySelectorAll("#testimonials testimonial-card").forEach((card, i) => {
+  gsap.from(card, {
+    y: 60,
     opacity: 0,
-    duration: 0.5,
-    delay: i * 0.1,
-    ease: "power2.out",
-    scrollTrigger: defaultTrigger("#trusted"),
+    duration: 0.6,
+    delay: i * 0.1, // Staggered appearance
+    ease: "power3.out",
+    scrollTrigger: defaultTrigger("#testimonials", "top 75%"),
+    onComplete: () => {
+       // Once animated in via GSAP, trigger the internal 'appear' class
+       // for the CSS-based entry transition defined in the web component
+       const innerCard = card.querySelector('.card');
+       if(innerCard) innerCard.classList.add('appear');
+    }
   });
-});
-
-/* ----------------------------------------------------------
-   7.  TESTIMONIALS
-   ---------------------------------------------------------- */
-gsap.from("#testimonials .testimonial-left", {
-  x: -100,
-  opacity: 0,
-  duration: 0.8,
-  ease: "power3.out",
-  scrollTrigger: defaultTrigger("#testimonials"),
-});
-
-gsap.from("#testimonials .testimonial-right", {
-  x: 100,
-  opacity: 0,
-  duration: 0.8,
-  ease: "power3.out",
-  scrollTrigger: defaultTrigger("#testimonials"),
 });
 
 /* ----------------------------------------------------------

@@ -116,7 +116,7 @@ window.initConsultationForm = function(wrapperId) {
       submitBtn.disabled = true;
 
       try {
-        const response = await fetch("https://formspree.io/f/maqdvzga", {
+        const response = await fetch("https://formspree.io/f/mwvnjpep", {
           method: "POST",
           body: new FormData(form),
           headers: { 'Accept': 'application/json' }

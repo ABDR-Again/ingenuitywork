@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 
 <html lang="en"><head>
+
+    <!-- Performance Preloads -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700;800&display=swap">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
+    <link rel="preload" href="/src/index.css" as="style">
+    <link rel="preload" href="/src/components/site-header.js" as="script" type="module">
+    <link rel="preload" href="/src/components/site-footer.js" as="script" type="module">
+    <link rel="preload" href="/src/components/site-modal.js" as="script" type="module">
+    <link rel="preload" href="https://cdn.tailwindcss.com?plugins=forms,container-queries" as="script">
+
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Contact Us - Ingenuity Work</title>
@@ -89,9 +101,9 @@
 <div class="order-1 lg:order-2 bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-100 dark:border-slate-800 shadow-lg relative min-h-[400px]">
     
     <div id="contact-page-form" class="w-full h-full relative">
-        <form id="contact__inner-form" class="flex flex-col gap-4 w-full h-full justify-center">
+        <form id="contact-multi-form" class="flex flex-col gap-4 w-full h-full justify-center" autocomplete="off">
             <!-- Step 1: Contact Info -->
-            <div class="step-1 flex flex-col gap-4 w-full h-fit">
+            <div class="step-1 flex flex-col gap-4 w-full h-fit transition-all duration-300">
                 <div class="mb-4">
                     <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Send a Message</h2>
                     <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm">Step 1: Your Details</p>
@@ -114,24 +126,16 @@
                 <div>
                     <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">Phone Number <span class="text-red-500">*</span></label>
                     <div class="flex gap-2">
-                        <select name="country_code" class="w-[100px] shrink-0 px-2 py-3 bg-slate-50 dark:bg-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all cursor-pointer">
-                            <option value="+1">🇺🇸 +1</option>
-                            <option value="+44">🇬🇧 +44</option>
-                            <option value="+92" selected>🇵🇰 +92</option>
-                            <option value="+91">🇮🇳 +91</option>
-                            <option value="+61">🇦🇺 +61</option>
-                            <option value="+971">🇦🇪 +971</option>
-                        </select>
-                        <input type="tel" name="phone" placeholder="312 345 6789" required class="input-phone flex-1 px-4 py-3 bg-slate-50 dark:bg-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all min-w-0">
+                        <input type="tel" name="phone" placeholder="e.g. +1 312 345 6789 (Include Country Code)" required class="input-phone flex-1 px-4 py-3 bg-slate-50 dark:bg-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all min-w-0">
                     </div>
                 </div>
-                <button type="button" class="next-1 w-full shrink-0 h-12 mt-4 bg-primary text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-colors shadow-lg shadow-primary/20 modal-trigger">
+                <button type="button" class="next-1 w-full shrink-0 h-12 mt-4 bg-primary text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-colors shadow-lg shadow-primary/20">
                     Next Step <span class="material-symbols-outlined text-sm">arrow_forward</span>
                 </button>
             </div>
 
             <!-- Step 2: Project Details (Hidden initially) -->
-            <div class="step-2 hidden flex-col gap-4 w-full h-fit opacity-0 translate-x-10 pointer-events-none">
+            <div class="step-2 hidden flex-col gap-4 w-full h-fit opacity-0 translate-x-10 pointer-events-none transition-all duration-300">
                 <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2 mb-2">
                     <h4 class="font-bold text-slate-900 dark:text-white text-sm">Step 2: Project Info</h4>
                     <button type="button" class="back-1 text-xs text-slate-500 hover:text-primary flex items-center gap-1 font-medium transition-colors"><span class="material-symbols-outlined text-[14px]">arrow_back</span> Back</button>
@@ -179,18 +183,19 @@
                     <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">How can we help? (Optional)</label>
                     <textarea name="other_details" rows="3" placeholder="Tell us more about your project goals..." class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none"></textarea>
                 </div>
-                <button type="submit" class="next-2 w-full shrink-0 h-12 mt-2 bg-primary text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-colors shadow-lg shadow-primary/20">
-                    Send Message <span class="material-symbols-outlined text-sm">send</span>
+                <button type="button" class="send-form-btn w-full shrink-0 h-12 mt-2 bg-primary text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-colors shadow-lg shadow-primary/20 relative">
+                    <span class="btn-text flex items-center gap-2">Send Message <span class="material-symbols-outlined text-sm">send</span></span>
+                    <svg class="btn-spinner hidden animate-spin absolute h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                 </button>
             </div>
             
-            <!-- Step 3: Connection Options (Hidden initially) -->
-            <div class="step-3 hidden flex-col gap-4 w-full h-fit py-8 opacity-0 translate-x-10 pointer-events-none">
+            <!-- Step 3: Connection Options / Success (Hidden initially) -->
+            <div class="step-3 hidden flex-col gap-4 w-full h-fit py-8 opacity-0 translate-x-10 pointer-events-none transition-all duration-300">
                 <div class="text-center mb-6">
                     <div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center mx-auto mb-4">
                         <span class="material-symbols-outlined text-3xl">check_circle</span>
                     </div>
-                    <h4 class="font-bold text-slate-900 dark:text-white text-2xl mb-2">Message Sent!</h4>
+                    <h4 class="font-bold text-slate-900 dark:text-white text-2xl mb-2">Message Sent Successfully!</h4>
                     <p class="text-slate-500 dark:text-slate-400">Our team will review your project and get back to you shortly. Feel free to connect via WhatsApp or Email instantly below.</p>
                 </div>
                 
@@ -204,24 +209,11 @@
                     a.b.d.r.1912003mltcqa.b.d.r@gmail.com
                 </a>
                 
-                <button type="button" class="back-2 mt-4 text-sm font-semibold text-slate-500 hover:text-primary transition-colors mx-auto flex items-center gap-2">
+                <button type="button" class="btn-reset mt-4 text-sm font-semibold text-slate-500 hover:text-primary transition-colors mx-auto flex items-center gap-2">
                     <span class="material-symbols-outlined text-[16px]">refresh</span> Submit another request
-                </a>
+                </button>
             </div>
         </form>
-        
-        <!-- Initialization Script inline or defer via modules -->
-        <script type="module">
-            import { gsap } from 'gsap';
-            // ensure the animations.js global is loaded first
-            document.addEventListener("DOMContentLoaded", () => {
-                setTimeout(() => {
-                    if(window.initConsultationForm) {
-                        window.initConsultationForm("contact-page-form");
-                    }
-                }, 100);
-            });
-        </script>
     </div>
 </div>
 </div>

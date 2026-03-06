@@ -117,6 +117,7 @@ class SiteHeader extends HTMLElement {
         <a href="/about/" class="text-sm font-medium text-slate-700 hover:text-primary hover:bg-slate-50 p-2.5 rounded-lg transition-colors no-underline flex items-center gap-3"><span class="material-symbols-outlined text-[18px]">info</span> About Us</a>
         <a href="/process/" class="text-sm font-medium text-slate-700 hover:text-primary hover:bg-slate-50 p-2.5 rounded-lg transition-colors no-underline flex items-center gap-3"><span class="material-symbols-outlined text-[18px]">account_tree</span> Our Process</a>
         <a href="/pricing/" class="text-sm font-medium text-slate-700 hover:text-primary hover:bg-slate-50 p-2.5 rounded-lg transition-colors no-underline flex items-center gap-3"><span class="material-symbols-outlined text-[18px]">payments</span> Pricing</a>
+        <a href="/testimonials/" class="text-sm font-medium text-slate-700 hover:text-primary hover:bg-slate-50 p-2.5 rounded-lg transition-colors no-underline flex items-center gap-3"><span class="material-symbols-outlined text-[18px]">forum</span> Testimonials</a>
         <a href="/contact.html" class="text-sm font-medium text-slate-700 hover:text-primary hover:bg-slate-50 p-2.5 rounded-lg transition-colors no-underline flex items-center gap-3"><span class="material-symbols-outlined text-[18px]">call</span> Contact Us</a>
     </div>
 </div>
