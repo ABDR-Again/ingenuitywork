@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ingenuity Work - Web Development &amp; Growth Services</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Sora:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0b111e",
+                        secondary: "#334155",
+                        "background-light": "#ffffff",
+                        "background-dark": "#0f172a",
+                        "surface-light": "#f8fafc",
+                        "surface-dark": "#1e293b",
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Sora', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        lg: "0.75rem",
+                        xl: "1rem",
+                        "2xl": "1.5rem",
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+        
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(12px);
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Ripple animation for button clicks */
+        .btn-ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.35);
+            transform: scale(0);
+            animation: ripple-expand 0.6s ease-out forwards;
+            pointer-events: none;
+        }
+        @keyframes ripple-expand {
+            to {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-light text-slate-900 font-sans antialiased overflow-x-hidden selection:bg-primary selection:text-white">
+<site-header></site-header>
+<main>
+<!-- Hero Section -->
+<section id="hero" class="relative pt-16 pb-24 lg:pt-32 lg:pb-32 overflow-hidden">
+<!-- Background Decoration -->
+<div class="absolute top-0 right-0 -mr-20 -mt-20 w-[600px] h-[600px] bg-slate-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[400px] h-[400px] bg-slate-100 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+<div class="max-w-4xl mx-auto flex flex-col items-center gap-8">
+<div class="hero-badge inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-light border border-slate-200 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+<span class="text-xs font-semibold text-slate-600 uppercase tracking-wide">Available for new projects</span>
+</div>
+<h1 class="font-display font-bold text-5xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight text-primary">
+                        Engineer Your Growth.<br/>
+<span class="text-slate-400">Build Your Future.</span>
+</h1>
+<p class="hero-sub text-lg md:text-xl text-slate-600 max-w-2xl leading-relaxed">
+                        We combine premium web development with data-driven growth automation to scale your business beyond limits.
+                    </p>
+<div class="hero-buttons flex flex-col sm:flex-row gap-4 w-full justify-center pt-4">
+<button class="bg-primary hover:bg-slate-800 text-white px-8 py-4 rounded-xl text-base font-bold transition-all shadow-xl shadow-primary/25 flex items-center justify-center gap-2 min-w-[200px] modal-trigger cursor-pointer">
+<span class="material-symbols-outlined">chat</span>
+                            Book Free Consultation
+                        </button>
+<a href="/services/" class="bg-white hover:bg-slate-50 text-primary border border-slate-200 px-8 py-4 rounded-xl text-base font-bold transition-all flex items-center justify-center gap-2 min-w-[200px] no-underline">
+                            View Services
+                        </a>
+</div>
+<div class="hero-trust pt-8 flex items-center justify-center gap-2 text-sm font-medium text-slate-500">
+<span class="material-symbols-outlined text-base filled">verified</span>
+<span>5+ years experience</span>
+<span class="mx-2">•</span>
+<span>25+ projects completed</span>
+<span class="mx-2">•</span>
+<span>Global delivery</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- What We Do Chips -->
+<section id="expertise" class="border-y border-slate-100 bg-surface-light/50 py-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row items-center gap-6">
+<h2 class="font-display font-bold text-xl text-primary whitespace-nowrap">Expertise in:</h2>
+<div class="flex flex-wrap gap-3">
+<div class="chip px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-slate-600 hover:border-primary/20 hover:text-primary hover:shadow-sm transition-all cursor-default">WordPress</div>
+<div class="chip px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-slate-600 hover:border-primary/20 hover:text-primary hover:shadow-sm transition-all cursor-default">Shopify</div>
+<div class="chip px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-slate-600 hover:border-primary/20 hover:text-primary hover:shadow-sm transition-all cursor-default">Custom Development</div>
+<div class="chip px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-slate-600 hover:border-primary/20 hover:text-primary hover:shadow-sm transition-all cursor-default">SEO</div>
+<div class="chip px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-slate-600 hover:border-primary/20 hover:text-primary hover:shadow-sm transition-all cursor-default">Lead Gen</div>
+<div class="chip px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-slate-600 hover:border-primary/20 hover:text-primary hover:shadow-sm transition-all cursor-default">E-commerce</div>
+<div class="chip px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-slate-600 hover:border-primary/20 hover:text-primary hover:shadow-sm transition-all cursor-default">Automation</div>
+<div class="chip px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-slate-600 hover:border-primary/20 hover:text-primary hover:shadow-sm transition-all cursor-default">Maintenance</div>
+<div class="chip px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-slate-600 hover:border-primary/20 hover:text-primary hover:shadow-sm transition-all cursor-default">Content Creation</div>
+<div class="chip px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-slate-600 hover:border-primary/20 hover:text-primary hover:shadow-sm transition-all cursor-default">Graphic Design</div>
+<div class="chip px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-slate-600 hover:border-primary/20 hover:text-primary hover:shadow-sm transition-all cursor-default">Meta Ads</div>
+<div class="chip px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-medium text-slate-600 hover:border-primary/20 hover:text-primary hover:shadow-sm transition-all cursor-default">Social Media</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Why Choose Us -->
+<section id="why-choose-us" class="py-24 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col lg:flex-row gap-16 items-start">
+<div class="wcu-text lg:w-1/3 sticky top-32">
+<h2 class="font-display font-bold text-4xl text-primary mb-6">Why Choose Us</h2>
+<p class="text-slate-600 text-lg leading-relaxed mb-8">
+                            We don't just build websites; we engineer digital assets that work as hard as you do. We deliver premium quality with speed and clarity.
+                        </p>
+<a class="text-primary font-bold inline-flex items-center gap-2 hover:gap-3 transition-all" href="#">
+                            Learn more about our values <span class="material-symbols-outlined">arrow_right_alt</span>
+</a>
+</div>
+<div class="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Card 1 -->
+<div class="wcu-card p-8 rounded-2xl bg-surface-light border border-slate-100 hover:border-slate-200 transition-all group">
+<div class="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">star</span>
+</div>
+<h3 class="font-display font-bold text-xl text-primary mb-3">Quality</h3>
+<p class="text-slate-600">Top-tier code standards, accessible design, and pixel-perfect implementation for every project.</p>
+</div>
+<!-- Card 2 -->
+<div class="wcu-card p-8 rounded-2xl bg-surface-light border border-slate-100 hover:border-slate-200 transition-all group">
+<div class="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<h3 class="font-display font-bold text-xl text-primary mb-3">Speed</h3>
+<p class="text-slate-600">Rapid delivery timelines without cutting corners. We use modern stacks to deploy faster.</p>
+</div>
+<!-- Card 3 -->
+<div class="wcu-card p-8 rounded-2xl bg-surface-light border border-slate-100 hover:border-slate-200 transition-all group">
+<div class="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">visibility</span>
+</div>
+<h3 class="font-display font-bold text-xl text-primary mb-3">Clarity</h3>
+<p class="text-slate-600">Transparent communication from day one. No jargon, just clear updates and strategy.</p>
+</div>
+<!-- Card 4 -->
+<div class="wcu-card p-8 rounded-2xl bg-surface-light border border-slate-100 hover:border-slate-200 transition-all group">
+<div class="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">support_agent</span>
+</div>
+<h3 class="font-display font-bold text-xl text-primary mb-3">After-Support</h3>
+<p class="text-slate-600">We don't disappear after launch. Ongoing maintenance and support are part of our DNA.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Services -->
+<section id="services" class="py-24 bg-surface-light border-t border-slate-100">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="section-header text-center max-w-3xl mx-auto mb-16">
+<span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Our Expertise</span>
+<h2 class="font-display font-bold text-3xl md:text-4xl text-primary">Services Designed for Growth</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Service 1 -->
+<div class="service-card bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col h-full hover:shadow-md transition-shadow">
+<div class="h-48 rounded-xl bg-slate-100 mb-6 overflow-hidden relative">
+<div class="absolute inset-0 bg-gradient-to-tr from-blue-50 to-indigo-100" data-alt="Abstract blue gradient representing WordPress structure"></div>
+<div class="absolute bottom-4 left-4 bg-white p-2 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-primary">web</span>
+</div>
+</div>
+<h3 class="font-display font-bold text-xl text-primary mb-2">WordPress</h3>
+<p class="text-slate-600 text-sm mb-6 flex-grow">Custom themes and plugins built for performance and ease of management.</p>
+<a class="text-primary font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all" href="#">
+                            Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<!-- Service 2 -->
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col h-full hover:shadow-md transition-shadow">
+<div class="h-48 rounded-xl bg-slate-100 mb-6 overflow-hidden relative">
+<div class="absolute inset-0 bg-gradient-to-tr from-green-50 to-emerald-100" data-alt="Abstract green gradient representing Shopify growth"></div>
+<div class="absolute bottom-4 left-4 bg-white p-2 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-primary">shopping_bag</span>
+</div>
+</div>
+<h3 class="font-display font-bold text-xl text-primary mb-2">Shopify</h3>
+<p class="text-slate-600 text-sm mb-6 flex-grow">High-converting stores designed to maximize your e-commerce revenue.</p>
+<a class="text-primary font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all" href="#">
+                            Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<!-- Service 3 -->
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col h-full hover:shadow-md transition-shadow">
+<div class="h-48 rounded-xl bg-slate-100 mb-6 overflow-hidden relative">
+<div class="absolute inset-0 bg-gradient-to-tr from-purple-50 to-fuchsia-100" data-alt="Abstract purple gradient representing Custom Code"></div>
+<div class="absolute bottom-4 left-4 bg-white p-2 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-primary">code_blocks</span>
+</div>
+</div>
+<h3 class="font-display font-bold text-xl text-primary mb-2">Custom Dev</h3>
+<p class="text-slate-600 text-sm mb-6 flex-grow">Tailor-made web applications solving unique business challenges.</p>
+<a class="text-primary font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all" href="#">
+                            Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<!-- Service 4 -->
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col h-full hover:shadow-md transition-shadow">
+<div class="h-48 rounded-xl bg-slate-100 mb-6 overflow-hidden relative">
+<div class="absolute inset-0 bg-gradient-to-tr from-orange-50 to-amber-100" data-alt="Abstract orange gradient representing SEO visibility"></div>
+<div class="absolute bottom-4 left-4 bg-white p-2 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-primary">search</span>
+</div>
+</div>
+<h3 class="font-display font-bold text-xl text-primary mb-2">SEO Growth</h3>
+<p class="text-slate-600 text-sm mb-6 flex-grow">Data-driven strategies to rank higher and attract qualified leads.</p>
+<a class="text-primary font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all" href="#">
+                            Learn More <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Process Teaser -->
+<section id="process" class="py-24 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="section-header mb-16">
+<h2 class="font-display font-bold text-3xl md:text-4xl text-primary mb-4">How We Work</h2>
+<p class="text-slate-600 text-lg max-w-2xl">A proven 4-step framework to take your project from concept to completion.</p>
+</div>
+<div class="relative">
+<!-- Line -->
+<div class="process-line hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-100 -translate-y-1/2 z-0"></div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+<!-- Step 1 -->
+<div class="step-card bg-white p-6 border border-slate-100 rounded-2xl shadow-sm text-center md:text-left">
+<div class="w-12 h-12 bg-primary text-white rounded-xl flex items-center justify-center font-bold text-xl mb-4 mx-auto md:mx-0">1</div>
+<h3 class="font-display font-bold text-lg text-primary mb-2">Discovery</h3>
+<p class="text-slate-600 text-sm">We analyze your needs, goals, and target audience.</p>
+</div>
+<!-- Step 2 -->
+<div class="bg-white p-6 border border-slate-100 rounded-2xl shadow-sm text-center md:text-left">
+<div class="w-12 h-12 bg-white border-2 border-primary text-primary rounded-xl flex items-center justify-center font-bold text-xl mb-4 mx-auto md:mx-0">2</div>
+<h3 class="font-display font-bold text-lg text-primary mb-2">Strategy</h3>
+<p class="text-slate-600 text-sm">We plan the architecture, design, and roadmap.</p>
+</div>
+<!-- Step 3 -->
+<div class="bg-white p-6 border border-slate-100 rounded-2xl shadow-sm text-center md:text-left">
+<div class="w-12 h-12 bg-white border-2 border-primary text-primary rounded-xl flex items-center justify-center font-bold text-xl mb-4 mx-auto md:mx-0">3</div>
+<h3 class="font-display font-bold text-lg text-primary mb-2">Build</h3>
+<p class="text-slate-600 text-sm">We code and develop using premium standards.</p>
+</div>
+<!-- Step 4 -->
+<div class="bg-white p-6 border border-slate-100 rounded-2xl shadow-sm text-center md:text-left">
+<div class="w-12 h-12 bg-white border-2 border-primary text-primary rounded-xl flex items-center justify-center font-bold text-xl mb-4 mx-auto md:mx-0">4</div>
+<h3 class="font-display font-bold text-lg text-primary mb-2">Launch</h3>
+<p class="text-slate-600 text-sm">We deploy, test, and hand over your asset.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trusted By Brands -->
+<section id="trusted" class="py-16 bg-surface-light border-y border-slate-100">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<p class="text-sm font-semibold text-slate-400 uppercase tracking-widest mb-10">Trusted by innovative companies</p>
+<div class="flex flex-wrap justify-center items-center gap-12 opacity-60 grayscale">
+<!-- Brand 1 -->
+<div class="brand-item h-8 w-32 bg-slate-300 rounded" data-alt="Placeholder for Brand Logo 1"></div>
+<!-- Brand 2 -->
+<div class="brand-item h-8 w-32 bg-slate-300 rounded" data-alt="Placeholder for Brand Logo 2"></div>
+<!-- Brand 3 -->
+<div class="brand-item h-10 w-10 rounded-full bg-slate-300" data-alt="Placeholder for Brand Icon 3"></div>
+<!-- Brand 4 -->
+<div class="brand-item h-8 w-32 bg-slate-300 rounded" data-alt="Placeholder for Brand Logo 4"></div>
+<!-- Brand 5 -->
+<div class="brand-item h-8 w-32 bg-slate-300 rounded" data-alt="Placeholder for Brand Logo 5"></div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section id="testimonials" class="py-24 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Testimonial 1 -->
+<div class="testimonial-left bg-surface-light p-8 rounded-2xl border border-slate-100 relative">
+<span class="material-symbols-outlined text-4xl text-slate-200 absolute top-6 right-6">format_quote</span>
+<p class="text-slate-700 text-lg mb-6 leading-relaxed italic">"Ingenuity Work transformed our online presence. The speed of the site and the custom automation they built saved us hours every week."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-slate-200" data-alt="Avatar of Sarah Jenkins"></div>
+<div>
+<div class="font-bold text-primary">Sarah Jenkins</div>
+<div class="text-sm text-slate-500">CEO, TechFlow</div>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="testimonial-right bg-surface-light p-8 rounded-2xl border border-slate-100 relative">
+<span class="material-symbols-outlined text-4xl text-slate-200 absolute top-6 right-6">format_quote</span>
+<p class="text-slate-700 text-lg mb-6 leading-relaxed italic">"The team is incredibly transparent and skilled. Our Shopify store conversion rate doubled within a month of their redesign."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-slate-200" data-alt="Avatar of Mark Davies"></div>
+<div>
+<div class="font-bold text-primary">Mark Davies</div>
+<div class="text-sm text-slate-500">Founder, RetailPro</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section id="cta" class="py-24 px-4 sm:px-6 lg:px-8">
+<div class="cta-box max-w-7xl mx-auto rounded-3xl overflow-hidden relative text-center py-20 px-6 bg-primary">
+<!-- Decorative Gradient -->
+<div class="absolute inset-0 bg-gradient-to-br from-slate-800 to-black opacity-50"></div>
+<div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-blue-500 rounded-full blur-[100px] opacity-20"></div>
+<div class="cta-content relative z-10 max-w-2xl mx-auto">
+<h2 class="font-display font-bold text-4xl md:text-5xl text-white mb-6">Ready to scale your business?</h2>
+<p class="text-slate-300 text-lg mb-10">Let's discuss how we can engineer a better future for your company.</p>
+<a href="/contact.html" class="bg-white text-primary hover:bg-slate-100 px-8 py-4 rounded-xl text-base font-bold transition-all shadow-xl inline-flex items-center gap-2 no-underline">
+<span class="material-symbols-outlined">chat</span>
+                        Start Conversation
+                    </a>
+</div>
+</div>
+</section>
+</main>
+<site-footer></site-footer>
+<script type="module" src="/src/animations.js"></script>
+<script src="/src/components/site-header.js" type="module"></script>
+<script src="/src/components/site-footer.js" type="module"></script>
+<script src="/src/components/site-modal.js" type="module"></script>
+<site-modal></site-modal>
+</body></html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liquid Hover Card</title>
+    <style>
+        /* Basic reset and layout */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e2e8f0;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* The Card Container */
+        .card {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* This keeps the liquid contained inside the card */
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Slight lift effect on the whole card */
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- THE LIQUID MAGIC --- */
+        .liquid {
+            position: absolute;
+            width: 800px; /* Much larger than the card */
+            height: 800px;
+            background-color: #1a1a2e; /* The dark fill color */
+            
+            /* Hide it way up in the top-left corner initially */
+            top: -850px;
+            left: -850px;
+            
+            /* The uneven border-radius that creates the "wave" shape */
+            border-radius: 40%;
+            
+            /* Continuous rotation creates the wobble */
+            animation: spin 5s linear infinite;
+            
+            /* When hovered, transition the top and left positions smoothly */
+            transition: top 0.8s ease-in-out, left 0.8s ease-in-out;
+            z-index: 1;
+        }
+
+        /* A second liquid layer for depth and extra wobbliness */
+        .liquid::after {
+            content: '';
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            width: 90%;
+            height: 90%;
+            background-color: #16213e; /* Slightly different dark shade */
+            border-radius: 45%;
+            animation: spin 7s linear infinite reverse; /* Spins the opposite way */
+        }
+
+        /* The Hover Trigger: Move the liquid down and right */
+        .card:hover .liquid {
+            top: -200px; 
+            left: -200px;
+        }
+
+        /* --- CONTENT STYLING --- */
+        .content {
+            position: relative;
+            z-index: 2; /* Keeps the text above the liquid */
+            padding: 40px 30px;
+            height: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            color: #333333;
+            transition: color 0.5s ease; /* Smooth text color change */
+        }
+
+        /* Change text to white when the dark liquid fills in */
+        .card:hover .content {
+            color: #ffffff;
+        }
+
+        .icon {
+            font-size: 40px;
+            margin-bottom: auto; /* Pushes the text down, keeps icon at the top */
+        }
+
+        .content h2 {
+            margin: 0 0 10px 0;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .content p {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* The Spin Animation */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="liquid"></div>
+        
+        <div class="content">
+            <div class="icon">💧</div>
+            <h2>Dark Wave</h2>
+            <p>Hover over this card to see the dark, wobbly liquid fill it from the top left down to the bottom right.</p>
+        </div>
+    </div>
+
+</body>
+</html>

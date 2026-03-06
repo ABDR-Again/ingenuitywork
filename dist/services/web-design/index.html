@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WordPress Website Development - Ingenuity Work</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0b111e",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#14171e",
+                        "slate-900": "#0f172a",
+                        "slate-800": "#1e293b",
+                        "slate-500": "#64748b",
+                        "slate-100": "#f1f5f9",
+                        "slate-50": "#f8fafc",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+  <script type="module" crossorigin src="/assets/animations-D6n_DIvj.js"></script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display antialiased overflow-x-hidden">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Header -->
+<!-- Sticky Header -->
+<!-- Sticky Header -->
+<!-- Sticky Header -->
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 backdrop-blur-md bg-white/90 border-b border-slate-100">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<!-- Logo -->
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-white">
+<span class="material-symbols-outlined text-xl">code</span>
+</div>
+<a href="/" class="font-display font-bold text-xl tracking-tight text-primary no-underline">Ingenuity Work</a>
+</div>
+<!-- Nav -->
+<nav class="hidden xl:flex gap-8 items-center h-full">
+<a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors h-full flex items-center" href="/">Home</a>
+
+<!-- Services Dropdown -->
+<div class="relative group h-full flex items-center">
+    <a class="text-sm font-medium text-slate-600 group-hover:text-primary transition-colors flex items-center gap-1 cursor-pointer" href="/services/">
+        Services <span class="material-symbols-outlined text-[16px] transition-transform group-hover:rotate-180">keyboard_arrow_down</span>
+    </a>
+    <div class="absolute top-full left-1/2 -translate-x-1/2 w-[600px] bg-white border border-slate-100 shadow-xl shadow-slate-200/50 rounded-2xl p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 grid grid-cols-2 gap-4 translate-y-2 group-hover:translate-y-0 before:absolute before:-top-4 before:left-0 before:w-full before:h-4">
+        <!-- Service Items -->
+        <a href="/services/web-design/" class="flex items-start gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors group/item no-underline">
+            <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform"><span class="material-symbols-outlined">web</span></div>
+            <div>
+                <div class="font-bold text-slate-900 text-sm mb-1">Web Design</div>
+                <div class="text-xs text-slate-500">Custom WordPress & Shopify</div>
+            </div>
+        </a>
+        <a href="/services/seo/" class="flex items-start gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors group/item no-underline">
+            <div class="w-10 h-10 rounded-lg bg-green-50 text-green-600 flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform"><span class="material-symbols-outlined">search</span></div>
+            <div>
+                <div class="font-bold text-slate-900 text-sm mb-1">SEO Growth</div>
+                <div class="text-xs text-slate-500">Rank higher on Google</div>
+            </div>
+        </a>
+        <a href="/services/meta-ads/" class="flex items-start gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors group/item no-underline">
+            <div class="w-10 h-10 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform"><span class="material-symbols-outlined">campaign</span></div>
+            <div>
+                <div class="font-bold text-slate-900 text-sm mb-1">Meta Ads</div>
+                <div class="text-xs text-slate-500">Scale on FB & Insta</div>
+            </div>
+        </a>
+        <a href="/services/automation/" class="flex items-start gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors group/item no-underline">
+            <div class="w-10 h-10 rounded-lg bg-cyan-50 text-cyan-600 flex items-center justify-center shrink-0 group-hover/item:scale-110 transition-transform"><span class="material-symbols-outlined">smart_toy</span></div>
+            <div>
+                <div class="font-bold text-slate-900 text-sm mb-1">Automation</div>
+                <div class="text-xs text-slate-500">Streamline workflows</div>
+            </div>
+        </a>
+        <div class="col-span-2 pt-4 mt-2 border-t border-slate-100 flex justify-center">
+            <a href="/services/" class="text-sm font-bold text-primary flex items-center gap-1 hover:gap-2 transition-all no-underline">View all services <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+        </div>
+    </div>
+</div>
+
+<!-- Case Studies Dropdown -->
+<div class="relative group h-full flex items-center">
+    <a class="text-sm font-medium text-slate-600 group-hover:text-primary transition-colors flex items-center gap-1 cursor-pointer" href="/case-studies/">
+        Case Studies <span class="material-symbols-outlined text-[16px] transition-transform group-hover:rotate-180">keyboard_arrow_down</span>
+    </a>
+    <div class="absolute top-full left-1/2 -translate-x-1/2 w-[350px] bg-white border border-slate-100 shadow-xl shadow-slate-200/50 rounded-2xl p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-2 group-hover:translate-y-0 before:absolute before:-top-4 before:left-0 before:w-full before:h-4">
+        <!-- CS Items -->
+        <a href="/case-studies/luxewear-redesign/" class="flex flex-col gap-1 p-3 rounded-xl hover:bg-slate-50 transition-colors no-underline">
+            <div class="text-xs font-bold text-primary uppercase tracking-wider">Web Design</div>
+            <div class="font-bold text-slate-900 text-sm">LuxeWear Redesign</div>
+            <div class="text-xs text-slate-500">+85% Conversion Rate</div>
+        </a>
+        <a href="/case-studies/glowskin-meta-ads/" class="flex flex-col gap-1 p-3 rounded-xl hover:bg-slate-50 transition-colors no-underline">
+            <div class="text-xs font-bold text-primary uppercase tracking-wider">Meta Ads</div>
+            <div class="font-bold text-slate-900 text-sm">GlowSkin Scaling</div>
+            <div class="text-xs text-slate-500">5.2x ROAS at $50k/mo</div>
+        </a>
+        <a href="/case-studies/healthfirst-seo/" class="flex flex-col gap-1 p-3 rounded-xl hover:bg-slate-50 transition-colors no-underline">
+            <div class="text-xs font-bold text-primary uppercase tracking-wider">SEO</div>
+            <div class="font-bold text-slate-900 text-sm">HealthFirst Visibility</div>
+            <div class="text-xs text-slate-500">3x Organic Traffic</div>
+        </a>
+        <div class="pt-3 mt-1 border-t border-slate-100 flex justify-center">
+            <a href="/case-studies/" class="text-sm font-bold text-primary flex items-center gap-1 hover:gap-2 transition-all no-underline">View all case studies <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+        </div>
+    </div>
+</div>
+
+<!-- Company Dropdown -->
+<div class="relative group h-full flex items-center">
+    <a class="text-sm font-medium text-slate-600 group-hover:text-primary transition-colors flex items-center gap-1 cursor-pointer">
+        Company <span class="material-symbols-outlined text-[16px] transition-transform group-hover:rotate-180">keyboard_arrow_down</span>
+    </a>
+    <div class="absolute top-full left-1/2 -translate-x-1/2 w-[220px] bg-white border border-slate-100 shadow-xl shadow-slate-200/50 rounded-2xl p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 flex flex-col gap-1 translate-y-2 group-hover:translate-y-0 before:absolute before:-top-4 before:left-0 before:w-full before:h-4">
+        <a href="/about/" class="text-sm font-medium text-slate-700 hover:text-primary hover:bg-slate-50 p-2.5 rounded-lg transition-colors no-underline flex items-center gap-3"><span class="material-symbols-outlined text-[18px]">info</span> About Us</a>
+        <a href="/process/" class="text-sm font-medium text-slate-700 hover:text-primary hover:bg-slate-50 p-2.5 rounded-lg transition-colors no-underline flex items-center gap-3"><span class="material-symbols-outlined text-[18px]">account_tree</span> Our Process</a>
+        <a href="/pricing/" class="text-sm font-medium text-slate-700 hover:text-primary hover:bg-slate-50 p-2.5 rounded-lg transition-colors no-underline flex items-center gap-3"><span class="material-symbols-outlined text-[18px]">payments</span> Pricing</a>
+        <a href="/contact.html" class="text-sm font-medium text-slate-700 hover:text-primary hover:bg-slate-50 p-2.5 rounded-lg transition-colors no-underline flex items-center gap-3"><span class="material-symbols-outlined text-[18px]">call</span> Contact Us</a>
+    </div>
+</div>
+
+</nav>
+<!-- Actions -->
+<div class="hidden md:flex items-center gap-6">
+<div class="hidden lg:flex items-center gap-2 text-slate-600">
+<span class="material-symbols-outlined text-lg">call</span>
+<span class="text-sm font-medium">0313 931 3848</span>
+</div>
+<a href="/case-studies/" class="modal-trigger bg-primary hover:bg-slate-800 text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-primary/20 flex items-center gap-2 no-underline">
+<span>Book Consultation</span>
+<span class="material-symbols-outlined text-sm shrink-0">arrow_forward</span>
+</a>
+</div>
+<!-- Mobile Menu Button -->
+<a href="/contact.html" class="xl:hidden p-2 text-slate-600 no-underline">
+<span class="material-symbols-outlined">menu</span>
+</a>
+</div>
+</div>
+</header>
+<!-- /Sticky Header -->
+<!-- /Sticky Header -->
+<!-- /Sticky Header -->
+<!-- /Sticky Header -->
+<main class="flex-1">
+<!-- Hero Section -->
+<section class="layout-container flex flex-col items-center justify-center px-4 md:px-10 py-16 md:py-24 bg-white dark:bg-slate-900">
+<div class="layout-content-container flex flex-col max-w-[960px] w-full">
+<div class="@container">
+<div class="flex flex-col gap-10 @[864px]:flex-row items-center">
+<div class="flex flex-col gap-6 flex-1 text-center @[864px]:text-left">
+<span class="inline-block w-fit mx-auto @[864px]:mx-0 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">Web Development</span>
+<h1 class="text-slate-900 dark:text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl lg:text-6xl">
+                                    WordPress Website Development
+                                </h1>
+<p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed max-w-xl mx-auto @[864px]:mx-0">
+                                    Custom, high-performance WordPress solutions designed to scale. We build secure, responsive, and SEO-friendly websites tailored to your brand.
+                                </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center @[864px]:justify-start pt-4">
+<button class="flex items-center justify-center rounded-lg h-12 px-8 bg-primary dark:bg-white text-white dark:text-primary text-base font-bold transition-transform hover:-translate-y-0.5 shadow-lg modal-trigger">
+                                        Start Your Project
+                                    </a>
+<a href="/case-studies/" class="flex items-center justify-center rounded-lg h-12 px-8 bg-transparent border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-base font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors no-underline">
+                                        View Portfolio
+                                    </a>
+</div>
+</div>
+<div class="w-full flex-1 aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-slate-100 dark:bg-slate-800 relative group">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent z-10"></div>
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Abstract minimal coding environment on laptop" style='background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuD5QImMmLJj-3mB8Nl4HRecVCnIRiasDNqO71dKoitk9VO6TM0DL81-KXgQrBDex4S9SPo5I5sI0JuiEwqdM001yFGqitOsSiy-m8sSiv6_EwZ-E0MoFOeh62khTUb8EPERDtzEWDApP3fKVFFk5thWds91v3PemgFbuL_-iGfupF1uxEtAO_8Eq9e1Bdkt03adp8WD2ghiDySjIZVHpyc2TxHFaeUc-FMybgIc3r2cFi5xB9gvZ2i6yNzBlO0qProqE7rTyMPliY4&quot;);'></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- What You Get -->
+<section class="px-4 md:px-10 py-20 bg-slate-50 dark:bg-background-dark border-y border-slate-200 dark:border-slate-800">
+<div class="max-w-[960px] mx-auto flex flex-col gap-12">
+<div class="flex flex-col gap-4 text-center md:text-left">
+<h2 class="text-slate-900 dark:text-white text-3xl font-bold tracking-tight">What You Get</h2>
+<p class="text-slate-600 dark:text-slate-400 text-lg max-w-2xl">
+                            Our comprehensive development package ensures a robust foundation for your digital presence.
+                        </p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="flex flex-col gap-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm hover:shadow-md transition-shadow">
+<div class="size-12 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary dark:text-white">
+<span class="material-symbols-outlined text-2xl">devices</span>
+</div>
+<div>
+<h3 class="text-slate-900 dark:text-white text-lg font-bold mb-2">Responsive Design</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Perfect viewing experience across all devices, from mobile phones to large desktop monitors.</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex flex-col gap-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm hover:shadow-md transition-shadow">
+<div class="size-12 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary dark:text-white">
+<span class="material-symbols-outlined text-2xl">speed</span>
+</div>
+<div>
+<h3 class="text-slate-900 dark:text-white text-lg font-bold mb-2">Speed Optimization</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Advanced caching and code minification for lightning-fast loading times and better UX.</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flex flex-col gap-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm hover:shadow-md transition-shadow">
+<div class="size-12 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary dark:text-white">
+<span class="material-symbols-outlined text-2xl">search</span>
+</div>
+<div>
+<h3 class="text-slate-900 dark:text-white text-lg font-bold mb-2">SEO Friendly</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Built with semantic HTML5 and schema markup to help you rank higher on search engines.</p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="flex flex-col gap-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm hover:shadow-md transition-shadow">
+<div class="size-12 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary dark:text-white">
+<span class="material-symbols-outlined text-2xl">verified_user</span>
+</div>
+<div>
+<h3 class="text-slate-900 dark:text-white text-lg font-bold mb-2">Security Hardening</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Protection against malware and brute force attacks with best-in-class security protocols.</p>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="flex flex-col gap-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm hover:shadow-md transition-shadow">
+<div class="size-12 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary dark:text-white">
+<span class="material-symbols-outlined text-2xl">palette</span>
+</div>
+<div>
+<h3 class="text-slate-900 dark:text-white text-lg font-bold mb-2">Custom Theme</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">A unique design tailored specifically to your brand identity, not just another template.</p>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="flex flex-col gap-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm hover:shadow-md transition-shadow">
+<div class="size-12 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary dark:text-white">
+<span class="material-symbols-outlined text-2xl">extension</span>
+</div>
+<div>
+<h3 class="text-slate-900 dark:text-white text-lg font-bold mb-2">Plugin Integration</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Seamless configuration of essential tools for analytics, forms, and functionality.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Deliverables & Pricing Split -->
+<section class="px-4 md:px-10 py-20 bg-white dark:bg-slate-900">
+<div class="max-w-[960px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Left: Deliverables Checklist -->
+<div class="lg:col-span-7 flex flex-col gap-8">
+<h2 class="text-slate-900 dark:text-white text-2xl font-bold">Deliverables Checklist</h2>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-green-600 mt-0.5">check_circle</span>
+<span class="text-slate-700 dark:text-slate-300">Fully installed WordPress on your server</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-green-600 mt-0.5">check_circle</span>
+<span class="text-slate-700 dark:text-slate-300">Home, About, Services, Contact &amp; Blog pages setup</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-green-600 mt-0.5">check_circle</span>
+<span class="text-slate-700 dark:text-slate-300">Contact form configuration with spam protection</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-green-600 mt-0.5">check_circle</span>
+<span class="text-slate-700 dark:text-slate-300">Google Analytics &amp; Search Console integration</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-green-600 mt-0.5">check_circle</span>
+<span class="text-slate-700 dark:text-slate-300">XML Sitemap generation for search engines</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-green-600 mt-0.5">check_circle</span>
+<span class="text-slate-700 dark:text-slate-300">1 hour training session via Zoom</span>
+</li>
+</ul>
+<!-- Maintenance Section -->
+<div class="mt-8 p-6 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
+<h3 class="text-slate-900 dark:text-white font-bold mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined">build</span>
+                                Monthly Maintenance Available
+                            </h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm">
+                                Keep your site secure and updated. We offer ongoing support packages starting at <span class="font-bold text-slate-900 dark:text-white">$49/mo</span>, including backups, plugin updates, and uptime monitoring.
+                            </p>
+</div>
+</div>
+<!-- Right: Pricing Card -->
+<div class="lg:col-span-5">
+<div class="sticky top-24 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-8 shadow-xl">
+<span class="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Starting from</span>
+<div class="flex items-baseline gap-1 mt-2 mb-6">
+<span class="text-4xl font-black text-slate-900 dark:text-white">$1,200</span>
+<span class="text-slate-500 dark:text-slate-400">USD</span>
+</div>
+<div class="flex flex-col gap-4 mb-8">
+<div class="flex justify-between border-b border-slate-100 dark:border-slate-700 pb-3">
+<span class="text-slate-600 dark:text-slate-300">Delivery Time</span>
+<span class="font-bold text-slate-900 dark:text-white">14 Days</span>
+</div>
+<div class="flex justify-between border-b border-slate-100 dark:border-slate-700 pb-3">
+<span class="text-slate-600 dark:text-slate-300">Revisions</span>
+<span class="font-bold text-slate-900 dark:text-white">2 Rounds</span>
+</div>
+<div class="flex justify-between pb-3">
+<span class="text-slate-600 dark:text-slate-300">Support</span>
+<span class="font-bold text-slate-900 dark:text-white">30 Days Post-Launch</span>
+</div>
+</div>
+<a href="https://wa.me/923139313848" class="w-full flex items-center justify-center gap-2 rounded-lg h-12 bg-primary dark:bg-white text-white dark:text-primary font-bold hover:opacity-90 transition-opacity no-underline">
+<span class="material-symbols-outlined text-[20px]">calendar_month</span>
+                                Book Free Consultation
+                            </a>
+<p class="text-xs text-center text-slate-400 mt-4">No commitment required.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Process Section -->
+<section class="px-4 md:px-10 py-20 bg-slate-50 dark:bg-background-dark border-y border-slate-200 dark:border-slate-800">
+<div class="max-w-[960px] mx-auto">
+<h2 class="text-slate-900 dark:text-white text-2xl font-bold mb-10">Our Process</h2>
+<div class="relative">
+<!-- Timeline Line -->
+<div class="absolute left-[19px] top-4 bottom-4 w-0.5 bg-slate-200 dark:bg-slate-700"></div>
+<!-- Step 1 -->
+<div class="relative grid grid-cols-[40px_1fr] gap-6 mb-8 group">
+<div class="h-10 w-10 rounded-full bg-white dark:bg-slate-800 border-2 border-primary dark:border-slate-500 z-10 flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary dark:text-white text-sm">assignment</span>
+</div>
+<div class="pt-1">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Discovery &amp; Planning</h3>
+<span class="text-xs font-semibold text-slate-500 bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded">Day 1-3</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400">We analyze your requirements, define the site architecture, and create a project roadmap.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative grid grid-cols-[40px_1fr] gap-6 mb-8 group">
+<div class="h-10 w-10 rounded-full bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 z-10 flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-300 text-sm">brush</span>
+</div>
+<div class="pt-1">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Design &amp; Prototyping</h3>
+<span class="text-xs font-semibold text-slate-500 bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded">Day 4-7</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400">We create wireframes and high-fidelity mockups for your approval before writing code.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative grid grid-cols-[40px_1fr] gap-6 mb-8 group">
+<div class="h-10 w-10 rounded-full bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 z-10 flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-300 text-sm">code</span>
+</div>
+<div class="pt-1">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Development &amp; Testing</h3>
+<span class="text-xs font-semibold text-slate-500 bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded">Day 8-12</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400">Coding the theme, integrating plugins, and rigorous testing on all device types.</p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="relative grid grid-cols-[40px_1fr] gap-6 group">
+<div class="h-10 w-10 rounded-full bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-600 z-10 flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-300 text-sm">rocket_launch</span>
+</div>
+<div class="pt-1">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Launch &amp; Training</h3>
+<span class="text-xs font-semibold text-slate-500 bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded">Day 13-14</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400">We migrate the site to your live server and provide training on how to manage content.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="px-4 md:px-10 py-20 bg-white dark:bg-slate-900">
+<div class="max-w-[720px] mx-auto">
+<h2 class="text-center text-slate-900 dark:text-white text-2xl font-bold mb-10">Frequently Asked Questions</h2>
+<div class="flex flex-col gap-4">
+<!-- FAQ Item 1 -->
+<details class="group rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 open:bg-white dark:open:bg-slate-800 open:shadow-md transition-all">
+<summary class="flex cursor-pointer items-center justify-between gap-4 p-5 font-medium text-slate-900 dark:text-white">
+<span>Do you use pre-made templates?</span>
+<span class="material-symbols-outlined transition group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-5 pb-5 pt-0 text-slate-600 dark:text-slate-400">
+<p>We primarily focus on custom themes to ensure uniqueness and performance. However, if you're on a tight budget, we can customize a premium theme to match your brand guidelines perfectly.</p>
+</div>
+</details>
+<!-- FAQ Item 2 -->
+<details class="group rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 open:bg-white dark:open:bg-slate-800 open:shadow-md transition-all">
+<summary class="flex cursor-pointer items-center justify-between gap-4 p-5 font-medium text-slate-900 dark:text-white">
+<span>Will I be able to edit the website myself?</span>
+<span class="material-symbols-outlined transition group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-5 pb-5 pt-0 text-slate-600 dark:text-slate-400">
+<p>Absolutely. WordPress is user-friendly. We use page builders like Elementor or Gutenberg blocks, making it easy for you to edit text and images without touching code. We also provide a training session.</p>
+</div>
+</details>
+<!-- FAQ Item 3 -->
+<details class="group rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 open:bg-white dark:open:bg-slate-800 open:shadow-md transition-all">
+<summary class="flex cursor-pointer items-center justify-between gap-4 p-5 font-medium text-slate-900 dark:text-white">
+<span>What do I need to provide to get started?</span>
+<span class="material-symbols-outlined transition group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-5 pb-5 pt-0 text-slate-600 dark:text-slate-400">
+<p>We'll need your logo, brand guidelines (colors, fonts), and the content for your pages (text and images). If you don't have content yet, we can use placeholders or offer copywriting services as an add-on.</p>
+</div>
+</details>
+<!-- FAQ Item 4 -->
+<details class="group rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 open:bg-white dark:open:bg-slate-800 open:shadow-md transition-all">
+<summary class="flex cursor-pointer items-center justify-between gap-4 p-5 font-medium text-slate-900 dark:text-white">
+<span>Is hosting and domain included?</span>
+<span class="material-symbols-outlined transition group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-5 pb-5 pt-0 text-slate-600 dark:text-slate-400">
+<p>No, the domain and hosting are not included in the development fee. However, we can guide you in purchasing the right plan and will handle the setup and configuration on your chosen server.</p>
+</div>
+</details>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-24 bg-primary dark:bg-slate-950 text-white">
+<div class="layout-container px-4 md:px-10 flex flex-col items-center text-center gap-6">
+<h2 class="text-3xl md:text-4xl font-black tracking-tight max-w-2xl">Ready to scale your business with a high-performance website?</h2>
+<p class="text-slate-300 text-lg max-w-xl">Book a free 15-minute consultation to discuss your project needs and get a custom quote.</p>
+<div class="flex flex-col sm:flex-row gap-4 mt-4">
+<button class="flex items-center justify-center gap-2 rounded-lg h-12 px-8 bg-green-500 text-white font-bold hover:bg-green-600 transition-colors shadow-lg shadow-green-900/20">
+<span class="material-symbols-outlined">chat</span>
+                            Chat on WhatsApp
+                        </button>
+<a href="/contact.html" class="flex items-center justify-center rounded-lg h-12 px-8 bg-white/10 text-white font-bold hover:bg-white/20 transition-colors border border-white/10 no-underline">
+                            Contact via Email
+                        </a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<!-- Footer -->
+<!-- Footer -->
+<!-- Footer -->
+<!-- Footer -->
+<footer class="bg-primary text-slate-300 pt-20 pb-10 border-t border-slate-800 mt-auto">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+    
+    <!-- Brand -->
+    <div class="flex flex-col gap-6">
+        <div class="flex items-center gap-3">
+            <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 text-white">
+                <span class="material-symbols-outlined text-xl">code</span>
+            </div>
+            <span class="font-display font-bold text-xl tracking-tight text-white">Ingenuity Work</span>
+        </div>
+        <p class="text-sm text-slate-400 leading-relaxed max-w-xs">Premium web development and data-driven growth services to take your business to the next level.</p>
+        <div class="flex gap-4">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary-light hover:bg-white/20 transition-colors"><span class="material-symbols-outlined text-[20px]">link</span></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary-light hover:bg-white/20 transition-colors"><span class="material-symbols-outlined text-[20px]">share</span></a>
+        </div>
+    </div>
+
+    <!-- Services -->
+    <div class="flex flex-col gap-4">
+        <h4 class="text-white font-bold tracking-wider text-sm uppercase mb-2">Services</h4>
+        <a href="/services/web-design/" class="text-sm hover:text-white transition-colors w-fit no-underline">Web Design</a>
+        <a href="/services/seo/" class="text-sm hover:text-white transition-colors w-fit no-underline">SEO Growth</a>
+        <a href="/services/meta-ads/" class="text-sm hover:text-white transition-colors w-fit no-underline">Meta Ads</a>
+        <a href="/services/content-creation/" class="text-sm hover:text-white transition-colors w-fit no-underline">Content Creation</a>
+        <a href="/services/" class="text-sm hover:text-white transition-colors w-fit font-semibold mt-2 no-underline">View All Services →</a>
+    </div>
+
+    <!-- Company -->
+    <div class="flex flex-col gap-4">
+        <h4 class="text-white font-bold tracking-wider text-sm uppercase mb-2">Company</h4>
+        <a href="/about/" class="text-sm hover:text-white transition-colors w-fit no-underline">About Us</a>
+        <a href="/case-studies/" class="text-sm hover:text-white transition-colors w-fit no-underline">Case Studies</a>
+        <a href="/process/" class="text-sm hover:text-white transition-colors w-fit no-underline">Our Process</a>
+        <a href="/pricing/" class="text-sm hover:text-white transition-colors w-fit no-underline">Pricing</a>
+    </div>
+
+    <!-- Contact -->
+    <div class="flex flex-col gap-4">
+        <h4 class="text-white font-bold tracking-wider text-sm uppercase mb-2">Contact</h4>
+        <div class="flex items-center gap-3 text-sm">
+            <span class="material-symbols-outlined text-[20px] text-slate-500">call</span>
+            <a href="https://wa.me/923139313848" class="hover:text-white transition-colors whatsapp-link no-underline">0313 931 3848</a>
+        </div>
+        <div class="flex items-center gap-3 text-sm">
+            <span class="material-symbols-outlined text-[20px] text-slate-500">mail</span>
+            <span>a.b.d.r.1912003mltcqa.b.d.r@gmail.com</span>
+        </div>
+        <div class="flex items-center gap-3 text-sm">
+            <span class="material-symbols-outlined text-[20px] text-slate-500">location_on</span>
+            <span>Global Remote, Based in PK</span>
+        </div>
+    </div>
+</div>
+
+<div class="border-t border-slate-700/50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+    <p class="text-sm text-slate-500">&copy; 2024 Ingenuity Work. All rights reserved.</p>
+    <div class="flex gap-6">
+        <a href="#" class="text-sm text-slate-500 hover:text-white transition-colors no-underline">Privacy Policy</a>
+        <a href="#" class="text-sm text-slate-500 hover:text-white transition-colors no-underline">Terms of Service</a>
+    </div>
+</div>
+</div>
+</footer><!-- /Footer --><!-- /Footer --><!-- /Footer --><!-- /Footer -->
+</div>
+
+
+
+
+
+<!-- Consultation Modal Overlay -->
+<div id="consultation-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 hidden">
+    <!-- Backdrop -->
+    <div class="modal-backdrop absolute inset-0 bg-slate-900/60 backdrop-blur-sm opacity-0"></div>
+    
+    <!-- Modal Window -->
+    <div class="modal-window relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden scale-95 opacity-0 flex flex-col h-auto max-h-[90vh]">
+        <!-- Close Button -->
+        <button class="modal-close z-10 absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-200 hover:text-slate-900 transition-colors">
+            <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+        
+        <!-- Header -->
+        <div class="p-6 md:p-8 pb-4 md:pb-6 border-b border-slate-100/50 bg-slate-50/50 shrink-0">
+            <h3 class="font-display font-black text-2xl text-slate-900 mb-2">Let's Talk Growth</h3>
+            <p class="text-slate-500 text-sm">Fill out the details below so we can prepare for our chat.</p>
+        </div>
+        
+        <!-- Scrollable Content Area -->
+        <!-- Scrollable Content Area -->
+        <form id="consultation-form" class="overflow-y-auto overflow-x-hidden flex-grow relative">
+            
+            <!-- Step 1: Contact Info -->
+            <div id="modal-step-1" class="p-6 md:p-8 flex flex-col gap-4 w-full h-fit">
+                <h4 class="font-bold text-slate-900 text-sm border-b border-slate-100 pb-2">Step 1: Your Details</h4>
+                
+                <!-- Error Banner -->
+                <div id="modal-error-1" class="hidden bg-red-50 text-red-600 border border-red-200 rounded-lg p-3 text-sm flex items-start gap-2">
+                    <span class="material-symbols-outlined text-[18px]">error</span>
+                    <span class="error-text">Please fill out all required fields.</span>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Your Name <span class="text-red-500">*</span></label>
+                    <input type="text" id="modal-name" name="name" placeholder="John Doe" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Email Address <span class="text-red-500">*</span></label>
+                    <input type="email" id="modal-email" name="email" placeholder="john@example.com" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Phone Number <span class="text-red-500">*</span></label>
+                    <div class="flex gap-2">
+                        <select id="modal-country" name="country_code" class="w-[100px] shrink-0 px-2 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all cursor-pointer">
+                            <option value="+1">🇺🇸 +1</option>
+                            <option value="+44">🇬🇧 +44</option>
+                            <option value="+92" selected>🇵🇰 +92</option>
+                            <option value="+91">🇮🇳 +91</option>
+                            <option value="+61">🇦🇺 +61</option>
+                            <option value="+971">🇦🇪 +971</option>
+                        </select>
+                        <input type="tel" id="modal-phone" name="phone_number" placeholder="312 345 6789" required class="flex-1 px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all min-w-0">
+                    </div>
+                </div>
+                <button type="button" id="modal-next-1" class="w-full shrink-0 h-12 mt-2 bg-primary text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-colors shadow-lg shadow-primary/20">
+                    Next Step <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </button>
+            </div>
+
+            <!-- Step 2: Project Details (Hidden initially) -->
+            <div id="modal-step-2" class="p-6 md:p-8 hidden flex flex-col gap-4 w-full h-fit opacity-0 translate-x-10 pointer-events-none">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                    <h4 class="font-bold text-slate-900 text-sm">Step 2: Project Info</h4>
+                    <button type="button" id="modal-back-1" class="text-xs text-slate-500 hover:text-primary flex items-center gap-1 font-medium transition-colors"><span class="material-symbols-outlined text-[14px]">arrow_back</span> Back</button>
+                </div>
+                
+                <!-- Error Banner -->
+                <div id="modal-error-2" class="hidden bg-red-50 text-red-600 border border-red-200 rounded-lg p-3 text-sm flex items-start gap-2">
+                    <span class="material-symbols-outlined text-[18px]">error</span>
+                    <span class="error-text">Please fill out all required fields.</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="col-span-2 sm:col-span-1">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Service <span class="text-red-500">*</span></label>
+                        <select id="modal-service" name="service" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all cursor-pointer">
+                            <option value="" disabled selected>Select...</option>
+                            <option value="Web Design">Web Design</option>
+                            <option value="SEO">SEO</option>
+                            <option value="Ads">Google/Meta Ads</option>
+                            <option value="Social Media">Social Media</option>
+                            <option value="Other">Other (Specify)</option>
+                        </select>
+                    </div>
+                    <div class="col-span-2 sm:col-span-1">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Budget <span class="text-red-500">*</span></label>
+                        <select id="modal-budget" name="budget" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all cursor-pointer">
+                            <option value="" disabled selected>Select...</option>
+                            <option value="<$1k">&lt; $1,000</option>
+                            <option value="$1k-$5k">$1,000 - $5,000</option>
+                            <option value="$5k-$10k">$5,000 - $10,000</option>
+                            <option value="$10k+">$10,000+</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Timeline <span class="text-red-500">*</span></label>
+                    <select id="modal-timeline" name="timeline" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all cursor-pointer">
+                        <option value="" disabled selected>Select timeline...</option>
+                        <option value="ASAP">ASAP</option>
+                        <option value="1-2 Months">1-2 Months</option>
+                        <option value="Flexible">Flexible</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Other Details (Optional)</label>
+                    <textarea id="modal-reason" name="other_details" rows="2" placeholder="Tell us more about your project goals..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none"></textarea>
+                </div>
+                <button type="submit" id="modal-next-2" class="w-full shrink-0 h-12 mt-2 bg-primary text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-colors shadow-lg shadow-primary/20">
+                    Continue to Connect <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </button>
+            </div>
+            
+            <!-- Step 3: Connection Options (Hidden initially) -->
+            <div id="modal-step-3" class="p-6 md:p-8 hidden flex flex-col gap-4 w-full h-fit opacity-0 translate-x-10 pointer-events-none">
+                <div class="text-center mb-2">
+                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <span class="material-symbols-outlined text-2xl">check_circle</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 text-xl mb-1">Details Ready!</h4>
+                    <p class="text-slate-500 text-sm">How would you like to conclude?</p>
+                </div>
+                
+                <a href="https://wa.me/923139313848" target="_blank" class="w-full h-14 bg-[#25D366] text-white rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#128C7E] transition-colors shadow-lg shadow-green-500/20 no-underline whatsapp-link">
+                    <span class="material-symbols-outlined">chat</span>
+                    Message on WhatsApp
+                </a>
+                
+                <a href="mailto:a.b.d.r.1912003mltcqa.b.d.r@gmail.com" class="w-full h-14 bg-white border border-slate-200 text-slate-700 rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-slate-50 transition-colors shadow-sm no-underline">
+                    <span class="material-symbols-outlined">mail</span>
+                    Send an Email
+                </a>
+                
+                <button type="button" id="modal-back-2" class="mt-2 text-xs font-semibold text-slate-500 hover:text-slate-900 transition-colors mx-auto underline decoration-slate-300 underline-offset-4">
+                    Wait, let me edit details
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- /Consultation Modal -->
+
+
+
+
+
+</body></html>

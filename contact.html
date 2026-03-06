@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact Us - Ingenuity Work</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0b111e",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#14171e",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased min-h-screen flex flex-col">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<site-header></site-header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center justify-center px-4 py-12 md:px-10">
+<div class="w-full max-w-6xl">
+<!-- Page Title -->
+<div class="mb-12 text-center md:text-left">
+<h1 class="text-slate-900 dark:text-white tracking-tight text-4xl md:text-5xl font-bold leading-tight mb-4">Let's Build Something Great</h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg max-w-2xl">Whether you have a specific project in mind or just want to chat about engineering solutions, we're here to help.</p>
+</div>
+<!-- Two Column Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+<!-- Left Column: Contact Info -->
+<div class="flex flex-col gap-8 order-2 lg:order-1">
+<!-- Info Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="p-6 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-sm">
+<div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary dark:text-white">
+<span class="material-symbols-outlined">call</span>
+</div>
+<h3 class="text-slate-900 dark:text-white font-bold mb-1">Phone &amp; WhatsApp</h3>
+<p class="text-slate-600 dark:text-slate-300 text-sm mb-4">Available for urgent inquiries.</p>
+<a class="text-primary dark:text-slate-200 font-semibold hover:underline" href="tel:03139313848">0313-931-3848</a>
+</div>
+<div class="p-6 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-sm">
+<div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 text-primary dark:text-white">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<h3 class="text-slate-900 dark:text-white font-bold mb-1">Email</h3>
+<p class="text-slate-600 dark:text-slate-300 text-sm mb-4">Send us your detailed requirements.</p>
+<a class="text-primary dark:text-slate-200 font-semibold hover:underline" href="mailto:a.b.d.r.1912003mltcqa.b.d.r@gmail.com">a.b.d.r.1912003mltcqa.b.d.r@gmail.com</a>
+</div>
+</div>
+<!-- Hours & WhatsApp Action -->
+<div class="p-6 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+<div>
+<h3 class="text-slate-900 dark:text-white font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary dark:text-white">schedule</span>
+                                    Business Hours
+                                </h3>
+<p class="text-slate-600 dark:text-slate-300 text-sm mt-1">Our support team is available 24/7.</p>
+</div>
+<a class="w-full md:w-auto flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-6 py-3 rounded-lg font-bold transition-transform active:scale-95" href="https://wa.me/923139313848" target="_blank">
+<span class="material-symbols-outlined text-xl">chat</span>
+                                Chat on WhatsApp
+                            </a>
+</div>
+<!-- Location text only (no map iframe as requested) -->
+<div class="p-6 rounded-xl bg-slate-900 text-white border border-slate-800 shadow-sm">
+<h3 class="font-bold mb-2 flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary-light">location_on</span> Current Location
+</h3>
+<p class="text-slate-400 text-sm">We are a Global Remote team currently based in Pakistan.</p>
+</div>
+</div>
+<!-- Right Column: Contact Form -->
+<div class="order-1 lg:order-2 bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-100 dark:border-slate-800 shadow-lg relative min-h-[400px]">
+    
+    <div id="contact-page-form" class="w-full h-full relative">
+        <form id="contact__inner-form" class="flex flex-col gap-4 w-full h-full justify-center">
+            <!-- Step 1: Contact Info -->
+            <div class="step-1 flex flex-col gap-4 w-full h-fit">
+                <div class="mb-4">
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Send a Message</h2>
+                    <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm">Step 1: Your Details</p>
+                </div>
+                
+                <!-- Error Banner -->
+                <div class="error-1 hidden bg-red-50 text-red-600 border border-red-200 rounded-lg p-3 text-sm flex items-start gap-2">
+                    <span class="material-symbols-outlined text-[18px]">error</span>
+                    <span class="error-text">Please fill out all required fields.</span>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">Your Name <span class="text-red-500">*</span></label>
+                    <input type="text" name="name" placeholder="John Doe" required class="input-name w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">Email Address <span class="text-red-500">*</span></label>
+                    <input type="email" name="email" placeholder="john@example.com" required class="input-email w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">Phone Number <span class="text-red-500">*</span></label>
+                    <div class="flex gap-2">
+                        <select name="country_code" class="w-[100px] shrink-0 px-2 py-3 bg-slate-50 dark:bg-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all cursor-pointer">
+                            <option value="+1">🇺🇸 +1</option>
+                            <option value="+44">🇬🇧 +44</option>
+                            <option value="+92" selected>🇵🇰 +92</option>
+                            <option value="+91">🇮🇳 +91</option>
+                            <option value="+61">🇦🇺 +61</option>
+                            <option value="+971">🇦🇪 +971</option>
+                        </select>
+                        <input type="tel" name="phone" placeholder="312 345 6789" required class="input-phone flex-1 px-4 py-3 bg-slate-50 dark:bg-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all min-w-0">
+                    </div>
+                </div>
+                <button type="button" class="next-1 w-full shrink-0 h-12 mt-4 bg-primary text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-colors shadow-lg shadow-primary/20 modal-trigger">
+                    Next Step <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </button>
+            </div>
+
+            <!-- Step 2: Project Details (Hidden initially) -->
+            <div class="step-2 hidden flex-col gap-4 w-full h-fit opacity-0 translate-x-10 pointer-events-none">
+                <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2 mb-2">
+                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">Step 2: Project Info</h4>
+                    <button type="button" class="back-1 text-xs text-slate-500 hover:text-primary flex items-center gap-1 font-medium transition-colors"><span class="material-symbols-outlined text-[14px]">arrow_back</span> Back</button>
+                </div>
+                
+                <!-- Error Banner -->
+                <div class="error-2 hidden bg-red-50 text-red-600 border border-red-200 rounded-lg p-3 text-sm flex items-start gap-2">
+                    <span class="material-symbols-outlined text-[18px]">error</span>
+                    <span class="error-text">Please fill out all required fields.</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="col-span-2 sm:col-span-1">
+                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">Service <span class="text-red-500">*</span></label>
+                        <select name="service" required class="input-service w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all cursor-pointer">
+                            <option value="" disabled selected>Select...</option>
+                            <option value="Web Design">Web Design</option>
+                            <option value="SEO">SEO</option>
+                            <option value="Ads">Google/Meta Ads</option>
+                            <option value="Social Media">Social Media</option>
+                            <option value="Other">Other (Specify)</option>
+                        </select>
+                    </div>
+                    <div class="col-span-2 sm:col-span-1">
+                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">Budget <span class="text-red-500">*</span></label>
+                        <select name="budget" required class="input-budget w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all cursor-pointer">
+                            <option value="" disabled selected>Select...</option>
+                            <option value="<$1k">< $1,000</option>
+                            <option value="$1k-$5k">$1,000 - $5,000</option>
+                            <option value="$5k-$10k">$5,000 - $10,000</option>
+                            <option value="$10k+">$10,000+</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">Timeline <span class="text-red-500">*</span></label>
+                    <select name="timeline" required class="input-timeline w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all cursor-pointer">
+                        <option value="" disabled selected>Select timeline...</option>
+                        <option value="ASAP">ASAP</option>
+                        <option value="1-2 Months">1-2 Months</option>
+                        <option value="Flexible">Flexible</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">How can we help? (Optional)</label>
+                    <textarea name="other_details" rows="3" placeholder="Tell us more about your project goals..." class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none"></textarea>
+                </div>
+                <button type="submit" class="next-2 w-full shrink-0 h-12 mt-2 bg-primary text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-colors shadow-lg shadow-primary/20">
+                    Send Message <span class="material-symbols-outlined text-sm">send</span>
+                </button>
+            </div>
+            
+            <!-- Step 3: Connection Options (Hidden initially) -->
+            <div class="step-3 hidden flex-col gap-4 w-full h-fit py-8 opacity-0 translate-x-10 pointer-events-none">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined text-3xl">check_circle</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 dark:text-white text-2xl mb-2">Message Sent!</h4>
+                    <p class="text-slate-500 dark:text-slate-400">Our team will review your project and get back to you shortly. Feel free to connect via WhatsApp or Email instantly below.</p>
+                </div>
+                
+                <a href="https://wa.me/923139313848" target="_blank" class="w-full h-14 bg-[#25D366] text-white rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#128C7E] transition-colors shadow-lg shadow-green-500/20 no-underline whatsapp-link">
+                    <span class="material-symbols-outlined">chat</span>
+                    Message on WhatsApp
+                </a>
+                
+                <a href="mailto:a.b.d.r.1912003mltcqa.b.d.r@gmail.com" class="w-full h-14 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm no-underline">
+                    <span class="material-symbols-outlined">mail</span>
+                    a.b.d.r.1912003mltcqa.b.d.r@gmail.com
+                </a>
+                
+                <button type="button" class="back-2 mt-4 text-sm font-semibold text-slate-500 hover:text-primary transition-colors mx-auto flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[16px]">refresh</span> Submit another request
+                </a>
+            </div>
+        </form>
+        
+        <!-- Initialization Script inline or defer via modules -->
+        <script type="module">
+            import { gsap } from 'gsap';
+            // ensure the animations.js global is loaded first
+            document.addEventListener("DOMContentLoaded", () => {
+                setTimeout(() => {
+                    if(window.initConsultationForm) {
+                        window.initConsultationForm("contact-page-form");
+                    }
+                }, 100);
+            });
+        </script>
+    </div>
+</div>
+</div>
+</main>
+<site-footer></site-footer>
+</div>
+<script type="module" src="/src/animations/contact.js"></script>
+<script src="/src/components/site-header.js" type="module"></script>
+<script src="/src/components/site-footer.js" type="module"></script>
+<script src="/src/components/site-modal.js" type="module"></script>
+<site-modal></site-modal>
+</body></html>
