@@ -11,13 +11,10 @@
     <link rel="preload" href="/src/components/site-header.js" as="script" type="module">
     <link rel="preload" href="/src/components/site-footer.js" as="script" type="module">
     <link rel="preload" href="/src/components/site-modal.js" as="script" type="module">
-    <link rel="preload" href="https://cdn.tailwindcss.com?plugins=forms,container-queries" as="script">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testimonials - Ingenuity Work</title>
     <!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -26,33 +23,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Theme Config -->
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#0b111e",
-                        secondary: "#334155",
-                        "background-light": "#ffffff",
-                        "background-dark": "#0f172a",
-                        "surface-light": "#f8fafc",
-                        "surface-dark": "#1e293b",
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Sora', 'sans-serif'],
-                    },
-                    borderRadius: {
-                        DEFAULT: "0.5rem",
-                        lg: "0.75rem",
-                        xl: "1rem",
-                        "2xl": "1.5rem",
-                    },
-                },
-            },
-        }
-</script>
 <style>
     /* Custom scrollbar for clean look */
     ::-webkit-scrollbar { width: 8px; }
@@ -69,6 +39,7 @@
     }
 </style>
 
+    <link rel="stylesheet" href="/src/index.css">
 </head>
 <body class="font-sans text-slate-800 bg-slate-50 antialiased selection:bg-primary selection:text-white flex flex-col min-h-screen">
     
