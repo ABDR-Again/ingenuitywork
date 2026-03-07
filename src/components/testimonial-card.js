@@ -44,11 +44,8 @@ class TestimonialCard extends HTMLElement {
                     z-index: 2; 
 
                     /* Initial state for entry animation */
-                    opacity: 0;
-                    transform: perspective(1000px) translateY(50px) rotateX(-10deg);
-                    transition: 
-                        transform 0.1s ease-out, /* Fast transition for JS 3D tilt */
-                        opacity 0.8s ease-out;   /* Slow transition for initial entry */
+                    opacity: 1; /* Changed from 0 to 1 */
+                    transform: none; /* Removed initial transform state */
 
                     background: #0a0e17;
                     border-radius: 24px;
@@ -57,7 +54,7 @@ class TestimonialCard extends HTMLElement {
                     margin: 15px;
                 }
 
-                /* State when JS adds the 'appear' class on page load */
+                /* State when JS adds the 'appear' class on page load (No longer used, kept for manual 3d tilt context) */
                 testimonial-card .card.appear {
                     opacity: 1;
                     transform: perspective(1000px) translateY(0) rotateX(0deg);
@@ -265,11 +262,7 @@ class TestimonialCard extends HTMLElement {
         });
 
         cardEl.addEventListener('mouseleave', () => {
-            if(cardEl.classList.contains('appear')) {
-                cardEl.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)`;
-            } else {
-                 cardEl.style.transform = `perspective(1000px) translateY(50px) rotateX(-10deg)`;
-            }
+            cardEl.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)`;
         });
 
         // 3. Click Ripple Effect

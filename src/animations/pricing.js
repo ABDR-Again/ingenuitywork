@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   gsap.from("main h1 + p, main h1 ~ p", { y: 25, opacity: 0, duration: 0.5, ease: "power2.out", delay: 0.2, scrollTrigger: t("main") });
 
   /* ── Pricing Cards ── */
-  const pricingCards = document.querySelectorAll("[class*='rounded-2xl'][class*='border'][class*='shadow'], .grid > div[class*='rounded']");
+  const pricingCards = document.querySelectorAll("main [class*='rounded-2xl'][class*='border'][class*='shadow'], main .grid > div[class*='rounded']");
   pricingCards.forEach((el, i) => gsap.from(el, { y: 40, opacity: 0, duration: 0.6, ease: "power2.out", delay: i * 0.1, scrollTrigger: t(el) }));
 
   /* ── FAQ ── */
