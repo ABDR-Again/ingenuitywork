@@ -30,9 +30,7 @@ class SiteHeader extends HTMLElement {
 <div class="flex justify-between items-center h-20">
 <!-- Logo -->
 <div class="flex items-center gap-3">
-<div class="flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-white">
-<span class="material-symbols-outlined text-xl">code</span>
-</div>
+<img src="/file.jpg" alt="IngenuityWorks Logo" class="h-8 w-auto rounded-lg">
 <a href="/" class="font-display font-bold text-xl tracking-tight text-primary no-underline">Ingenuity Work</a>
 </div>
 <!-- Nav -->
@@ -135,13 +133,64 @@ class SiteHeader extends HTMLElement {
 </button>
 </div>
 <!-- Mobile Menu Button -->
-<button class="xl:hidden p-2 text-slate-600">
+<button class="xl:hidden p-2 text-slate-600 mobile-menu-open">
 <span class="material-symbols-outlined">menu</span>
 </button>
 </div>
 </div>
 </header>
+<!-- Mobile Menu Container -->
+<div id="mobile-menu" class="fixed inset-0 z-[200] bg-white transform translate-x-full transition-transform duration-300 xl:hidden flex flex-col">
+  <div class="flex justify-between items-center h-20 px-4 sm:px-6 lg:px-8 border-b border-slate-100">
+    <div class="flex items-center gap-3">
+      <img src="/file.jpg" alt="IngenuityWorks Logo" class="h-8 w-auto rounded-lg">
+      <span class="font-display font-bold text-xl tracking-tight text-primary">Ingenuity Work</span>
+    </div>
+    <button id="mobile-menu-close" class="p-2 text-slate-600">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+  <div class="flex-grow overflow-y-auto p-6 flex flex-col gap-2">
+    <a href="/" class="text-lg font-bold text-slate-900 no-underline p-3 rounded-lg hover:bg-slate-50 active:scale-95 transition-all duration-150">Home</a>
+    <a href="/services/" class="text-lg font-bold text-slate-900 no-underline p-3 rounded-lg hover:bg-slate-50 active:scale-95 transition-all duration-150">Services</a>
+    <div class="pl-4 flex flex-col gap-1 mb-2">
+        <a href="/services/web-design/" class="text-slate-600 no-underline p-2 rounded-lg hover:bg-slate-50 active:scale-95 transition-all duration-150">Web Design</a>
+        <a href="/services/seo/" class="text-slate-600 no-underline p-2 rounded-lg hover:bg-slate-50 active:scale-95 transition-all duration-150">SEO Growth</a>
+        <a href="/services/meta-ads/" class="text-slate-600 no-underline p-2 rounded-lg hover:bg-slate-50 active:scale-95 transition-all duration-150">Meta Ads</a>
+        <a href="/services/automation/" class="text-slate-600 no-underline p-2 rounded-lg hover:bg-slate-50 active:scale-95 transition-all duration-150">Automation</a>
+    </div>
+    <a href="/case-studies/" class="text-lg font-bold text-slate-900 no-underline p-3 rounded-lg hover:bg-slate-50 active:scale-95 transition-all duration-150">Case Studies</a>
+    <a href="/about/" class="text-lg font-bold text-slate-900 no-underline p-3 rounded-lg hover:bg-slate-50 active:scale-95 transition-all duration-150">About Us</a>
+    <a href="/process/" class="text-lg font-bold text-slate-900 no-underline p-3 rounded-lg hover:bg-slate-50 active:scale-95 transition-all duration-150">Our Process</a>
+    <a href="/pricing/" class="text-lg font-bold text-slate-900 no-underline p-3 rounded-lg hover:bg-slate-50 active:scale-95 transition-all duration-150">Pricing</a>
+    <a href="/testimonials/" class="text-lg font-bold text-slate-900 no-underline p-3 rounded-lg hover:bg-slate-50 active:scale-95 transition-all duration-150">Testimonials</a>
+    <a href="/contact.html" class="text-lg font-bold text-slate-900 no-underline p-3 rounded-lg hover:bg-slate-50 active:scale-95 transition-all duration-150">Contact Us</a>
+    <div class="mt-auto pt-6">
+        <button class="modal-trigger w-full bg-primary hover:bg-slate-800 text-white px-5 py-3 rounded-lg text-base font-bold active:scale-95 transition-all duration-150 shadow-lg flex items-center justify-center gap-2">
+            <span>Book Consultation</span>
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </button>
+    </div>
+  </div>
+</div>
 `;
+
+    // Mobile menu toggle logic
+    const menuBtn = this.querySelector('.mobile-menu-open');
+    const mobileMenu = this.querySelector('#mobile-menu');
+    const closeBtn = this.querySelector('#mobile-menu-close');
+    
+    if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+        });
+    }
+    
+    if (closeBtn && mobileMenu) {
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+        });
+    }
   }
 }
 

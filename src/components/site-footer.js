@@ -43,9 +43,7 @@ class SiteFooter extends HTMLElement {
     <!-- Brand -->
     <div class="flex flex-col gap-6">
         <div class="flex items-center gap-3">
-            <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 text-white">
-                <span class="material-symbols-outlined text-xl">code</span>
-            </div>
+            <img src="/file.jpg" alt="IngenuityWorks Logo" class="h-8 w-auto rounded-lg">
             <span class="font-display font-bold text-xl tracking-tight text-white">Ingenuity Work</span>
         </div>
         <p class="text-sm text-slate-300 leading-relaxed max-w-xs">Premium web development and data-driven growth services to take your business to the next level.</p>
@@ -83,7 +81,7 @@ class SiteFooter extends HTMLElement {
         </div>
         <div class="flex items-center gap-3 text-sm">
             <span class="material-symbols-outlined text-[20px] text-slate-300">mail</span>
-            <span>a.b.d.r.1912003mltcqa.b.d.r@gmail.com</span>
+            <span>ingenuityworkss@gmail.com</span>
         </div>
         <div class="flex items-center gap-3 text-sm">
             <span class="material-symbols-outlined text-[20px] text-slate-300">location_on</span>

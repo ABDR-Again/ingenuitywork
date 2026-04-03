@@ -12,14 +12,14 @@ function getHtmlFiles(dir, fileList = {}) {
     const files = fs.readdirSync(dir);
     for (const file of files) {
         const filePath = resolve(dir, file);
-        if (filePath.includes('node_modules') || filePath.includes('\\dist\\') || filePath.includes('.git')) {
+        if (filePath.includes('node_modules') || filePath.includes('/dist/') || filePath.includes('\\dist\\') || filePath.includes('.git')) {
             continue;
         }
         if (fs.statSync(filePath).isDirectory()) {
             getHtmlFiles(filePath, fileList);
         } else if (file.endsWith('.html')) {
             // Generate a flat key name like "about_index" or "services_web-design_index"
-            let relPath = filePath.replace(__dirname, '').replace(/\\/g, '_').replace(/^\_/, '').replace(/\.html$/, '');
+            let relPath = filePath.replace(__dirname, '').replace(/[\\/]/g, '_').replace(/^_/, '').replace(/\.html$/, '');
             if(!relPath) relPath = "index";
             fileList[relPath] = filePath;
         }
@@ -30,7 +30,7 @@ function getHtmlFiles(dir, fileList = {}) {
 const inputHtmlFiles = getHtmlFiles(__dirname);
 
 export default defineConfig({
-  base: './', // Fix for GitHub pages absolute paths
+  base: '/',
   server: {
     port: 5173,
     open: true
