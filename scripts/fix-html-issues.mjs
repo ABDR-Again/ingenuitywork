@@ -52,7 +52,7 @@ for (const filePath of files) {
       // Extract href if present in attrs or infer
       let href = '/case-studies/';
       if (textClean.includes('Contact via Email')) href = '/contact.html';
-      if (textClean.includes('WhatsApp')) href = 'https://wa.me/923139313848';
+      if (textClean.includes('WhatsApp')) href = 'https://wa.me/923114717158';
       return `<a href="${href}" ${attrs} class="no-underline">${inner}</a>`;
     }
     return m;

@@ -60,7 +60,7 @@ const ORIGINAL_FOOTER = `<!-- Footer -->
         <h4 class="text-white font-bold tracking-wider text-sm uppercase mb-2">Contact</h4>
         <div class="flex items-center gap-3 text-sm">
             <span class="material-symbols-outlined text-[20px] text-slate-500">call</span>
-            <a href="https://wa.me/923139313848" class="hover:text-white transition-colors whatsapp-link no-underline">0313 931 3848</a>
+            <a href="https://wa.me/923114717158" class="hover:text-white transition-colors whatsapp-link no-underline">0311-471-7158</a>
         </div>
         <div class="flex items-center gap-3 text-sm">
             <span class="material-symbols-outlined text-[20px] text-slate-500">mail</span>

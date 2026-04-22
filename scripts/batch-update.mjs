@@ -126,7 +126,7 @@ for (const filePath of allHtmlFiles) {
     totalButtonsFixed++;
     modified = true;
     console.log(`[BUTTON] Converted "Chat on WhatsApp" to link in: ${relPath}`);
-    return `<a href="https://wa.me/923139313848" target="_blank"${attrs} class="no-underline ${(attrs.match(/class="([^"]*)"/) || ['',''])[1]}">${inner}</a>`;
+    return `<a href="https://wa.me/923114717158" target="_blank"${attrs} class="no-underline ${(attrs.match(/class="([^"]*)"/) || ['',''])[1]}">${inner}</a>`;
   });
 
   // Process page: "View Case Studies" button → link if it's a button

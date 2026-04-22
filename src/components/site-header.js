@@ -125,7 +125,7 @@ class SiteHeader extends HTMLElement {
 <div class="hidden md:flex items-center gap-6">
 <div class="hidden lg:flex items-center gap-2 text-slate-600">
 <span class="material-symbols-outlined text-lg">call</span>
-<span class="text-sm font-medium">0313 931 3848</span>
+<span class="text-sm font-medium">0311-471-7158</span>
 </div>
 <button class="modal-trigger bg-primary hover:bg-slate-800 text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
 <span>Book Consultation</span>

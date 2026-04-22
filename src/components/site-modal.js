@@ -135,7 +135,7 @@ class SiteModal extends HTMLElement {
                     <p class="text-slate-500 text-sm">How would you like to conclude?</p>
                 </div>
                 
-                <a href="https://wa.me/923139313848" target="_blank" class="w-full h-14 bg-[#25D366] text-white rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#128C7E] transition-colors shadow-lg shadow-green-500/20 no-underline">
+                <a href="https://wa.me/923114717158" target="_blank" class="w-full h-14 bg-[#25D366] text-white rounded-xl font-bold flex items-center justify-center gap-3 hover:bg-[#128C7E] transition-colors shadow-lg shadow-green-500/20 no-underline">
                     <span class="material-symbols-outlined">chat</span>
                     Message on WhatsApp
                 </a>

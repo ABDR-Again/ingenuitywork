@@ -289,7 +289,7 @@ const attachGlobalRouting = () => {
         if(el.tagName === 'BUTTON' || (el.tagName === 'A' && el.getAttribute('href') === '#')) {
             el.addEventListener("click", (e) => {
                 e.preventDefault();
-                window.open("https://wa.me/923139313848", "_blank");
+                window.open("https://wa.me/923114717158", "_blank");
             });
         }
     }

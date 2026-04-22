@@ -6,7 +6,7 @@
  * - "View Portfolio", "View Case Studies", "View Case Study" → /case-studies/
  * - "Contact via Email" → /contact.html
  * - "Start Conversation" → /contact.html
- * - "Chat on WhatsApp" → https://wa.me/923139313848
+ * - "Chat on WhatsApp" → https://wa.me/923114717158
  * 
  * Also fixes <button> tags that should be <a> tags when linking to pages.
  *
@@ -139,7 +139,7 @@ for (const rel of files) {
     /(<button\s[^>]*>)([\s\S]*?Chat on WhatsApp[\s\S]*?)<\/(?:button|a)>/gi,
     (match, tag, content) => {
       const classes = extractClasses(tag);
-      return `<a href="https://wa.me/923139313848" target="_blank" class="${classes} no-underline whatsapp-link">${content}</a>`;
+      return `<a href="https://wa.me/923114717158" target="_blank" class="${classes} no-underline whatsapp-link">${content}</a>`;
     }
   );
 
