@@ -5,6 +5,8 @@
  * cannot interfere with any other page content or animations.
  */
 
+import './whatsapp-widget.js';
+
 class SiteFooter extends HTMLElement {
   connectedCallback() {
     // Inject scoped animation styles (once)
@@ -99,6 +101,7 @@ class SiteFooter extends HTMLElement {
 </div>
 </div>
 </footer>
+<whatsapp-widget></whatsapp-widget>
 `;
 
     // Set up IntersectionObserver for scroll-reveal animation
