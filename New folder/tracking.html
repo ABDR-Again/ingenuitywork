@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking & Analytics Setup</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* =========================================
+           Base Reset & Variables
+           ========================================= */
+        :root {
+            --bg-color: #FAFAFB;
+            --orange: #F97316;
+            --text-dark: #111827;
+            --text-gray: #4B5563;
+            --card-bg: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* =========================================
+           Layout & Containers
+           ========================================= */
+        .tracking-section {
+            padding: 8rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Ellipse Wrapper - Fixed aspect ratio for perfect circle positioning */
+        .ellipse-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 950px;
+            height: 550px;
+            margin: 0 auto;
+        }
+
+        /* Dashed Line Background SVG */
+        .ellipse-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: visible;
+        }
+
+        /* =========================================
+           Center Content
+           ========================================= */
+        .center-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            max-width: 480px;
+            z-index: 10;
+            width: 100%;
+        }
+
+        .target-icon {
+            width: 48px;
+            height: 48px;
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
+
+        .center-content h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background-color: var(--orange);
+            margin: 0 auto 1.5rem auto;
+            border-radius: 2px;
+        }
+
+        .center-content p {
+            font-size: 1.05rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* =========================================
+           Cards & Positions (Mathematical Ellipse)
+           ========================================= */
+        .card-position {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+        }
+
+        /* Precise plotting using 45-degree increments */
+        .pos-1 { left: 50%; top: 0%; }         /* Top */
+        .pos-2 { left: 85.35%; top: 14.65%; }  /* Top Right */
+        .pos-3 { left: 100%; top: 50%; }       /* Right */
+        .pos-4 { left: 85.35%; top: 85.35%; }  /* Bottom Right */
+        .pos-5 { left: 50%; top: 100%; }       /* Bottom */
+        .pos-6 { left: 14.65%; top: 85.35%; }  /* Bottom Left */
+        .pos-7 { left: 0%; top: 50%; }         /* Left */
+        .pos-8 { left: 14.65%; top: 14.65%; }  /* Top Left */
+
+        /* Inner Card Styling */
+        .track-card {
+            background-color: var(--card-bg);
+            padding: 1.25rem 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 190px;
+            text-align: center;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+            will-change: transform;
+        }
+
+        .track-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(249, 115, 22, 0.12); /* Orange tinted glow */
+        }
+
+        .card-icon {
+            height: 40px;
+            width: auto;
+            max-width: 60px;
+            margin-bottom: 0.75rem;
+            object-fit: contain;
+            color: var(--orange);
+        }
+
+        .track-card span {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* =========================================
+           Responsive Design (Grid Fallback)
+           ========================================= */
+        @media (max-width: 1024px) {
+            .tracking-section { padding: 5rem 1.5rem; }
+            
+            /* Break the ellipse and convert to flex/grid */
+            .ellipse-wrapper {
+                display: flex;
+                flex-direction: column;
+                height: auto;
+                max-width: 800px;
+            }
+
+            .ellipse-bg { display: none; } /* Hide the dashed line */
+
+            .center-content {
+                position: static;
+                transform: none;
+                order: -1; /* Push to top */
+                margin: 0 auto 4rem auto;
+            }
+
+            .card-position {
+                position: static;
+                transform: none;
+                width: 100%;
+            }
+
+            /* Container for cards becomes a CSS Grid */
+            .cards-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                gap: 1.5rem;
+                width: 100%;
+            }
+
+            .track-card {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="tracking-section">
+        <div class="ellipse-wrapper cards-grid">
+            
+            <svg class="ellipse-bg" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="50%" cy="50%" rx="49.5%" ry="49.5%" fill="none" stroke="#E5E7EB" stroke-width="2" stroke-dasharray="8 8"/>
+                <circle cx="50%" cy="0%" r="5" fill="#F97316"/>
+                <circle cx="85.35%" cy="14.65%" r="5" fill="#F97316"/>
+                <circle cx="100%" cy="50%" r="5" fill="#F97316"/>
+                <circle cx="85.35%" cy="85.35%" r="5" fill="#F97316"/>
+                <circle cx="50%" cy="100%" r="5" fill="#F97316"/>
+                <circle cx="14.65%" cy="85.35%" r="5" fill="#F97316"/>
+                <circle cx="0%" cy="50%" r="5" fill="#F97316"/>
+                <circle cx="14.65%" cy="14.65%" r="5" fill="#F97316"/>
+            </svg>
+
+            <div class="center-content">
+                <svg class="target-icon gsap-center" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <circle cx="12" cy="12" r="6"></circle>
+                    <circle cx="12" cy="12" r="2"></circle>
+                    <line x1="12" y1="2" x2="12" y2="4"></line>
+                    <line x1="12" y1="20" x2="12" y2="22"></line>
+                    <line x1="20" y1="12" x2="22" y2="12"></line>
+                    <line x1="2" y1="12" x2="4" y2="12"></line>
+                </svg>
+                <h2 class="gsap-center">Every Click, Lead, Call, and Form Submission Should Be Tracked Properly</h2>
+                <div class="divider gsap-center"></div>
+                <p class="gsap-center">We set up GTM, GA4, Google Ads conversions, Meta Pixel, form tracking, button clicks, call tracking, and reporting dashboards so you know what is working.</p>
+            </div>
+
+            <div class="card-position pos-1">
+                <div class="track-card gsap-card">
+                    <img src="https://www.vectorlogo.zone/logos/googletagmanager/googletagmanager-icon.svg" alt="Google Tag Manager" class="card-icon">
+                    <span>Google Tag Manager</span>
+                </div>
+            </div>
+
+            <div class="card-position pos-2">
+                <div class="track-card gsap-card">
+                    <img src="https://www.vectorlogo.zone/logos/google_ads/google_ads-icon.svg" alt="Google Ads" class="card-icon">
+                    <span>Google Ads Conversions</span>
+                </div>
+            </div>
+
+            <div class="card-position pos-3">
+                <div class="track-card gsap-card">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <path d="M9 15l2 2 4-4"></path>
+                    </svg>
+                    <span>Form Submission Tracking</span>
+                </div>
+            </div>
+
+            <div class="card-position pos-4">
+                <div class="track-card gsap-card">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <span>Retargeting Audiences</span>
+                </div>
+            </div>
+
+            <div class="card-position pos-5">
+                <div class="track-card gsap-card">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                    </svg>
+                    <span>Monthly Reporting</span>
+                </div>
+            </div>
+
+            <div class="card-position pos-6">
+                <div class="track-card gsap-card">
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <span>Call Button Tracking</span>
+                </div>
+            </div>
+
+            <div class="card-position pos-7">
+                <div class="track-card gsap-card">
+                    <img src="https://www.vectorlogo.zone/logos/meta/meta-icon.svg" alt="Meta Pixel" class="card-icon">
+                    <span>Meta Pixel</span>
+                </div>
+            </div>
+
+            <div class="card-position pos-8">
+                <div class="track-card gsap-card">
+                    <img src="https://www.vectorlogo.zone/logos/google_analytics/google_analytics-icon.svg" alt="GA4 Events" class="card-icon">
+                    <span>GA4 Events</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".tracking-section",
+                    start: "top 75%", // Starts animation when section is 75% visible
+                    toggleActions: "play none none none"
+                }
+            });
+
+            // 1. Animate Center Content Elements (Icon, Heading, Divider, P)
+            tl.from(".gsap-center", {
+                y: 30,
+                opacity: 0,
+                duration: 0.6,
+                stagger: 0.15,
+                ease: "power3.out"
+            })
+            
+            // 2. Animate the Background Dashed Line (Fade in)
+            .from(".ellipse-bg", {
+                opacity: 0,
+                duration: 0.8,
+                ease: "power2.inOut"
+            }, "-=0.2")
+
+            // 3. Staggered reveal of the cards one by one
+            .from(".gsap-card", {
+                scale: 0.5,
+                opacity: 0,
+                duration: 0.5,
+                stagger: 0.1, // Appears one by one
+                ease: "back.out(1.5)" // Gives a nice popping effect
+            }, "-=0.6");
+        });
+    </script>
+</body>
+</html>

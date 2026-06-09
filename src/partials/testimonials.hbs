@@ -1,0 +1,247 @@
+<!-- ===================== TESTIMONIALS SECTION ===================== -->
+<style>
+  .testimonials-section {
+    --ts-orange: #F2701F;
+    --ts-dark: #14110F;
+    --ts-muted: #6b6764;
+    --ts-card-bg: #ffffff;
+    --ts-card-border: #ededed;
+    --ts-star: #F2701F;
+  }
+
+  .testimonials-section .ts-inner {
+    max-width: 1340px; margin: 0 auto; padding: 80px 32px;
+    display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; align-items: start;
+  }
+
+  /* LEFT COLUMN */
+  .testimonials-section .ts-intro { position: sticky; top: 60px; }
+
+  .testimonials-section .ts-eyebrow {
+    display: flex; align-items: center; gap: 6px; margin-bottom: 28px;
+  }
+  .testimonials-section .ts-eyebrow .ts-line { width: 34px; height: 3px; background: var(--ts-orange); border-radius: 2px; }
+  .testimonials-section .ts-eyebrow .ts-dot { width: 6px; height: 6px; background: var(--ts-orange); border-radius: 50%; }
+
+  .testimonials-section .ts-intro h2 {
+    font-size: clamp(34px, 3.6vw, 52px); font-weight: 800; line-height: 1.08;
+    letter-spacing: -0.02em; margin-bottom: 22px;
+  }
+  .testimonials-section .ts-intro h2 .accent { color: var(--ts-orange); }
+
+  .testimonials-section .ts-intro p {
+    font-size: 17px; line-height: 1.6; color: var(--ts-muted); max-width: 380px; margin-bottom: 34px;
+  }
+
+  .testimonials-section .ts-btn {
+    position: relative; display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 30px; background: var(--ts-orange); color: #fff;
+    font-family: inherit; font-size: 15.5px; font-weight: 700;
+    border: none; border-radius: 10px; cursor: pointer; text-decoration: none;
+    overflow: hidden; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease; z-index: 0;
+  }
+  .testimonials-section .ts-btn svg { width: 16px; height: 16px; transition: transform 0.3s ease; }
+  .testimonials-section .ts-btn::after {
+    content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.14);
+    transform: translateX(-101%); transition: transform 0.45s cubic-bezier(0.65,0,0.35,1); z-index: -1;
+  }
+  .testimonials-section .ts-btn:hover { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(242,112,31,0.4); }
+  .testimonials-section .ts-btn:hover::after { transform: translateX(0); }
+  .testimonials-section .ts-btn:hover svg { transform: translateX(5px); }
+
+  .testimonials-section .ts-clients { display: flex; align-items: center; gap: 16px; margin-top: 40px; }
+  .testimonials-section .ts-avatars { display: flex; }
+  .testimonials-section .ts-avatars .ts-av {
+    width: 40px; height: 40px; border-radius: 50%; border: 2.5px solid #fff;
+    margin-left: -12px; display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: #fff;
+  }
+  .testimonials-section .ts-avatars .ts-av:first-child { margin-left: 0; }
+  .testimonials-section .ts-av.a1 { background: #e76f51; }
+  .testimonials-section .ts-av.a2 { background: #2a9d8f; }
+  .testimonials-section .ts-av.a3 { background: #457b9d; }
+  .testimonials-section .ts-av.a4 { background: #8d5b9e; }
+  .testimonials-section .ts-av.count { background: #ffe6d2; color: var(--ts-orange); font-size: 12px; }
+  .testimonials-section .ts-clients-text strong { display: block; font-size: 16px; font-weight: 700; }
+  .testimonials-section .ts-clients-text span { font-size: 13.5px; color: var(--ts-muted); }
+
+  /* RIGHT COLUMN (marquee) */
+  .testimonials-section .ts-reviews-viewport {
+    position: relative; height: 760px; overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%);
+  }
+
+  .testimonials-section .ts-marquee { display: flex; flex-direction: column; gap: 18px; will-change: transform; }
+  .testimonials-section .ts-marquee-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  .testimonials-section .ts-mcol { display: flex; flex-direction: column; gap: 18px; }
+
+  /* Review card */
+  .testimonials-section .ts-review {
+    background: var(--ts-card-bg); border: 1px solid var(--ts-card-border);
+    border-radius: 16px; padding: 22px; box-shadow: 0 6px 20px rgba(0,0,0,0.04); break-inside: avoid;
+  }
+  .testimonials-section .ts-review-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .testimonials-section .ts-platform { display: flex; align-items: center; gap: 7px; }
+  .testimonials-section .ts-platform .ts-logo {
+    width: 22px; height: 22px; border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800; color: #fff;
+  }
+  .testimonials-section .ts-logo.google { background: #fff; border: 1px solid #eee; color: #4285F4; font-family: Georgia, serif; }
+  .testimonials-section .ts-logo.fiverr { background: #1dbf73; }
+  .testimonials-section .ts-platform .ts-pname { font-size: 12.5px; color: var(--ts-muted); font-weight: 500; }
+  .testimonials-section .ts-stars { color: var(--ts-star); font-size: 14px; letter-spacing: 1px; margin-bottom: 12px; }
+  .testimonials-section .ts-review p.ts-quote { font-size: 15px; line-height: 1.5; font-weight: 600; color: #2c2826; margin-bottom: 18px; }
+  .testimonials-section .ts-reviewer { display: flex; align-items: center; gap: 12px; }
+  .testimonials-section .ts-rav {
+    width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #fff;
+  }
+  .testimonials-section .ts-reviewer-info strong { display: block; font-size: 14.5px; font-weight: 700; }
+  .testimonials-section .ts-reviewer-info span { display: block; font-size: 12px; color: var(--ts-muted); line-height: 1.35; }
+
+  /* Video review card */
+  .testimonials-section .ts-video-review {
+    position: relative; border-radius: 16px; overflow: hidden; background: #1a1a1a;
+    min-height: 250px; display: flex; flex-direction: column; justify-content: flex-end;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  }
+  .testimonials-section .ts-video-review .ts-poster-fallback { position: absolute; inset: 0; background: linear-gradient(160deg,#3a3a3a,#1a1a1a); z-index: 0; }
+  .testimonials-section .ts-video-review .ts-overlay {
+    position: relative; z-index: 2; padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0) 100%); color: #fff;
+  }
+  .testimonials-section .ts-play-btn {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 54px; height: 54px; border-radius: 50%; background: var(--ts-orange);
+    border: none; cursor: pointer; z-index: 3;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+  }
+  .testimonials-section .ts-play-btn svg { width: 20px; height: 20px; margin-left: 3px; }
+  .testimonials-section .ts-play-btn:hover { transform: translate(-50%,-50%) scale(1.12); box-shadow: 0 0 0 8px rgba(242,112,31,0.25); }
+  .testimonials-section .ts-video-review .ts-vquote { font-size: 14.5px; font-weight: 600; margin-bottom: 10px; line-height: 1.4; }
+  .testimonials-section .ts-video-review .ts-vstars { color: var(--ts-star); font-size: 13px; letter-spacing: 1px; margin-bottom: 8px; }
+  .testimonials-section .ts-video-review .ts-vmeta { display: flex; align-items: center; justify-content: space-between; }
+  .testimonials-section .ts-video-review .ts-vmeta strong { font-size: 13.5px; display: block; }
+  .testimonials-section .ts-video-review .ts-vmeta span { font-size: 11.5px; opacity: 0.8; }
+  .testimonials-section .ts-video-review .ts-vtag { font-size: 11px; opacity: 0.75; display: flex; align-items: center; gap: 5px; }
+
+  @media (max-width: 1024px) {
+    .testimonials-section .ts-inner { grid-template-columns: 1fr; gap: 44px; }
+    .testimonials-section .ts-intro { position: static; }
+    .testimonials-section .ts-intro p { max-width: none; }
+    .testimonials-section .ts-reviews-viewport { height: auto; overflow: visible; -webkit-mask-image: none; mask-image: none; }
+    .testimonials-section .ts-marquee { transform: none !important; }
+    .testimonials-section .ts-marquee .ts-loop-clone { display: none; }
+  }
+
+  @media (max-width: 700px) {
+    .testimonials-section .ts-inner { padding: 54px 20px; gap: 34px; }
+    .testimonials-section .ts-intro h2 { font-size: 32px; }
+  }
+</style>
+
+<section class="testimonials-section">
+  <div class="ts-inner">
+
+    <!-- LEFT -->
+    <div class="ts-intro">
+      <div class="ts-eyebrow"><span class="ts-line"></span><span class="ts-dot"></span><span class="ts-line"></span></div>
+      <h2>What Clients Say<br>About Working<br><span class="accent">With Us</span></h2>
+      <p>Real feedback from real clients. We build partnerships, deliver results, and help businesses grow with confidence.</p>
+      <a class="ts-btn" href="#">View All Reviews
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <div class="ts-clients">
+        <div class="ts-avatars">
+          <span class="ts-av a1">JM</span><span class="ts-av a2">EW</span><span class="ts-av a3">MT</span><span class="ts-av a4">AC</span><span class="ts-av count">200+</span>
+        </div>
+        <div class="ts-clients-text"><strong>200+ Happy Clients</strong><span>Across the Globe</span></div>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="ts-reviews-viewport">
+      <div class="ts-marquee" id="tsMarquee">
+        <div class="ts-marquee-cols ts-original-set">
+          <!-- COLUMN A -->
+          <div class="ts-mcol">
+            <div class="ts-video-review ts-review-item">
+              <div class="ts-poster-fallback"></div>
+              <button class="ts-play-btn" aria-label="Play video"><svg viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>
+              <div class="ts-overlay">
+                <p class="ts-vquote">"They're not just marketers&mdash;they're growth partners."</p>
+                <div class="ts-vstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <div class="ts-vmeta"><div><strong>Jason Miller</strong><span>Co-founder, PeakForm</span></div><span class="ts-vtag">Video Testimonial</span></div>
+              </div>
+            </div>
+            <div class="ts-review ts-review-item">
+              <div class="ts-review-head"><div class="ts-platform"><span class="ts-logo google">G</span></div><span class="ts-pname">Google Review</span></div>
+              <div class="ts-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="ts-quote">"Our organic traffic increased by 230% in just 6 months. Incredible team and results!"</p>
+              <div class="ts-reviewer"><span class="ts-rav" style="background:#f4a261;">SR</span><div class="ts-reviewer-info"><strong>Sarah Rodriguez</strong><span>Founder, BrightPath Co.<br>SEO &amp; Content Marketing</span></div></div>
+            </div>
+            <div class="ts-review ts-review-item">
+              <div class="ts-review-head"><div class="ts-platform"><span class="ts-logo google">G</span></div><span class="ts-pname">Google Review</span></div>
+              <div class="ts-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="ts-quote">"Our brand's online presence has never been this strong. Thank you!"</p>
+              <div class="ts-reviewer"><span class="ts-rav" style="background:#2a9d8f;">MT</span><div class="ts-reviewer-info"><strong>Mark Tennyson</strong><span>Founder, Tennyson Law<br>Local SEO &amp; Reputation</span></div></div>
+            </div>
+            <div class="ts-review ts-review-item">
+              <div class="ts-review-head"><div class="ts-platform"><span class="ts-logo fiverr">fi</span></div><span class="ts-pname">Fiverr Review</span></div>
+              <div class="ts-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="ts-quote">"Fast turnaround and brilliant strategy. Our leads doubled in two months."</p>
+              <div class="ts-reviewer"><span class="ts-rav" style="background:#457b9d;">KB</span><div class="ts-reviewer-info"><strong>Karen Brooks</strong><span>Owner, Brooks Interiors<br>Paid Social</span></div></div>
+            </div>
+          </div>
+          <!-- COLUMN B -->
+          <div class="ts-mcol">
+            <div class="ts-review ts-review-item">
+              <div class="ts-review-head"><div class="ts-platform"><span class="ts-logo fiverr">fi</span></div><span class="ts-pname">Fiverr Review</span></div>
+              <div class="ts-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="ts-quote">"Delivered exactly what was promised&mdash;and more."</p>
+              <div class="ts-reviewer"><span class="ts-rav" style="background:#2a9d8f;">JW</span><div class="ts-reviewer-info"><strong>James Walker</strong><span>SaaS Founder<br>Conversion Rate Optimization</span></div></div>
+            </div>
+            <div class="ts-review ts-review-item">
+              <div class="ts-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="ts-quote">"Their strategies helped us scale leads and revenue faster than we imagined."</p>
+              <div class="ts-reviewer"><span class="ts-rav" style="background:#e76f51;">EW</span><div class="ts-reviewer-info"><strong>Emily Watson</strong><span>Marketing Director, NovaTech<br>Paid Ads &amp; Lead Generation</span></div></div>
+            </div>
+            <div class="ts-review ts-review-item">
+              <div class="ts-review-head"><div class="ts-platform"><span class="ts-logo fiverr">fi</span></div><span class="ts-pname">Fiverr Review</span></div>
+              <div class="ts-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="ts-quote">"Outstanding experience! Great communication and top-notch results."</p>
+              <div class="ts-reviewer"><span class="ts-rav" style="background:#2a9d8f;">DL</span><div class="ts-reviewer-info"><strong>David Lee</strong><span>E-commerce Store Owner<br>Facebook Ads</span></div></div>
+            </div>
+            <div class="ts-video-review ts-review-item">
+              <div class="ts-poster-fallback"></div>
+              <button class="ts-play-btn" aria-label="Play video"><svg viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>
+              <div class="ts-overlay">
+                <p class="ts-vquote">"Their PPC campaigns brought us high-quality leads on autopilot."</p>
+                <div class="ts-vstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <div class="ts-vmeta"><div><strong>Priya Shah</strong><span>CMO, EduLaunch</span></div><span class="ts-vtag">Video Testimonial</span></div>
+              </div>
+            </div>
+            <div class="ts-review ts-review-item">
+              <div class="ts-review-head"><div class="ts-platform"><span class="ts-logo google">G</span></div><span class="ts-pname">Google Review</span></div>
+              <div class="ts-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="ts-quote">"Professional, responsive, and results-driven. Highly recommend!"</p>
+              <div class="ts-reviewer"><span class="ts-rav" style="background:#f4a261;">AC</span><div class="ts-reviewer-info"><strong>Anna Clarke</strong><span>CEO, Clarke Interiors<br>Local SEO</span></div></div>
+            </div>
+            <div class="ts-review ts-review-item">
+              <div class="ts-review-head"><div class="ts-platform"><span class="ts-logo google">G</span></div><span class="ts-pname">Google Review</span></div>
+              <div class="ts-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="ts-quote">"From strategy to execution, everything was handled flawlessly. 4X increase in leads within 90 days."</p>
+              <div class="ts-reviewer"><span class="ts-rav" style="background:#8d5b9e;">RG</span><div class="ts-reviewer-info"><strong>Rachel Green</strong><span>Head of Growth, GreenLeaf<br>Digital Marketing</span></div></div>
+            </div>
+          </div>
+        </div>
+        <!-- CLONE for seamless desktop loop -->
+        <div class="ts-marquee-cols ts-loop-clone" aria-hidden="true"></div>
+      </div>
+    </div>
+
+  </div>
+</section>

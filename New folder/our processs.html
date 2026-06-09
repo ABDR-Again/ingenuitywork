@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sequential Row Process Animation</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* =========================================
+       Base Variables & Reset
+       ========================================= */
+    :root {
+      --bg-canvas: #F7F7F5;
+      --text-dark: #111111;
+      --text-muted: #6B7280;
+      --orange-primary: #F97316;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--text-dark);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Spacer to allow scrolling before reaching the section */
+    .spacer {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.5;
+    }
+
+    /* =========================================
+       Process Section & Layout
+       ========================================= */
+    .process-section {
+      padding: 4rem 2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      /* Prevents horizontal overflow from layout shifts */
+      overflow: hidden; 
+    }
+
+    .process-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 4rem auto;
+    }
+
+    .process-header h2 {
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+
+    .process-header h2 span {
+      color: var(--orange-primary);
+    }
+
+    .process-header p {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+    }
+
+    /* Cards Grid Container */
+    .cards-row {
+      display: grid;
+      /* Default to 5 columns for Desktop */
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.25rem;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* =========================================
+       Card Architecture & CSS Variables
+       ========================================= */
+    .process-card {
+      /* Dynamic GSAP Variables */
+      --card-bg: #F3F4F6;
+      --card-text: #111111;
+      --card-desc: #6B7280;
+      --icon-color: #6B7280;
+
+      background-color: var(--card-bg);
+      color: var(--card-text);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      text-align: left;
+      border: 1px solid rgba(0,0,0,0.03);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+      
+      /* Base transitions for smooth CSS hovers & GSAP scrubs */
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      will-change: transform, background-color, color, opacity;
+      
+      /* Setup for GSAP initial hidden state on desktop */
+      opacity: 1; 
+    }
+
+    /* Micro-interaction Hover (Applies to all devices) */
+    .process-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+      border-color: var(--orange-primary);
+    }
+
+    .card-icon {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 1.5rem;
+      color: var(--icon-color);
+    }
+
+    .card-icon svg {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .process-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.5px;
+    }
+
+    .process-card p {
+      font-size: 0.9rem;
+      color: var(--card-desc);
+      line-height: 1.5;
+    }
+
+    /* =========================================
+       Responsive Overrides for Tablet & Mobile
+       ========================================= */
+    @media (max-width: 1023px) {
+      .process-section {
+        min-height: auto;
+      }
+      .cards-row {
+        /* Tablet: 2 Cards per row */
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .process-card {
+        padding: 2.5rem 2rem;
+      }
+      .process-card h3 {
+        font-size: 1.4rem;
+      }
+      .process-card p {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .cards-row {
+        /* Mobile: Stack vertically */
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="spacer">
+    <h1>Scroll down to see the magic</h1>
+    <p>Desktop: Sequential Row Reveal | Mobile: Normal Grid</p>
+  </div>
+
+  <section class="process-section">
+    <div class="process-header">
+      <h2 class="gsap-title">Our Proven <span>Process</span></h2>
+      <p class="gsap-sub">A step-by-step methodology to transform your digital presence. We merge strategy, execution, and analytics to drive consistent growth.</p>
+    </div>
+
+    <div class="cards-row">
+      <div class="process-card gsap-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /><path d="M10 13v.01" /><path d="M10 7v3" /></svg>
+        </div>
+        <h3>1. Audit</h3>
+        <p>We analyze your current footprint, identifying critical bottlenecks and immediate areas for performance enhancement.</p>
+      </div>
+
+      <div class="process-card gsap-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-5 0a5 5 0 1 0 10 0a5 5 0 1 0 -10 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M15 15l6 6" /></svg>
+        </div>
+        <h3>2. Strategy</h3>
+        <p>We develop a data-driven roadmap tailored strictly to your goals, outlining the exact campaigns and funnels required.</p>
+      </div>
+
+      <div class="process-card gsap-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 12l-9 5l-9 -5l9 -5l9 5" /><path d="M21 17l-9 5l-9 -5" /><path d="M3 12l0 -5l9 -5l9 5l0 5" /></svg>
+        </div>
+        <h3>3. Build</h3>
+        <p>Our team constructs high-converting landing pages, robust automation systems, and striking digital ad assets.</p>
+      </div>
+
+      <div class="process-card gsap-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7" /><path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3" /><path d="M9.7 17l4.6 0" /></svg>
+        </div>
+        <h3>4. Knowledge</h3>
+        <p>We launch campaigns while gathering insights, testing variations, and refining target demographics in real-time.</p>
+      </div>
+
+      <div class="process-card gsap-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 19l16 0" /><path d="M4 15l4 -6l4 2l4 -5l4 4" /></svg>
+        </div>
+        <h3>5. Overview</h3>
+        <p>Complete transparency and optimization. We provide thorough reporting to scale the strategies with the highest ROI.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="spacer"></div>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      // GSAP State Configurations
+      const activeState = {
+        "--card-bg": "#F97316",         // Orange Bg
+        "--card-text": "#FFFFFF",       // White Text
+        "--card-desc": "#FFEDD5",       // Light Orange Desc
+        "--icon-color": "#FFFFFF",      // White Icon
+        opacity: 1,
+        y: 0,
+        ease: "power2.out",
+        duration: 0.8
+      };
+
+      const inactiveState = {
+        "--card-bg": "#F3F4F6",         // Gray Bg
+        "--card-text": "#111111",       // Dark Text
+        "--card-desc": "#6B7280",       // Gray Desc
+        "--icon-color": "#6B7280",      // Gray Icon
+        opacity: 1,
+        y: 0,
+        ease: "power2.out",
+        duration: 0.8
+      };
+
+      const hiddenState = {
+        opacity: 0,
+        y: 30
+      };
+
+      const cards = gsap.utils.toArray('.gsap-card');
+
+      // Setup MatchMedia for responsive animations
+      let mm = gsap.matchMedia();
+
+      // ==========================================
+      // DESKTOP LOGIC (1024px and above)
+      // ==========================================
+      mm.add("(min-width: 1024px)", () => {
+        
+        // 1. Initial State Setup
+        // Set Card 1 to hidden initially, it will fade in to active state
+        gsap.set(cards[0], hiddenState);
+        // Set Cards 2-5 to hidden state
+        gsap.set(cards.slice(1), hiddenState);
+
+        // 2. Entrance Animation (Header + First Card)
+        const entranceTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".process-section",
+            start: "top 70%", // Start when section is 70% down viewport
+          }
+        });
+
+        entranceTl.from(".gsap-title", { opacity: 0, y: 30, duration: 0.6 })
+                  .from(".gsap-sub", { opacity: 0, y: 30, duration: 0.6 }, "-=0.4")
+                  // First card appears and becomes fully active immediately
+                  .to(cards[0], activeState, "-=0.2");
+
+
+        // 3. Pinned Scrolling Sequence (Scrubbed)
+        const scrubTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".process-section",
+            start: "center center", // Pin when section reaches exact center of viewport
+            end: "+=400%",          // Length of the scroll animation
+            pin: true,
+            scrub: 1                // Smooth scrubbing
+          }
+        });
+
+        // Loop through the remaining cards to build the reveal sequence
+        for (let i = 1; i < cards.length; i++) {
+          // As card 'i' scrolls into view...
+          
+          // A. The previous card fades to inactive gray
+          scrubTl.to(cards[i - 1], inactiveState, `step${i}`);
+          
+          // B. The new card fades in and becomes active orange at the exact same time
+          scrubTl.to(cards[i], activeState, `step${i}`);
+          
+          // C. Add a pause in the timeline so the user has time to scroll and read the active card
+          scrubTl.to({}, { duration: 0.4 });
+        }
+
+      });
+
+      // ==========================================
+      // TABLET & MOBILE LOGIC (Below 1024px)
+      // ==========================================
+      mm.add("(max-width: 1023px)", () => {
+        
+        // Reset all variables to standard inactive look
+        gsap.set(cards, { ...inactiveState, opacity: 0, y: 30 });
+
+        // Simple scroll reveal (no pinning, no color changing)
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: ".process-section",
+            start: "top 75%"
+          }
+        })
+        .fromTo(".gsap-title", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 })
+        .fromTo(".gsap-sub", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.4")
+        .to(cards, { opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: "power2.out" }, "-=0.2");
+
+      });
+    });
+  </script>
+</body>
+</html>

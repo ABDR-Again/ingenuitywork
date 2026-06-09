@@ -1,0 +1,224 @@
+<!-- ===================== ABOUT US SECTION ===================== -->
+<style>
+  :root {
+    --bg-color: #F7F7F5;
+    --text-main: #111111;
+    --text-muted: #6B7280;
+    --orange-primary: #F05A28;
+    --orange-hover: #D94D20;
+  }
+
+  .about-section {
+    padding: 6rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .about-section .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .about-section .section-header h2 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+  }
+
+  .about-section .section-header p {
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
+    color: var(--text-muted);
+  }
+
+  .about-section .bento-container {
+    position: relative;
+  }
+
+  .about-section .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 280px);
+    gap: 20px;
+    margin-bottom: 3rem;
+  }
+
+  .about-section .bento-item {
+    position: relative;
+    overflow: hidden;
+    background-color: #E2E8F0;
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  .about-section .item-tall   { grid-column: span 1; grid-row: span 2; }
+  .about-section .item-wide   { grid-column: span 2; grid-row: span 1; }
+  .about-section .item-square { grid-column: span 1; grid-row: span 1; }
+
+  .about-section .bento-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 0 !important;
+    border: none;
+  }
+
+  .about-section .mobile-controls {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .about-section .slider-arrow {
+    background: var(--bg-color);
+    border: 2px solid var(--text-main);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .about-section .slider-arrow:hover {
+    background: var(--text-main);
+    color: var(--bg-color);
+  }
+  
+  .about-section .slider-arrow:active {
+    transform: scale(0.95);
+  }
+
+  .about-section .slider-arrow svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+  }
+
+  .about-section .action-container {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .about-section .btn-meet {
+    background-color: var(--orange-primary);
+    color: #FFFFFF;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-family: inherit;
+    font-size: 1.125rem;
+    font-weight: 700;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .about-section .btn-meet:hover {
+    background-color: var(--orange-hover);
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 20px rgba(240, 90, 40, 0.2);
+  }
+
+  /* Tablet */
+  @media (max-width: 1024px) {
+    .about-section .bento-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto;
+      grid-auto-rows: 250px;
+    }
+    .about-section .item-tall { grid-column: span 2; grid-row: span 1; }
+    .about-section .item-wide { grid-column: span 2; grid-row: span 1; }
+    .about-section .item-square { grid-column: span 1; grid-row: span 1; }
+  }
+
+  /* Mobile (Horizontal Slider) */
+  @media (max-width: 768px) {
+    .about-section {
+      padding: 4rem 1rem;
+    }
+
+    .about-section .bento-grid {
+      display: flex;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      gap: 15px;
+      margin-bottom: 0;
+      width: 100%;
+    }
+
+    .about-section .bento-item {
+      flex: 0 0 100%;
+      height: 350px;
+    }
+
+    .about-section .item-tall, .about-section .item-wide, .about-section .item-square {
+      grid-column: auto;
+      grid-row: auto;
+    }
+
+    .about-section .mobile-controls {
+      display: flex;
+    }
+  }
+</style>
+
+<section class="about-section">
+  <div class="section-header">
+    <h2 class="about-gsap-heading">About Us</h2>
+    <p class="about-gsap-subheading">The people behind the strategy, creativity, and growth.</p>
+  </div>
+
+  <div class="bento-container">
+    <div class="bento-grid" id="about-slider-track">
+      
+      <div class="bento-item item-tall about-gsap-img">
+        <img src="" alt="Office Workspace and Team Member" />
+      </div>
+      
+      <div class="bento-item item-wide about-gsap-img">
+        <img src="" alt="Team Collaboration Meeting" />
+      </div>
+      
+      <div class="bento-item item-square about-gsap-img">
+        <img src="" alt="Office Interior Setup" />
+      </div>
+      
+      <div class="bento-item item-square about-gsap-img">
+        <img src="" alt="Creative Workspace Details" />
+      </div>
+      
+      <div class="bento-item item-square about-gsap-img">
+        <img src="" alt="Team Member Working on Laptop" />
+      </div>
+      
+      <div class="bento-item item-square about-gsap-img"> <img src="" alt="Group Brainstorming Session" />
+      </div>
+
+    </div>
+
+    <div class="mobile-controls">
+      <button class="slider-arrow" id="aboutPrevBtn" aria-label="Previous Image">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <button class="slider-arrow" id="aboutNextBtn" aria-label="Next Image">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="action-container">
+    <button class="btn-meet about-gsap-btn">Meet Our Team</button>
+  </div>
+</section>

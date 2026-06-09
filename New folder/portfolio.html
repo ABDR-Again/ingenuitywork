@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selected Work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --orange: #F2691A;
+    --dark: #1b1b1f;
+    --muted: #6c6c72;
+    --line: #ececec;
+    --panel: #ffffff;
+    --page-bg: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--page-bg);
+    font-family: "DM Sans", sans-serif;
+    color: var(--dark);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 80px 32px;
+  }
+
+  /* ---------- Header ---------- */
+  .head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 24px;
+    margin-bottom: 44px;
+  }
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 14px;
+  }
+  .head h1 {
+    font-size: clamp(36px, 4.6vw, 58px);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .head p {
+    font-size: 16.5px;
+    line-height: 1.55;
+    color: var(--muted);
+    max-width: 420px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 28px;
+    background: var(--orange);
+    color: #fff;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+    z-index: 0;
+  }
+  .btn svg { width: 16px; height: 16px; transition: transform 0.3s ease; }
+  .btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.14);
+    transform: translateX(-101%);
+    transition: transform 0.45s cubic-bezier(0.65,0,0.35,1);
+    z-index: -1;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(242,105,26,0.4); }
+  .btn:hover::after { transform: translateX(0); }
+  .btn:hover svg { transform: translateX(5px); }
+  .btn:active { transform: translateY(-1px) scale(0.97); }
+
+  /* ---------- Body grid ---------- */
+  .body {
+    display: grid;
+    grid-template-columns: 0.62fr 1.38fr;
+    gap: 26px;
+    align-items: stretch;
+  }
+
+  /* ---------- Project list ---------- */
+  .list {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 14px;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.04);
+  }
+
+  .proj {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+    padding: 20px 18px;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--dark);
+    border-radius: 11px;
+    transition: background 0.3s ease, color 0.3s ease, padding 0.3s ease;
+  }
+  .proj:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 18px; right: 18px; bottom: 0;
+    height: 1px;
+    background: var(--line);
+  }
+  .proj .arrow {
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: inline-flex;
+  }
+  .proj .arrow svg { width: 20px; height: 20px; }
+
+  .proj:hover {
+    background: #faf6f3;
+    color: var(--orange);
+  }
+  .proj:hover .arrow { opacity: 1; transform: translateX(0); }
+
+  .proj.active {
+    background: var(--orange);
+    color: #fff;
+  }
+  .proj.active::before { opacity: 0; }
+  .proj.active .arrow { opacity: 1; transform: translateX(0); color: #fff; }
+
+  /* ---------- Reveal panel ---------- */
+  .panel {
+    position: relative;
+    background: #faf7f5;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .placeholder {
+    text-align: center;
+    color: var(--muted);
+    padding: 40px;
+    max-width: 320px;
+  }
+  .placeholder .ic {
+    width: 56px; height: 56px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--orange);
+  }
+  .placeholder .ic svg { width: 26px; height: 26px; }
+  .placeholder p { font-size: 16px; line-height: 1.5; font-weight: 500; }
+
+  .shots {
+    position: absolute;
+    inset: 0;
+  }
+  .shot {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .shot.show { visibility: visible; pointer-events: auto; }
+  .shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: #e9e4e0;
+  }
+
+  /* ---------- TABLET ---------- */
+  @media (max-width: 1024px) {
+    .head { grid-template-columns: 1fr; align-items: start; }
+    .head .btn { justify-self: start; }
+    .body { grid-template-columns: 1fr; gap: 22px; }
+    .panel { min-height: 360px; }
+  }
+
+  /* ---------- MOBILE ---------- */
+  @media (max-width: 700px) {
+    .section { padding: 54px 18px; }
+    .head { margin-bottom: 30px; }
+    .head h1 { font-size: 36px; }
+
+    /* button (list) on top, image panel at the bottom */
+    .body { display: flex; flex-direction: column; gap: 18px; }
+    .list { order: 1; padding: 8px; }
+    .panel { order: 2; min-height: 300px; }
+
+    .proj { padding: 16px 14px; font-size: 16px; }
+    .proj:not(:last-child)::before { left: 14px; right: 14px; }
+  }
+</style>
+</head>
+<body>
+
+  <section class="section">
+
+    <!-- ---------- Header ---------- -->
+    <div class="head">
+      <div class="head-text">
+        <div class="eyebrow anim-h">Our Portfolio</div>
+        <h1 class="anim-h">Selected Work</h1>
+        <p class="anim-h">Explore the websites, landing pages, and campaigns we've built across different industries.</p>
+      </div>
+      <a class="btn anim-h" href="#">View Portfolio
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <!-- ---------- Body ---------- -->
+    <div class="body">
+
+      <!-- Project list -->
+      <div class="list" id="list">
+        <button class="proj" data-shot="0">AdvisoryLab <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+        <button class="proj" data-shot="1">StayInHomeCare <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+        <button class="proj" data-shot="2">Musik &amp; Film <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+        <button class="proj" data-shot="3">Financely <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+        <button class="proj" data-shot="4">Bounce For Love <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+        <button class="proj" data-shot="5">Quiro Esplugues <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+        <button class="proj" data-shot="6">TaxiFlow <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+        <button class="proj" data-shot="7">Prime A2Z <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+      </div>
+
+      <!-- Reveal panel -->
+      <div class="panel" id="panel">
+        <div class="placeholder" id="placeholder">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></div>
+          <p>Click on a project to reveal its preview.</p>
+        </div>
+
+        <div class="shots" id="shots">
+          <div class="shot" data-shot="0"><img src="" alt="AdvisoryLab project preview" loading="lazy" decoding="async"></div>
+          <div class="shot" data-shot="1"><img src="" alt="StayInHomeCare project preview" loading="lazy" decoding="async"></div>
+          <div class="shot" data-shot="2"><img src="" alt="Musik & Film project preview" loading="lazy" decoding="async"></div>
+          <div class="shot" data-shot="3"><img src="" alt="Financely project preview" loading="lazy" decoding="async"></div>
+          <div class="shot" data-shot="4"><img src="" alt="Bounce For Love project preview" loading="lazy" decoding="async"></div>
+          <div class="shot" data-shot="5"><img src="" alt="Quiro Esplugues project preview" loading="lazy" decoding="async"></div>
+          <div class="shot" data-shot="6"><img src="" alt="TaxiFlow project preview" loading="lazy" decoding="async"></div>
+          <div class="shot" data-shot="7"><img src="" alt="Prime A2Z project preview" loading="lazy" decoding="async"></div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+  (function () {
+    // ---------- Entrance: heading -> subheading -> button -> right-side text ----------
+    window.addEventListener('load', function () {
+      if (window.gsap) {
+        var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        // header elements stagger in order: eyebrow, h1, p, button
+        tl.fromTo('.anim-h',
+          { opacity: 0, y: 28 },
+          { opacity: 1, y: 0, duration: 0.7, stagger: 0.15 }
+        );
+        // then the list rows
+        tl.fromTo('.proj',
+          { opacity: 0, x: -20 },
+          { opacity: 1, x: 0, duration: 0.5, stagger: 0.05 },
+          '-=0.2'
+        );
+        // then the right-side placeholder text
+        tl.fromTo('#placeholder',
+          { opacity: 0, scale: 0.94 },
+          { opacity: 1, scale: 1, duration: 0.6 },
+          '-=0.25'
+        );
+      }
+    });
+
+    // ---------- Click to reveal project image ----------
+    var list = document.getElementById('list');
+    var shots = document.getElementById('shots');
+    var placeholder = document.getElementById('placeholder');
+    var current = null;
+
+    list.addEventListener('click', function (e) {
+      var btn = e.target.closest('.proj');
+      if (!btn) return;
+
+      var idx = btn.getAttribute('data-shot');
+
+      // toggle active state on the list
+      document.querySelectorAll('.proj').forEach(function (p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+
+      var target = shots.querySelector('.shot[data-shot="' + idx + '"]');
+      if (!target) return;
+
+      // hide placeholder
+      if (window.gsap) {
+        gsap.to(placeholder, { opacity: 0, duration: 0.25, onComplete: function () { placeholder.style.display = 'none'; } });
+      } else {
+        placeholder.style.display = 'none';
+      }
+
+      // if same one clicked again, do nothing further
+      if (current === target) return;
+
+      // hide previous
+      if (current) {
+        if (window.gsap) {
+          gsap.to(current, { opacity: 0, scale: 1.04, duration: 0.3, onComplete: (function (prev) {
+            return function () { prev.classList.remove('show'); };
+          })(current) });
+        } else {
+          current.classList.remove('show');
+        }
+      }
+
+      // reveal new
+      target.classList.add('show');
+      if (window.gsap) {
+        gsap.fromTo(target,
+          { opacity: 0, scale: 1.08 },
+          { opacity: 1, scale: 1, duration: 0.6, ease: 'power3.out' }
+        );
+      } else {
+        target.style.opacity = '1';
+        target.style.visibility = 'visible';
+      }
+
+      current = target;
+    });
+  })();
+  </script>
+
+</body>
+</html>

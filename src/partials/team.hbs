@@ -1,0 +1,88 @@
+<!-- ===================== TEAM SECTION ===================== -->
+<style>
+  .team-section {
+    max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; text-align: center;
+  }
+
+  .team-section .team-heading {
+    font-size: 3rem; font-weight: 800; margin-bottom: 0.5rem; color: #1a1a1a;
+  }
+  .team-section .team-heading .highlight { color: #f97316; }
+
+  .team-section .team-subheading {
+    font-size: 1.1rem; color: #666; margin-bottom: 3rem;
+    max-width: 600px; margin-inline: auto; line-height: 1.6;
+  }
+
+  .team-section .carousel-container {
+    position: relative; display: flex; align-items: center;
+  }
+
+  .team-section .carousel-track {
+    display: flex; gap: 24px; overflow-x: auto; scroll-behavior: smooth;
+    scroll-snap-type: x mandatory; padding: 1rem 0;
+    -ms-overflow-style: none; scrollbar-width: none;
+  }
+  .team-section .carousel-track::-webkit-scrollbar { display: none; }
+
+  .team-section .tm-card {
+    flex: 0 0 calc(25% - 18px); scroll-snap-align: start;
+    border-radius: 16px; overflow: hidden; background-color: #f5f5f5;
+    transition: transform 0.4s ease, box-shadow 0.4s ease; cursor: pointer;
+  }
+  .team-section .tm-card img {
+    width: 100%; height: 100%; aspect-ratio: 3/4; object-fit: cover; display: block;
+  }
+  .team-section .tm-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .team-section .tm-nav-btn {
+    background: white; border: 1px solid #eee; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border-radius: 50%; width: 48px; height: 48px; font-size: 1.2rem; color: #f97316;
+    cursor: pointer; position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  .team-section .tm-nav-btn:hover { background: #f97316; color: white; }
+  .team-section .tm-prev-btn { left: -24px; }
+  .team-section .tm-next-btn { right: -24px; }
+
+  @media (max-width: 992px) {
+    .team-section .tm-card { flex: 0 0 calc(33.333% - 16px); }
+  }
+  @media (max-width: 768px) {
+    .team-section .tm-card { flex: 0 0 calc(50% - 12px); }
+    .team-section .tm-prev-btn { left: -10px; }
+    .team-section .tm-next-btn { right: -10px; }
+  }
+  @media (max-width: 480px) {
+    .team-section .tm-card { flex: 0 0 100%; }
+    .team-section .team-heading { font-size: 2.2rem; }
+    .team-section .tm-nav-btn { display: none; }
+  }
+</style>
+
+<section class="team-section">
+  <div class="header-content">
+    <h2 class="team-heading tm-gsap-head">Meet Our <span class="highlight">Team</span></h2>
+    <p class="team-subheading tm-gsap-head">A passionate team of strategists, creatives, and analysts driving growth and delivering results.</p>
+  </div>
+
+  <div class="carousel-container">
+    <button class="tm-nav-btn tm-prev-btn" id="tmPrevBtn" aria-label="Previous">&lt;</button>
+    
+    <div class="carousel-track" id="tmTrack">
+      <div class="tm-card tm-gsap-card"><img src="https://placehold.co/300x400/f5f5f5/333?text=Member+1" alt="Team Member 1"></div>
+      <div class="tm-card tm-gsap-card"><img src="https://placehold.co/300x400/f5f5f5/333?text=Member+2" alt="Team Member 2"></div>
+      <div class="tm-card tm-gsap-card"><img src="https://placehold.co/300x400/f5f5f5/333?text=Member+3" alt="Team Member 3"></div>
+      <div class="tm-card tm-gsap-card"><img src="https://placehold.co/300x400/f5f5f5/333?text=Member+4" alt="Team Member 4"></div>
+      <div class="tm-card tm-gsap-card"><img src="https://placehold.co/300x400/f5f5f5/333?text=Member+5" alt="Team Member 5"></div>
+      <div class="tm-card tm-gsap-card"><img src="https://placehold.co/300x400/f5f5f5/333?text=Member+6" alt="Team Member 6"></div>
+      <div class="tm-card tm-gsap-card"><img src="https://placehold.co/300x400/f5f5f5/333?text=Member+7" alt="Team Member 7"></div>
+      <div class="tm-card tm-gsap-card"><img src="https://placehold.co/300x400/f5f5f5/333?text=Member+8" alt="Team Member 8"></div>
+    </div>
+
+    <button class="tm-nav-btn tm-next-btn" id="tmNextBtn" aria-label="Next">&gt;</button>
+  </div>
+</section>

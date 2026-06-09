@@ -1,0 +1,191 @@
+<!-- ===================== TOOLS / PLATFORMS SECTION ===================== -->
+<style>
+  .platforms-section {
+    padding: 5rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .platforms-section .section-title {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem;
+    text-align: center;
+    letter-spacing: -0.5px;
+  }
+
+  .platforms-section .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 3.5rem;
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .platforms-section .divider::before,
+  .platforms-section .divider::after {
+    content: '';
+    height: 2px;
+    width: 100%;
+    background-color: #F97316;
+    border-radius: 2px;
+  }
+
+  .platforms-section .divider .dot {
+    width: 8px;
+    height: 8px;
+    background-color: #F97316;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .platforms-section .platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .platforms-section .platform-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 2.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform, opacity;
+  }
+
+  .platforms-section .platform-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    border-color: rgba(249, 115, 22, 0.2);
+  }
+
+  .platforms-section .platform-logo {
+    height: 55px;
+    width: auto;
+    max-width: 100px;
+    margin-bottom: 1.25rem;
+    object-fit: contain;
+  }
+
+  .platforms-section .platform-name {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #374151;
+  }
+
+  @media (max-width: 1024px) {
+    .platforms-section .platforms-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .platforms-section .platforms-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .platforms-section .platform-card {
+      padding: 2rem 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .platforms-section .platforms-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="platforms-section">
+  <h2 class="section-title">Platforms We Work With</h2>
+  <div class="divider">
+    <div class="dot"></div>
+  </div>
+
+  <div class="platforms-grid">
+    <div class="platform-card tools-gsap-card">
+      <img src="https://www.vectorlogo.zone/logos/google_ads/google_ads-icon.svg" alt="Google Ads" class="platform-logo">
+      <span class="platform-name">Google Ads</span>
+    </div>
+    
+    <div class="platform-card tools-gsap-card">
+      <img src="https://www.vectorlogo.zone/logos/google_analytics/google_analytics-icon.svg" alt="Google Analytics 4" class="platform-logo">
+      <span class="platform-name">Google Analytics 4</span>
+    </div>
+    
+    <div class="platform-card tools-gsap-card">
+      <img src="https://www.vectorlogo.zone/logos/googletagmanager/googletagmanager-icon.svg" alt="Google Tag Manager" class="platform-logo">
+      <span class="platform-name">Google Tag Manager</span>
+    </div>
+    
+    <div class="platform-card tools-gsap-card">
+      <img src="https://www.vectorlogo.zone/logos/meta/meta-icon.svg" alt="Meta Ads" class="platform-logo">
+      <span class="platform-name">Meta Ads</span>
+    </div>
+
+    <div class="platform-card tools-gsap-card">
+      <img src="https://www.vectorlogo.zone/logos/wordpress/wordpress-icon.svg" alt="WordPress" class="platform-logo">
+      <span class="platform-name">WordPress</span>
+    </div>
+    
+    <div class="platform-card tools-gsap-card">
+      <img src="https://www.vectorlogo.zone/logos/shopify/shopify-icon.svg" alt="Shopify" class="platform-logo">
+      <span class="platform-name">Shopify</span>
+    </div>
+    
+    <div class="platform-card tools-gsap-card">
+      <svg class="platform-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="25" y="40" width="12" height="40" fill="#00C48C"/>
+        <path d="M31 15L45 35H17L31 15Z" fill="#00C48C"/>
+        <rect x="44" y="30" width="12" height="50" fill="#0EA5E9"/>
+        <path d="M50 5L64 25H36L50 5Z" fill="#0EA5E9"/>
+        <rect x="63" y="40" width="12" height="40" fill="#10B981"/>
+        <path d="M69 15L83 35H55L69 15Z" fill="#10B981"/>
+      </svg>
+      <span class="platform-name">GoHighLevel</span>
+    </div>
+    
+    <div class="platform-card tools-gsap-card">
+      <img src="https://www.vectorlogo.zone/logos/google_search_console/google_search_console-icon.svg" alt="Search Console" class="platform-logo">
+      <span class="platform-name">Search Console</span>
+    </div>
+
+    <div class="platform-card tools-gsap-card">
+      <img src="https://www.vectorlogo.zone/logos/mailchimp/mailchimp-icon.svg" alt="Mailchimp" class="platform-logo">
+      <span class="platform-name">Mailchimp / Email Tools</span>
+    </div>
+    
+    <div class="platform-card tools-gsap-card">
+      <img src="https://www.vectorlogo.zone/logos/zapier/zapier-icon.svg" alt="Zapier" class="platform-logo">
+      <span class="platform-name">Zapier / n8n</span>
+    </div>
+    
+    <div class="platform-card tools-gsap-card">
+      <svg class="platform-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 10L90 30V70L50 90L10 70V30L50 10Z" fill="#2563EB"/>
+        <path d="M35 40L25 50L35 60M65 40L75 50L65 60M45 70L55 30" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="platform-name">Facebook Pixel</span>
+    </div>
+    
+    <div class="platform-card tools-gsap-card">
+      <img src="https://www.vectorlogo.zone/logos/google/google-icon.svg" alt="Google Business Profile" class="platform-logo">
+      <span class="platform-name">Google Business Profile</span>
+    </div>
+  </div>
+</section>

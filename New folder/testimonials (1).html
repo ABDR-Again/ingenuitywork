@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Clients Say</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --orange: #F2701F;
+    --dark: #14110F;
+    --muted: #6b6764;
+    --card-bg: #ffffff;
+    --card-border: #ededed;
+    --star: #F2701F;
+    --page-bg: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--page-bg);
+    font-family: "DM Sans", sans-serif;
+    color: var(--dark);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .section {
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 80px 32px;
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  /* ---------------- LEFT COLUMN ---------------- */
+  .intro {
+    position: sticky;
+    top: 60px;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 28px;
+  }
+  .eyebrow .line { width: 34px; height: 3px; background: var(--orange); border-radius: 2px; }
+  .eyebrow .dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; }
+
+  .intro h1 {
+    font-size: clamp(34px, 3.6vw, 52px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin-bottom: 22px;
+  }
+  .intro h1 .accent { color: var(--orange); }
+
+  .intro p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 380px;
+    margin-bottom: 34px;
+  }
+
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 30px;
+    background: var(--orange);
+    color: #fff;
+    font-family: inherit;
+    font-size: 15.5px;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+    z-index: 0;
+  }
+  .btn svg { width: 16px; height: 16px; transition: transform 0.3s ease; }
+  .btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.14);
+    transform: translateX(-101%);
+    transition: transform 0.45s cubic-bezier(0.65,0,0.35,1);
+    z-index: -1;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(242,112,31,0.4); }
+  .btn:hover::after { transform: translateX(0); }
+  .btn:hover svg { transform: translateX(5px); }
+  .btn:active { transform: translateY(-1px) scale(0.98); }
+
+  .clients {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 40px;
+  }
+  .avatars { display: flex; }
+  .avatars .av {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 2.5px solid #fff;
+    margin-left: -12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .avatars .av:first-child { margin-left: 0; }
+  .av.a1 { background: #e76f51; }
+  .av.a2 { background: #2a9d8f; }
+  .av.a3 { background: #457b9d; }
+  .av.a4 { background: #8d5b9e; }
+  .av.count { background: #ffe6d2; color: var(--orange); font-size: 12px; }
+
+  .clients-text strong { display: block; font-size: 16px; font-weight: 700; }
+  .clients-text span { font-size: 13.5px; color: var(--muted); }
+
+  /* ---------------- RIGHT COLUMN (marquee) ---------------- */
+  .reviews-viewport {
+    position: relative;
+    height: 760px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%);
+  }
+
+  .marquee {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    will-change: transform;
+  }
+
+  .marquee-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .mcol { display: flex; flex-direction: column; gap: 18px; }
+
+  /* ---- Review card ---- */
+  .review {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+    break-inside: avoid;
+  }
+
+  .review-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .platform { display: flex; align-items: center; gap: 7px; }
+  .platform .logo {
+    width: 22px; height: 22px;
+    border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800; color: #fff;
+  }
+  .logo.google { background: #fff; border: 1px solid #eee; color: #4285F4; font-family: Georgia, serif; }
+  .logo.fiverr { background: #1dbf73; }
+  .platform .pname { font-size: 12.5px; color: var(--muted); font-weight: 500; }
+
+  .stars { color: var(--star); font-size: 14px; letter-spacing: 1px; margin-bottom: 12px; }
+
+  .review p.quote {
+    font-size: 15px;
+    line-height: 1.5;
+    font-weight: 600;
+    color: #2c2826;
+    margin-bottom: 18px;
+  }
+
+  .reviewer { display: flex; align-items: center; gap: 12px; }
+  .rav {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: #fff;
+  }
+  .reviewer-info strong { display: block; font-size: 14.5px; font-weight: 700; }
+  .reviewer-info span { display: block; font-size: 12px; color: var(--muted); line-height: 1.35; }
+
+  /* ---- Video review card ---- */
+  .video-review {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #1a1a1a;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  }
+  .video-review video {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .video-review .poster-fallback {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg,#3a3a3a,#1a1a1a);
+    z-index: 0;
+  }
+  .video-review .overlay {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0) 100%);
+    color: #fff;
+  }
+  .play-btn {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    background: var(--orange);
+    border: none;
+    cursor: pointer;
+    z-index: 3;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+  }
+  .play-btn svg { width: 20px; height: 20px; margin-left: 3px; }
+  .play-btn:hover { transform: translate(-50%,-50%) scale(1.12); box-shadow: 0 0 0 8px rgba(242,112,31,0.25); }
+
+  .video-review .vquote { font-size: 14.5px; font-weight: 600; margin-bottom: 10px; line-height: 1.4; }
+  .video-review .vstars { color: var(--star); font-size: 13px; letter-spacing: 1px; margin-bottom: 8px; }
+  .video-review .vmeta { display: flex; align-items: center; justify-content: space-between; }
+  .video-review .vmeta strong { font-size: 13.5px; display:block; }
+  .video-review .vmeta span { font-size: 11.5px; opacity: 0.8; }
+  .video-review .vtag { font-size: 11px; opacity: 0.75; display: flex; align-items: center; gap: 5px; }
+
+  /* =========================================================
+     TABLET  (left column on top, reviews below, NO animation)
+     ========================================================= */
+  @media (max-width: 1024px) {
+    .section {
+      grid-template-columns: 1fr;
+      gap: 44px;
+    }
+    .intro { position: static; }
+    .intro p { max-width: none; }
+
+    .reviews-viewport {
+      height: auto;
+      overflow: visible;
+      -webkit-mask-image: none;
+              mask-image: none;
+    }
+    .marquee { transform: none !important; }
+
+    /* show only the first (real) set on tablet, hide the duplicated loop set */
+    .marquee .loop-clone { display: none; }
+  }
+
+  /* =========================================================
+     MOBILE  (horizontal scroll rows: videos + text reviews)
+     ========================================================= */
+  @media (max-width: 700px) {
+    .section { padding: 54px 0; gap: 34px; }
+    .intro { padding: 0 20px; }
+    .intro h1 { font-size: 32px; }
+
+    .reviews-viewport { height: auto; overflow: visible; -webkit-mask-image:none; mask-image:none; }
+    .marquee { transform: none !important; display: block; }
+    .marquee .loop-clone { display: none; }
+
+    /* hide the desktop two-col grid, show mobile scrollers instead */
+    .marquee-cols { display: none; }
+    .mobile-scrollers { display: block; }
+  }
+
+  /* mobile scrollers hidden on larger screens */
+  .mobile-scrollers { display: none; }
+
+  .scroll-block { margin-bottom: 30px; }
+
+  .scroll-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-bottom: 16px;
+  }
+  .scroll-head h3 {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .scroll-arrows { display: flex; gap: 8px; }
+  .arrow {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid #e6e6e6;
+    background: #fff;
+    color: var(--dark);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .arrow svg { width: 18px; height: 18px; }
+  .arrow:hover { background: var(--orange); color: #fff; border-color: var(--orange); transform: scale(1.08); box-shadow: 0 6px 16px rgba(242,112,31,0.35); }
+  .arrow:active { transform: scale(0.94); }
+
+  .hscroll {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 14px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 4px 20px 16px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  .hscroll::-webkit-scrollbar { height: 6px; }
+  .hscroll::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }
+  .hscroll > * {
+    flex: 0 0 78%;
+    width: 78%;
+    max-width: 300px;
+    scroll-snap-align: start;
+  }
+  .hscroll .video-review { min-height: 240px; }
+  /* neutralize any GSAP transforms left on cloned cards inside the scrollers */
+  .hscroll > * { transform: none !important; opacity: 1 !important; }
+</style>
+</head>
+<body>
+
+  <section class="section">
+
+    <!-- ===================== LEFT ===================== -->
+    <div class="intro">
+      <div class="eyebrow"><span class="line"></span><span class="dot"></span><span class="line"></span></div>
+      <h1>What Clients Say<br>About Working<br><span class="accent">With Us</span></h1>
+      <p>Real feedback from real clients. We build partnerships, deliver results, and help businesses grow with confidence.</p>
+      <a class="btn" href="#">View All Reviews
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <div class="clients">
+        <div class="avatars">
+          <span class="av a1">JM</span>
+          <span class="av a2">EW</span>
+          <span class="av a3">MT</span>
+          <span class="av a4">AC</span>
+          <span class="av count">200+</span>
+        </div>
+        <div class="clients-text">
+          <strong>200+ Happy Clients</strong>
+          <span>Across the Globe</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== RIGHT ===================== -->
+    <div class="reviews-viewport">
+      <div class="marquee" id="marquee">
+
+        <!-- ===== DESKTOP/TABLET TWO-COLUMN GRID ===== -->
+        <div class="marquee-cols original-set">
+
+          <!-- COLUMN A -->
+          <div class="mcol">
+
+            <!-- video -->
+            <div class="video-review review-item">
+              <video preload="none" muted loop playsinline poster="">
+                <source src="" type="video/mp4">
+              </video>
+              <div class="poster-fallback"></div>
+              <button class="play-btn" aria-label="Play video"><svg viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>
+              <div class="overlay">
+                <p class="vquote">"They're not just marketers&mdash;they're growth partners."</p>
+                <div class="vstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <div class="vmeta">
+                  <div><strong>Jason Miller</strong><span>Co-founder, PeakForm</span></div>
+                  <span class="vtag">Video Testimonial</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- google text -->
+            <div class="review review-item">
+              <div class="review-head">
+                <div class="platform"><span class="logo google">G</span></div>
+                <span class="pname">Google Review</span>
+              </div>
+              <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="quote">"Our organic traffic increased by 230% in just 6 months. Incredible team and results!"</p>
+              <div class="reviewer">
+                <span class="rav" style="background:#f4a261;">SR</span>
+                <div class="reviewer-info"><strong>Sarah Rodriguez</strong><span>Founder, BrightPath Co.<br>SEO &amp; Content Marketing</span></div>
+              </div>
+            </div>
+
+            <!-- video 2 -->
+            <div class="video-review review-item">
+              <video preload="none" muted loop playsinline poster="">
+                <source src="" type="video/mp4">
+              </video>
+              <div class="poster-fallback"></div>
+              <button class="play-btn" aria-label="Play video"><svg viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>
+              <div class="overlay">
+                <p class="vquote">"We've worked with many agencies&mdash;none matched their level of commitment."</p>
+                <div class="vstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <div class="vmeta">
+                  <div><strong>Michael Thompson</strong><span>CEO, Elevate Fitness</span></div>
+                  <span class="vtag">Client Feedback</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- google text 2 -->
+            <div class="review review-item">
+              <div class="review-head">
+                <div class="platform"><span class="logo google">G</span></div>
+                <span class="pname">Google Review</span>
+              </div>
+              <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="quote">"Our brand's online presence has never been this strong. Thank you!"</p>
+              <div class="reviewer">
+                <span class="rav" style="background:#2a9d8f;">MT</span>
+                <div class="reviewer-info"><strong>Mark Tennyson</strong><span>Founder, Tennyson Law<br>Local SEO &amp; Reputation</span></div>
+              </div>
+            </div>
+
+            <!-- extra text A1 -->
+            <div class="review review-item">
+              <div class="review-head">
+                <div class="platform"><span class="logo fiverr">fi</span></div>
+                <span class="pname">Fiverr Review</span>
+              </div>
+              <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="quote">"Fast turnaround and brilliant strategy. Our leads doubled in two months."</p>
+              <div class="reviewer">
+                <span class="rav" style="background:#457b9d;">KB</span>
+                <div class="reviewer-info"><strong>Karen Brooks</strong><span>Owner, Brooks Interiors<br>Paid Social</span></div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- COLUMN B -->
+          <div class="mcol">
+
+            <!-- fiverr text -->
+            <div class="review review-item">
+              <div class="review-head">
+                <div class="platform"><span class="logo fiverr">fi</span></div>
+                <span class="pname">Fiverr Review</span>
+              </div>
+              <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="quote">"Delivered exactly what was promised&mdash;and more."</p>
+              <div class="reviewer">
+                <span class="rav" style="background:#2a9d8f;">JW</span>
+                <div class="reviewer-info"><strong>James Walker</strong><span>SaaS Founder<br>Conversion Rate Optimization</span></div>
+              </div>
+            </div>
+
+            <!-- big photo text (Emily) -->
+            <div class="review review-item">
+              <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="quote">"Their strategies helped us scale leads and revenue faster than we imagined."</p>
+              <div class="reviewer">
+                <span class="rav" style="background:#e76f51;">EW</span>
+                <div class="reviewer-info"><strong>Emily Watson</strong><span>Marketing Director, NovaTech<br>Paid Ads &amp; Lead Generation</span></div>
+              </div>
+            </div>
+
+            <!-- fiverr text (David) -->
+            <div class="review review-item">
+              <div class="review-head">
+                <div class="platform"><span class="logo fiverr">fi</span></div>
+                <span class="pname">Fiverr Review</span>
+              </div>
+              <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="quote">"Outstanding experience! Great communication and top-notch results."</p>
+              <div class="reviewer">
+                <span class="rav" style="background:#2a9d8f;">DL</span>
+                <div class="reviewer-info"><strong>David Lee</strong><span>E-commerce Store Owner<br>Facebook Ads</span></div>
+              </div>
+            </div>
+
+            <!-- video 3 (Priya) -->
+            <div class="video-review review-item">
+              <video preload="none" muted loop playsinline poster="">
+                <source src="" type="video/mp4">
+              </video>
+              <div class="poster-fallback"></div>
+              <button class="play-btn" aria-label="Play video"><svg viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>
+              <div class="overlay">
+                <p class="vquote">"Their PPC campaigns brought us high-quality leads on autopilot."</p>
+                <div class="vstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <div class="vmeta">
+                  <div><strong>Priya Shah</strong><span>CMO, EduLaunch</span></div>
+                  <span class="vtag">Video Testimonial</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- google text (Anna) -->
+            <div class="review review-item">
+              <div class="review-head">
+                <div class="platform"><span class="logo google">G</span></div>
+                <span class="pname">Google Review</span>
+              </div>
+              <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="quote">"Professional, responsive, and results-driven. Highly recommend!"</p>
+              <div class="reviewer">
+                <span class="rav" style="background:#f4a261;">AC</span>
+                <div class="reviewer-info"><strong>Anna Clarke</strong><span>CEO, Clarke Interiors<br>Local SEO</span></div>
+              </div>
+            </div>
+
+            <!-- video 4 (Daniel) -->
+            <div class="video-review review-item">
+              <video preload="none" muted loop playsinline poster="">
+                <source src="" type="video/mp4">
+              </video>
+              <div class="poster-fallback"></div>
+              <button class="play-btn" aria-label="Play video"><svg viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>
+              <div class="overlay">
+                <p class="vquote">"They're proactive, creative, and obsessed with results."</p>
+                <div class="vstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <div class="vmeta">
+                  <div><strong>Daniel Foster</strong><span>Founder, ClearPath SaaS</span></div>
+                  <span class="vtag">Video Testimonial</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- extra text B1 -->
+            <div class="review review-item">
+              <div class="review-head">
+                <div class="platform"><span class="logo google">G</span></div>
+                <span class="pname">Google Review</span>
+              </div>
+              <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p class="quote">"From strategy to execution, everything was handled flawlessly. 4X increase in leads within 90 days."</p>
+              <div class="reviewer">
+                <span class="rav" style="background:#8d5b9e;">RG</span>
+                <div class="reviewer-info"><strong>Rachel Green</strong><span>Head of Growth, GreenLeaf<br>Digital Marketing</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- end original-set -->
+
+        <!-- ===== CLONE for seamless desktop loop (hidden on tablet/mobile) ===== -->
+        <div class="marquee-cols loop-clone" aria-hidden="true"></div>
+
+      </div>
+    </div>
+
+    <!-- ===================== MOBILE SCROLLERS ===================== -->
+    <div class="mobile-scrollers">
+
+      <div class="scroll-block">
+        <div class="scroll-head">
+          <h3>Video Reviews</h3>
+          <div class="scroll-arrows">
+            <button class="arrow" data-target="mobileVideos" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+            <button class="arrow" data-target="mobileVideos" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+          </div>
+        </div>
+        <div class="hscroll" id="mobileVideos">
+          <!-- filled by JS from the video cards -->
+        </div>
+      </div>
+
+      <div class="scroll-block">
+        <div class="scroll-head">
+          <h3>Client Reviews</h3>
+          <div class="scroll-arrows">
+            <button class="arrow" data-target="mobileTexts" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+            <button class="arrow" data-target="mobileTexts" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+          </div>
+        </div>
+        <div class="hscroll" id="mobileTexts">
+          <!-- filled by JS from the text cards -->
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+  (function () {
+    var DESKTOP = window.matchMedia('(min-width: 1025px)');
+    var MOBILE  = window.matchMedia('(max-width: 700px)');
+
+    // ---------- 1. Randomize the order of review cards in each column ----------
+    function shuffle(arr) {
+      for (var i = arr.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+      }
+      return arr;
+    }
+    document.querySelectorAll('.original-set .mcol').forEach(function (col) {
+      var items = shuffle(Array.prototype.slice.call(col.children));
+      items.forEach(function (it) { col.appendChild(it); });
+    });
+
+    // ---------- 2. Build mobile horizontal scrollers ----------
+    var videoCards = document.querySelectorAll('.original-set .video-review');
+    var textCards  = document.querySelectorAll('.original-set .review');
+    var mv = document.getElementById('mobileVideos');
+    var mt = document.getElementById('mobileTexts');
+    videoCards.forEach(function (c) { mv.appendChild(c.cloneNode(true)); });
+    textCards.forEach(function (c) { mt.appendChild(c.cloneNode(true)); });
+
+    // ---------- 3. Desktop marquee (clone + slow upward loop) ----------
+    function setupMarquee() {
+      var marquee = document.getElementById('marquee');
+      var original = marquee.querySelector('.original-set');
+      var clone = marquee.querySelector('.loop-clone');
+
+      if (DESKTOP.matches) {
+        // populate clone with a copy of the original columns
+        clone.innerHTML = original.innerHTML;
+        clone.style.display = 'grid';
+
+        // measure one set's height (+ gap between the two stacked sets)
+        var setHeight = original.offsetHeight + 18;
+
+        gsap.killTweensOf(marquee);
+        gsap.set(marquee, { y: 0 });
+        gsap.to(marquee, {
+          y: -setHeight,
+          duration: 38,
+          ease: 'none',
+          repeat: -1
+        });
+      } else {
+        gsap.killTweensOf(marquee);
+        gsap.set(marquee, { clearProps: 'transform' });
+        clone.style.display = 'none';
+      }
+    }
+
+    // ---------- 4. Entrance animation: left first, then right ----------
+    window.addEventListener('load', function () {
+      if (window.gsap) {
+        var tl = gsap.timeline();
+        tl.fromTo('.intro > *',
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.12 }
+        );
+        if (!MOBILE.matches) {
+          tl.fromTo('.review-item',
+            { opacity: 0, y: 40 },
+            { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.06 },
+            '-=0.2'
+          );
+        } else {
+          tl.fromTo('.mobile-scrollers .scroll-block',
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.15,
+              onComplete: function () {
+                // ensure scroller children carry no leftover transforms
+                document.querySelectorAll('.hscroll > *').forEach(function (el) {
+                  el.style.transform = 'none';
+                  el.style.opacity = '1';
+                });
+              }
+            },
+            '-=0.2'
+          );
+        }
+        // start marquee after entrance
+        tl.add(setupMarquee, '+=0.1');
+      } else {
+        setupMarquee();
+      }
+    });
+
+    // ---------- 4b. Mobile arrow-button scrolling ----------
+    function scrollAmount(container) {
+      var first = container.querySelector('*');
+      if (!first) return container.clientWidth * 0.8;
+      var gap = 14;
+      return first.getBoundingClientRect().width + gap;
+    }
+    document.querySelectorAll('.arrow').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var container = document.getElementById(btn.getAttribute('data-target'));
+        if (!container) return;
+        var dir = parseInt(btn.getAttribute('data-dir'), 10);
+        container.scrollBy({ left: dir * scrollAmount(container), behavior: 'smooth' });
+      });
+    });
+
+    // ---------- 5. Re-evaluate on resize ----------
+    var rt;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt);
+      rt = setTimeout(setupMarquee, 250);
+    });
+
+    // ---------- 6. Play buttons (placeholder behavior) ----------
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.play-btn');
+      if (!btn) return;
+      var wrap = btn.closest('.video-review');
+      var vid = wrap ? wrap.querySelector('video') : null;
+      if (vid && vid.querySelector('source') && vid.querySelector('source').src) {
+        if (vid.paused) { vid.muted = false; vid.play(); btn.style.opacity = '0'; }
+        else { vid.pause(); }
+      }
+    });
+  })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Section</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+        /* CSS Variables */
+        :root {
+            --bg-color: #F7F7F5;
+            --surface-color: #FFFFFF;
+            --primary-color: #0EA5E9; /* Sky Blue */
+            --primary-light: #E0F2FE;
+            --text-main: #111111;
+            --text-muted: #64748B;
+            --border-color: #E2E8F0;
+            --radius: 8px;
+            --transition: 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .faq-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header Styles */
+        .faq-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .faq-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .faq-header h2 span {
+            color: var(--primary-color);
+        }
+
+        .faq-header p {
+            color: var(--text-muted);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Layout */
+        .faq-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        /* Sidebar / Buttons */
+        .faq-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .cat-btn {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+            padding: 1.25rem 1.5rem;
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-main);
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cat-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+            flex-shrink: 0;
+            transition: fill 0.2s ease;
+        }
+
+        .cat-btn .arrow-icon {
+            margin-left: auto;
+            width: 16px;
+            height: 16px;
+            fill: var(--text-muted);
+        }
+
+        /* Hover & Active Micro-interactions */
+        .cat-btn:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .cat-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.2);
+            transform: translateY(0);
+        }
+
+        .cat-btn.active .arrow-icon {
+            fill: white;
+        }
+
+        /* FAQ Content Area */
+        .faq-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: border-color var(--transition), box-shadow var(--transition);
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary-color);
+        }
+
+        .faq-item.active {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.05);
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: none;
+            border: none;
+            font-family: inherit;
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--text-main);
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .toggle-icon {
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all var(--transition);
+            position: relative;
+        }
+
+        .toggle-icon::before,
+        .toggle-icon::after {
+            content: '';
+            position: absolute;
+            background-color: var(--text-muted);
+            transition: all var(--transition);
+        }
+
+        .toggle-icon::before {
+            width: 12px;
+            height: 2px;
+        }
+
+        .toggle-icon::after {
+            width: 2px;
+            height: 12px;
+        }
+
+        /* Active state for icons */
+        .faq-item.active .toggle-icon {
+            border-color: var(--primary-color);
+        }
+        
+        .faq-item.active .toggle-icon::before {
+            background-color: var(--primary-color);
+        }
+
+        .faq-item.active .toggle-icon::after {
+            transform: rotate(90deg);
+            background-color: var(--primary-color);
+            opacity: 0;
+        }
+
+        .faq-answer {
+            height: 0;
+            overflow: hidden;
+            color: var(--text-muted);
+        }
+
+        .faq-answer-inner {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Mobile & Tablet Responsiveness */
+        @media (max-width: 992px) {
+            .faq-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-sidebar {
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 1rem;
+                scrollbar-width: none; /* Firefox */
+                -ms-overflow-style: none;  /* IE 10+ */
+                /* Smooth scrolling for mobile */
+                scroll-behavior: smooth; 
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .faq-sidebar::-webkit-scrollbar {
+                display: none; /* Chrome/Safari */
+            }
+
+            .cat-btn {
+                flex: 0 0 auto;
+                width: auto;
+                white-space: nowrap;
+                padding: 1rem 1.5rem;
+            }
+            
+            .cat-btn .arrow-icon {
+                display: none; /* Hide right arrow on horizontal layout */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<section class="faq-section">
+    <div class="faq-header">
+        <h2 class="gsap-heading">Frequently Asked <span>Questions</span></h2>
+        <p class="gsap-subheading">Find answers to common questions about our services, process, timelines, and results. Still have questions? We're here to help.</p>
+    </div>
+
+    <div class="faq-layout">
+        <aside class="faq-sidebar">
+            <button class="cat-btn active gsap-btn" data-category="social">
+                <svg viewBox="0 0 24 24"><path d="M20 10.5V9.5C20 8.11929 18.8807 7 17.5 7H14.8284L10.6569 2.82843C10.1691 2.34064 9.34964 2.53139 9.12456 3.1789L8.14088 6H5.5C4.11929 6 3 7.11929 3 8.5V11.5C3 12.8807 4.11929 14 5.5 14H6V18.5C6 19.8807 7.11929 21 8.5 21H9.5C9.77614 21 10 20.7761 10 20.5V14H14.8284L18.4239 17.5955C18.8776 18.0491 19.6586 17.8596 19.8893 17.2396L20.8924 14.5424C21.5649 13.5186 22 12.2858 22 10.9634C22 10.7933 21.9904 10.6253 21.9715 10.4599L20.6569 9.14529V10.5H20Z"/></svg>
+                Social Media Management
+                <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="cat-btn gsap-btn" data-category="landing">
+                <svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm2 0v2h14V5H5zm0 4v10h14V9H5z" fill="currentColor"/></svg>
+                Landing Pages
+                <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="cat-btn gsap-btn" data-category="custom">
+                <svg viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Custom Website
+                <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="cat-btn gsap-btn" data-category="wordpress">
+                <svg viewBox="0 0 24 24"><path d="M12.158 12.786l-2.698 7.84c.806.236 1.657.365 2.54.365 1.047 0 2.05-.18 2.986-.51-.024-.037-.046-.078-.065-.123l-2.763-7.572zM4.62 7.142c-.22.42-.35 1-.35 1.6 0 .42.06.84.14 1.25.1.5.26.98.48 1.43l3.69 10.73c-3.15-1.63-5.32-4.9-5.32-8.71 0-2.22.75-4.27 2-5.91l-.64-1.39zm3.83-1.65c.98-.32 2.04-.5 3.15-.5 4.3 0 7.97 2.8 9.32 6.72l-5.18-13.68c.36.08.7.2 1.03.35l5.13 13.56c-.03-.02-.06-.03-.09-.05.15.53.24 1.09.24 1.67 0 3.73-2.05 6.96-5.07 8.64l-2.43-7.14 3.7-10.42c.15-.43.25-.86.25-1.28 0-.96-.4-1.66-1.12-1.66-.6 0-1.02.43-1.25.96l-3.3 9.42-3.18-9.43c-.22-.65-.65-1.1-1.25-1.1-.73 0-1.1.7-1.1 1.65 0 .44.1.86.25 1.28l3.15 8.95-2.7 7.73c-.02.06-.04.13-.06.2C6.73 20.35 10.05 21 12 21c5.52 0 10-4.48 10-10S17.52 1 12 1 2 5.48 2 11c0 2.5.93 4.8 2.45 6.55l3.05-8.87z" fill="currentColor"/></svg>
+                WordPress Development
+                <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="cat-btn gsap-btn" data-category="shopify">
+                <svg viewBox="0 0 24 24"><path d="M19.5 7.5L16 4.5l-2.5.5-2.5 3-7.5 1 2 10.5 7.5 2 6.5-1.5 2-12.5h-2zm-5.5 8c-2.5 0-3-1-3-2 0-1 .5-2 3-2 1.5 0 2.5.5 3 1v3c-.5.5-1.5 1-3 1v-1zm1.5-6h-3.5L13 6l3.5-1 2.5 2.5L15.5 9.5z" fill="currentColor"/></svg>
+                Shopify Development
+                <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="cat-btn gsap-btn" data-category="google">
+                <svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 4.5l7 14H5l7-14z" fill="currentColor"/></svg>
+                Google Ads
+                <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="cat-btn gsap-btn" data-category="ghl">
+                <svg viewBox="0 0 24 24"><path d="M12 3l7 7h-4v11h-6V10H5l7-7zm0 5v2H8v6h8v-6h-4V8z" fill="currentColor"/></svg>
+                Go High Level
+                <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+        </aside>
+
+        <div class="faq-content" id="faq-container">
+            </div>
+    </div>
+</section>
+
+<script>
+    // FAQ Data (Over 30+ Total Questions across categories)
+    const faqData = {
+        social: [
+            { q: "What does your Social Media Management service include?", a: "Our service includes platform strategy, high-quality content creation, posting schedules, active community engagement, paid social ads management, performance tracking, and comprehensive monthly reporting. We handle everything end-to-end to build your brand awareness." },
+            { q: "Which platforms do you manage?", a: "We manage all major platforms including Facebook, Instagram, LinkedIn, X (Twitter), TikTok, and Pinterest. We tailor our approach to the platforms where your target audience is most active." },
+            { q: "How do you measure success?", a: "We measure success through key performance indicators (KPIs) such as engagement rate, follower growth, website traffic originating from social media, and ultimately, lead generation and conversions." },
+            { q: "How soon can we expect to see results?", a: "While organic growth takes time (typically 3-6 months for significant momentum), paid social strategies can yield immediate visibility and leads within the first few weeks of campaign launch." },
+            { q: "Can I see content before it's posted?", a: "Absolutely. We provide a content calendar for your review and approval two weeks in advance. Nothing goes live without your explicit sign-off." }
+        ],
+        landing: [
+            { q: "What is the difference between a landing page and a website?", a: "A landing page is a standalone web page created specifically for a marketing or advertising campaign. While websites have multiple goals and encourage exploration, landing pages are designed with a single focus or call to action (CTA)." },
+            { q: "Do you provide copywriting for the landing pages?", a: "Yes, our team of conversion copywriters crafts compelling, benefit-driven text designed to guide visitors toward taking action, perfectly complementing the design." },
+            { q: "Will the landing pages be mobile responsive?", a: "100%. Over half of web traffic comes from mobile devices, so every landing page we build is strictly optimized to look and perform flawlessly on smartphones and tablets." },
+            { q: "How do you optimize landing pages for conversions?", a: "We use high-converting structures, clear CTAs, trust signals (testimonials, reviews), rapid load times, and A/B testing to continuously improve the conversion rate over time." },
+            { q: "Can you integrate the landing page with my CRM?", a: "Yes, we can integrate the forms on your landing page with almost any CRM or email marketing software, including Mailchimp, HubSpot, Salesforce, and GoHighLevel." }
+        ],
+        custom: [
+            { q: "How long does it take to build a custom website?", a: "A standard custom website typically takes 4-8 weeks from the initial discovery call to final launch. E-commerce or highly complex sites may take 10-14 weeks depending on the required functionality." },
+            { q: "Do I own the website once it is completed?", a: "Yes. Once the final payment is cleared, you retain 100% ownership of the website, its design, and all associated assets. We do not hold your site hostage." },
+            { q: "Will my website be SEO-friendly?", a: "Yes, we build all our websites adhering to technical SEO best practices, including proper site architecture, meta tags, schema markup, and optimized page speed." },
+            { q: "Do you offer website maintenance post-launch?", a: "We offer ongoing maintenance packages that include security updates, daily backups, uptime monitoring, and monthly content updates to keep your site fresh." },
+            { q: "Can you help redesign an existing website?", a: "Certainly. We conduct a thorough audit of your current site, identify UX/UI flaws, and redesign it from the ground up to align with modern web standards and your current business goals." }
+        ],
+        wordpress: [
+            { q: "Why should I choose WordPress for my website?", a: "WordPress powers over 40% of the web. It is highly customizable, SEO-friendly, scalable, and features a massive ecosystem of plugins that allow for virtually any functionality you might need." },
+            { q: "Do you use pre-made templates or custom themes?", a: "We specialize in custom WordPress theme development. Instead of bloated pre-made templates, we write clean, custom code tailored specifically to your brand for lightning-fast performance." },
+            { q: "Is WordPress secure?", a: "WordPress is secure as long as it is properly maintained. We implement strict security protocols, premium firewalls, and regular core/plugin updates to protect against vulnerabilities." },
+            { q: "Will I be able to update content myself?", a: "Yes. We build intuitive backend interfaces (often utilizing Custom Post Types and Advanced Custom Fields) so you can easily update text, images, and team members without knowing how to code." },
+            { q: "Can you migrate my site to WordPress?", a: "Yes, we handle seamless migrations from platforms like Wix, Squarespace, or custom HTML directly to WordPress without losing your SEO rankings." }
+        ],
+        shopify: [
+            { q: "Is Shopify the right choice for my e-commerce store?", a: "If you are selling physical or digital products, Shopify is widely considered the best dedicated e-commerce platform due to its reliability, ease of use, security, and expansive app marketplace." },
+            { q: "Can you integrate my POS system with Shopify?", a: "Yes, Shopify offers native POS solutions, and we can also set up third-party integrations to ensure your online and in-store inventory remains perfectly synced." },
+            { q: "Do you optimize Shopify stores for speed?", a: "Absolutely. Slow stores lose sales. We optimize images, minimize app bloat, and write efficient Liquid code to ensure your Shopify store loads blazingly fast." },
+            { q: "Can you create custom functionalities outside of standard apps?", a: "Yes, our developers can write custom scripts and leverage the Shopify API to build bespoke features that off-the-shelf apps cannot provide." },
+            { q: "Do you assist with product uploads?", a: "We can assist with initial bulk product uploads via CSV and format your product pages to ensure they are visually appealing and structured for conversions." }
+        ],
+        google: [
+            { q: "What is the minimum budget required for Google Ads?", a: "While you can start with any amount, we typically recommend a minimum ad spend of $1,000/month to generate enough data for proper optimization and meaningful ROI." },
+            { q: "Do you handle Search, Display, and Video ads?", a: "Yes, we are full-suite Google Ads experts. We manage Search, Display, YouTube Video, Shopping, and Performance Max campaigns tailored to your specific objectives." },
+            { q: "How do you ensure you are targeting the right audience?", a: "We conduct exhaustive keyword research, analyze search intent, utilize negative keyword lists to filter out junk traffic, and leverage Google's advanced audience targeting parameters." },
+            { q: "What is included in your monthly management?", a: "Monthly management includes bid adjustments, keyword optimization, ad copy A/B testing, landing page consultation, budget pacing, and detailed performance reporting." },
+            { q: "Will I have access to my Google Ads account?", a: "Yes, you will always have Admin access to your Google Ads account. Transparency is a core value of our agency." }
+        ],
+        ghl: [
+            { q: "What is Go High Level (GHL)?", a: "Go High Level is a comprehensive, all-in-one marketing and CRM platform designed to consolidate your tools. It replaces software for email marketing, SMS, funnel building, scheduling, and pipeline management." },
+            { q: "Can you set up automated follow-up sequences in GHL?", a: "Yes, we excel at building complex, multi-channel workflows. We can automate SMS, email, and ringless voicemail follow-ups to ensure no lead ever falls through the cracks." },
+            { q: "Will GHL integrate with my current website?", a: "Yes, GHL forms, chat widgets, and booking calendars can be seamlessly embedded into WordPress, Shopify, Custom HTML, or any other modern web platform." },
+            { q: "Do you provide white-label GHL setups?", a: "Yes, for agency owners, we provide complete white-label SaaS setups, custom branding, snapshot creation, and sub-account configuration." },
+            { q: "Is training included when you set up my GHL account?", a: "Absolutely. After setup, we provide a thorough onboarding call and recorded training videos to ensure your team is confident using the system." }
+        ]
+    };
+
+    // DOM Elements
+    const faqContainer = document.getElementById('faq-container');
+    const categoryButtons = document.querySelectorAll('.cat-btn');
+
+    // Function to render FAQs based on category
+    function renderFAQs(categoryKey) {
+        const questions = faqData[categoryKey];
+        if (!questions) return;
+
+        // Clear existing
+        faqContainer.innerHTML = '';
+
+        questions.forEach((item, index) => {
+            const faqEl = document.createElement('div');
+            faqEl.className = 'faq-item gsap-faq';
+            
+            faqEl.innerHTML = `
+                <button class="faq-question">
+                    ${item.q}
+                    <div class="toggle-icon"></div>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        ${item.a}
+                    </div>
+                </div>
+            `;
+            
+            faqContainer.appendChild(faqEl);
+
+            // Add Click Event for Accordion
+            const questionBtn = faqEl.querySelector('.faq-question');
+            questionBtn.addEventListener('click', () => toggleFAQ(faqEl));
+        });
+
+        // Animate the new FAQs entering
+        gsap.fromTo('.gsap-faq', 
+            { y: 30, opacity: 0 }, 
+            { y: 0, opacity: 1, duration: 0.4, stagger: 0.08, ease: "power2.out" }
+        );
+    }
+
+    // Function to handle accordion open/close logic
+    function toggleFAQ(clickedFaq) {
+        const isActive = clickedFaq.classList.contains('active');
+        const allFaqs = document.querySelectorAll('.faq-item');
+        
+        // Close all other FAQs
+        allFaqs.forEach(faq => {
+            if (faq !== clickedFaq && faq.classList.contains('active')) {
+                faq.classList.remove('active');
+                const answer = faq.querySelector('.faq-answer');
+                gsap.to(answer, { height: 0, duration: 0.3, ease: "power2.out" });
+            }
+        });
+
+        // Toggle clicked FAQ
+        const answer = clickedFaq.querySelector('.faq-answer');
+        const inner = clickedFaq.querySelector('.faq-answer-inner');
+        
+        if (isActive) {
+            clickedFaq.classList.remove('active');
+            gsap.to(answer, { height: 0, duration: 0.3, ease: "power2.out" });
+        } else {
+            clickedFaq.classList.add('active');
+            // Animate height based on inner content height
+            gsap.to(answer, { height: inner.offsetHeight, duration: 0.4, ease: "power2.out" });
+        }
+    }
+
+    // Event Listeners for Category Buttons
+    categoryButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons
+            categoryButtons.forEach(b => b.classList.remove('active'));
+            // Add to clicked
+            btn.classList.add('active');
+            
+            // Get category and render
+            const cat = btn.getAttribute('data-category');
+            
+            // Exit animation for current FAQs, then render new ones
+            gsap.to('.gsap-faq', { 
+                y: -15, 
+                opacity: 0, 
+                duration: 0.2, 
+                stagger: 0.03,
+                onComplete: () => {
+                    renderFAQs(cat);
+                }
+            });
+        });
+    });
+
+    // Initial GSAP Load Sequence
+    window.addEventListener('DOMContentLoaded', () => {
+        // Render initial category (Social Media) silently before animation
+        renderFAQs('social');
+
+        const tl = gsap.timeline();
+
+        tl.fromTo('.gsap-heading', 
+            { y: 30, opacity: 0 }, 
+            { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }
+        )
+        .fromTo('.gsap-subheading',
+            { y: 20, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
+            "-=0.4"
+        )
+        .fromTo('.gsap-btn',
+            { x: -30, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: "power2.out" },
+            "-=0.3"
+        );
+    });
+
+    // Resize handler to recalculate active accordion height if window changes
+    window.addEventListener('resize', () => {
+        const activeFaq = document.querySelector('.faq-item.active');
+        if (activeFaq) {
+            const answer = activeFaq.querySelector('.faq-answer');
+            const inner = activeFaq.querySelector('.faq-answer-inner');
+            gsap.set(answer, { height: inner.offsetHeight });
+        }
+    });
+
+</script>
+</body>
+</html>

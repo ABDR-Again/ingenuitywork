@@ -1,0 +1,169 @@
+<!-- ===================== PORTFOLIO SECTION ===================== -->
+<style>
+  .portfolio-section {
+    --pf-orange: #F2691A;
+    --pf-dark: #1b1b1f;
+    --pf-muted: #6c6c72;
+    --pf-line: #ececec;
+    --pf-panel: #ffffff;
+  }
+
+  .portfolio-section .pf-inner {
+    max-width: 1280px; margin: 0 auto; padding: 80px 32px;
+  }
+
+  .portfolio-section .pf-head {
+    display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 24px; margin-bottom: 44px;
+  }
+  .portfolio-section .pf-eyebrow {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--pf-orange); margin-bottom: 14px;
+  }
+  .portfolio-section .pf-head h2 {
+    font-size: clamp(36px, 4.6vw, 58px); font-weight: 800;
+    letter-spacing: -0.025em; line-height: 1; margin-bottom: 16px;
+  }
+  .portfolio-section .pf-head p {
+    font-size: 16.5px; line-height: 1.55; color: var(--pf-muted); max-width: 420px;
+  }
+
+  .portfolio-section .pf-btn {
+    position: relative; display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 28px; background: var(--pf-orange); color: #fff;
+    font-family: inherit; font-size: 15px; font-weight: 700;
+    border: none; border-radius: 10px; cursor: pointer; text-decoration: none;
+    overflow: hidden; white-space: nowrap;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+    z-index: 0;
+  }
+  .portfolio-section .pf-btn svg { width: 16px; height: 16px; transition: transform 0.3s ease; }
+  .portfolio-section .pf-btn::after {
+    content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.14);
+    transform: translateX(-101%); transition: transform 0.45s cubic-bezier(0.65,0,0.35,1); z-index: -1;
+  }
+  .portfolio-section .pf-btn:hover { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(242,105,26,0.4); }
+  .portfolio-section .pf-btn:hover::after { transform: translateX(0); }
+  .portfolio-section .pf-btn:hover svg { transform: translateX(5px); }
+  .portfolio-section .pf-btn:active { transform: translateY(-1px) scale(0.97); }
+
+  .portfolio-section .pf-body {
+    display: grid; grid-template-columns: 0.62fr 1.38fr; gap: 26px; align-items: stretch;
+  }
+
+  .portfolio-section .pf-list {
+    background: var(--pf-panel); border: 1px solid var(--pf-line);
+    border-radius: 16px; padding: 14px; box-shadow: 0 6px 22px rgba(0,0,0,0.04);
+  }
+
+  .portfolio-section .pf-proj {
+    position: relative; display: flex; align-items: center; justify-content: space-between;
+    width: 100%; text-align: left; background: transparent; border: none;
+    font-family: inherit; cursor: pointer; padding: 20px 18px; font-size: 17px;
+    font-weight: 600; color: var(--pf-dark); border-radius: 11px;
+    transition: background 0.3s ease, color 0.3s ease, padding 0.3s ease;
+  }
+  .portfolio-section .pf-proj:not(:last-child)::before {
+    content: ""; position: absolute; left: 18px; right: 18px; bottom: 0;
+    height: 1px; background: var(--pf-line);
+  }
+  .portfolio-section .pf-proj .pf-arrow {
+    opacity: 0; transform: translateX(-8px);
+    transition: opacity 0.3s ease, transform 0.3s ease; display: inline-flex;
+  }
+  .portfolio-section .pf-proj .pf-arrow svg { width: 20px; height: 20px; }
+  .portfolio-section .pf-proj:hover { background: #faf6f3; color: var(--pf-orange); }
+  .portfolio-section .pf-proj:hover .pf-arrow { opacity: 1; transform: translateX(0); }
+  .portfolio-section .pf-proj.active { background: var(--pf-orange); color: #fff; }
+  .portfolio-section .pf-proj.active::before { opacity: 0; }
+  .portfolio-section .pf-proj.active .pf-arrow { opacity: 1; transform: translateX(0); color: #fff; }
+
+  .portfolio-section .pf-panel {
+    position: relative; background: #faf7f5; border: 1px solid var(--pf-line);
+    border-radius: 18px; overflow: hidden; min-height: 420px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .portfolio-section .pf-placeholder {
+    text-align: center; color: var(--pf-muted); padding: 40px; max-width: 320px;
+  }
+  .portfolio-section .pf-placeholder .pf-ic {
+    width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 50%;
+    background: #fff; border: 1px solid var(--pf-line);
+    display: flex; align-items: center; justify-content: center; color: var(--pf-orange);
+  }
+  .portfolio-section .pf-placeholder .pf-ic svg { width: 26px; height: 26px; }
+  .portfolio-section .pf-placeholder p { font-size: 16px; line-height: 1.5; font-weight: 500; }
+
+  .portfolio-section .pf-shots { position: absolute; inset: 0; }
+  .portfolio-section .pf-shot {
+    position: absolute; inset: 0; opacity: 0; visibility: hidden; pointer-events: none;
+  }
+  .portfolio-section .pf-shot.show { visibility: visible; pointer-events: auto; }
+  .portfolio-section .pf-shot img {
+    width: 100%; height: 100%; object-fit: cover; display: block; background: #e9e4e0;
+  }
+
+  @media (max-width: 1024px) {
+    .portfolio-section .pf-head { grid-template-columns: 1fr; align-items: start; }
+    .portfolio-section .pf-head .pf-btn { justify-self: start; }
+    .portfolio-section .pf-body { grid-template-columns: 1fr; gap: 22px; }
+    .portfolio-section .pf-panel { min-height: 360px; }
+  }
+
+  @media (max-width: 700px) {
+    .portfolio-section .pf-inner { padding: 54px 18px; }
+    .portfolio-section .pf-head { margin-bottom: 30px; }
+    .portfolio-section .pf-head h2 { font-size: 36px; }
+    .portfolio-section .pf-body { display: flex; flex-direction: column; gap: 18px; }
+    .portfolio-section .pf-list { order: 1; padding: 8px; }
+    .portfolio-section .pf-panel { order: 2; min-height: 300px; }
+    .portfolio-section .pf-proj { padding: 16px 14px; font-size: 16px; }
+    .portfolio-section .pf-proj:not(:last-child)::before { left: 14px; right: 14px; }
+  }
+</style>
+
+<section class="portfolio-section">
+  <div class="pf-inner">
+
+    <div class="pf-head">
+      <div class="pf-head-text">
+        <div class="pf-eyebrow pf-anim-h">Our Portfolio</div>
+        <h2 class="pf-anim-h">Selected Work</h2>
+        <p class="pf-anim-h">Explore the websites, landing pages, and campaigns we've built across different industries.</p>
+      </div>
+      <a class="pf-btn pf-anim-h" href="#">View Portfolio
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <div class="pf-body">
+      <div class="pf-list" id="pfList">
+        <button class="pf-proj" data-shot="0">AdvisoryLab <span class="pf-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+        <button class="pf-proj" data-shot="1">StayInHomeCare <span class="pf-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+        <button class="pf-proj" data-shot="2">Musik &amp; Film <span class="pf-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+        <button class="pf-proj" data-shot="3">Financely <span class="pf-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+        <button class="pf-proj" data-shot="4">Bounce For Love <span class="pf-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+        <button class="pf-proj" data-shot="5">Quiro Esplugues <span class="pf-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+        <button class="pf-proj" data-shot="6">TaxiFlow <span class="pf-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+        <button class="pf-proj" data-shot="7">Prime A2Z <span class="pf-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></button>
+      </div>
+
+      <div class="pf-panel" id="pfPanel">
+        <div class="pf-placeholder" id="pfPlaceholder">
+          <div class="pf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></div>
+          <p>Click on a project to reveal its preview.</p>
+        </div>
+        <div class="pf-shots" id="pfShots">
+          <div class="pf-shot" data-shot="0"><img src="" alt="AdvisoryLab project preview" loading="lazy" decoding="async"></div>
+          <div class="pf-shot" data-shot="1"><img src="" alt="StayInHomeCare project preview" loading="lazy" decoding="async"></div>
+          <div class="pf-shot" data-shot="2"><img src="" alt="Musik & Film project preview" loading="lazy" decoding="async"></div>
+          <div class="pf-shot" data-shot="3"><img src="" alt="Financely project preview" loading="lazy" decoding="async"></div>
+          <div class="pf-shot" data-shot="4"><img src="" alt="Bounce For Love project preview" loading="lazy" decoding="async"></div>
+          <div class="pf-shot" data-shot="5"><img src="" alt="Quiro Esplugues project preview" loading="lazy" decoding="async"></div>
+          <div class="pf-shot" data-shot="6"><img src="" alt="TaxiFlow project preview" loading="lazy" decoding="async"></div>
+          <div class="pf-shot" data-shot="7"><img src="" alt="Prime A2Z project preview" loading="lazy" decoding="async"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

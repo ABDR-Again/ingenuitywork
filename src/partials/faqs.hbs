@@ -1,0 +1,112 @@
+<!-- ===================== FAQs SECTION ===================== -->
+<style>
+  .faq-section {
+    --faq-primary: #0EA5E9;
+    --faq-primary-light: #E0F2FE;
+    --faq-surface: #FFFFFF;
+    --faq-text-main: #111111;
+    --faq-text-muted: #64748B;
+    --faq-border: #E2E8F0;
+    --faq-radius: 8px;
+    --faq-transition: 0.3s ease;
+    max-width: 1200px; margin: 4rem auto; padding: 0 1.5rem;
+  }
+
+  .faq-section .faq-header { text-align: center; margin-bottom: 3rem; }
+  .faq-section .faq-header h2 {
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.5px;
+  }
+  .faq-section .faq-header h2 span { color: var(--faq-primary); }
+  .faq-section .faq-header p { color: var(--faq-text-muted); font-size: 1.125rem; max-width: 600px; margin: 0 auto; }
+
+  .faq-section .faq-layout { display: grid; grid-template-columns: 320px 1fr; gap: 2rem; align-items: start; }
+  .faq-section .faq-sidebar { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .faq-section .faq-cat-btn {
+    display: flex; align-items: center; gap: 1rem; width: 100%;
+    padding: 1.25rem 1.5rem; background-color: var(--faq-surface);
+    border: 1px solid var(--faq-border); border-radius: var(--faq-radius);
+    font-family: inherit; font-size: 1rem; font-weight: 500; color: var(--faq-text-main);
+    cursor: pointer; text-align: left; transition: all 0.2s ease; position: relative; overflow: hidden;
+  }
+  .faq-section .faq-cat-btn svg { width: 24px; height: 24px; fill: currentColor; flex-shrink: 0; transition: fill 0.2s ease; }
+  .faq-section .faq-cat-btn .faq-arrow-icon { margin-left: auto; width: 16px; height: 16px; fill: var(--faq-text-muted); }
+  .faq-section .faq-cat-btn:hover { border-color: var(--faq-primary); box-shadow: 0 4px 12px rgba(14, 165, 233, 0.05); transform: translateY(-2px); }
+  .faq-section .faq-cat-btn.active { background-color: var(--faq-primary); color: white; border-color: var(--faq-primary); box-shadow: 0 8px 20px rgba(14, 165, 233, 0.2); transform: translateY(0); }
+  .faq-section .faq-cat-btn.active .faq-arrow-icon { fill: white; }
+
+  .faq-section .faq-content { display: flex; flex-direction: column; gap: 1rem; }
+  .faq-section .faq-item { background: var(--faq-surface); border: 1px solid var(--faq-border); border-radius: var(--faq-radius); overflow: hidden; transition: border-color var(--faq-transition), box-shadow var(--faq-transition); }
+  .faq-section .faq-item:hover { border-color: var(--faq-primary); }
+  .faq-section .faq-item.active { border-color: var(--faq-primary); box-shadow: 0 4px 20px rgba(14, 165, 233, 0.05); }
+
+  .faq-section .faq-question {
+    width: 100%; display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem; background: none; border: none; font-family: inherit;
+    font-size: 1.125rem; font-weight: 500; color: var(--faq-text-main); cursor: pointer; text-align: left;
+  }
+
+  .faq-section .faq-toggle-icon {
+    width: 32px; height: 32px; border: 1px solid var(--faq-border); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    transition: all var(--faq-transition); position: relative;
+  }
+  .faq-section .faq-toggle-icon::before, .faq-section .faq-toggle-icon::after {
+    content: ''; position: absolute; background-color: var(--faq-text-muted); transition: all var(--faq-transition);
+  }
+  .faq-section .faq-toggle-icon::before { width: 12px; height: 2px; }
+  .faq-section .faq-toggle-icon::after { width: 2px; height: 12px; }
+  .faq-section .faq-item.active .faq-toggle-icon { border-color: var(--faq-primary); }
+  .faq-section .faq-item.active .faq-toggle-icon::before { background-color: var(--faq-primary); }
+  .faq-section .faq-item.active .faq-toggle-icon::after { transform: rotate(90deg); background-color: var(--faq-primary); opacity: 0; }
+
+  .faq-section .faq-answer { height: 0; overflow: hidden; color: var(--faq-text-muted); }
+  .faq-section .faq-answer-inner { padding: 0 1.5rem 1.5rem 1.5rem; font-size: 1rem; line-height: 1.7; }
+
+  @media (max-width: 992px) {
+    .faq-section .faq-layout { grid-template-columns: 1fr; }
+    .faq-section .faq-sidebar { flex-direction: row; overflow-x: auto; padding-bottom: 1rem; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+    .faq-section .faq-sidebar::-webkit-scrollbar { display: none; }
+    .faq-section .faq-cat-btn { flex: 0 0 auto; width: auto; white-space: nowrap; padding: 1rem 1.5rem; }
+    .faq-section .faq-cat-btn .faq-arrow-icon { display: none; }
+  }
+</style>
+
+<section class="faq-section">
+  <div class="faq-header">
+    <h2 class="faq-gsap-heading">Frequently Asked <span>Questions</span></h2>
+    <p class="faq-gsap-subheading">Find answers to common questions about our services, process, timelines, and results. Still have questions? We're here to help.</p>
+  </div>
+
+  <div class="faq-layout">
+    <aside class="faq-sidebar">
+      <button class="faq-cat-btn active faq-gsap-btn" data-category="social">
+        <svg viewBox="0 0 24 24"><path d="M20 10.5V9.5C20 8.11929 18.8807 7 17.5 7H14.8284L10.6569 2.82843C10.1691 2.34064 9.34964 2.53139 9.12456 3.1789L8.14088 6H5.5C4.11929 6 3 7.11929 3 8.5V11.5C3 12.8807 4.11929 14 5.5 14H6V18.5C6 19.8807 7.11929 21 8.5 21H9.5C9.77614 21 10 20.7761 10 20.5V14H14.8284L18.4239 17.5955C18.8776 18.0491 19.6586 17.8596 19.8893 17.2396L20.8924 14.5424C21.5649 13.5186 22 12.2858 22 10.9634C22 10.7933 21.9904 10.6253 21.9715 10.4599L20.6569 9.14529V10.5H20Z"/></svg>
+        Social Media Management
+        <svg class="faq-arrow-icon" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="faq-cat-btn faq-gsap-btn" data-category="landing">
+        <svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm2 0v2h14V5H5zm0 4v10h14V9H5z" fill="currentColor"/></svg>
+        Landing Pages
+        <svg class="faq-arrow-icon" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="faq-cat-btn faq-gsap-btn" data-category="custom">
+        <svg viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Custom Website
+        <svg class="faq-arrow-icon" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="faq-cat-btn faq-gsap-btn" data-category="google">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 4.5l7 14H5l7-14z" fill="currentColor"/></svg>
+        Google Ads
+        <svg class="faq-arrow-icon" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="faq-cat-btn faq-gsap-btn" data-category="ghl">
+        <svg viewBox="0 0 24 24"><path d="M12 3l7 7h-4v11h-6V10H5l7-7zm0 5v2H8v6h8v-6h-4V8z" fill="currentColor"/></svg>
+        Go High Level
+        <svg class="faq-arrow-icon" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </aside>
+
+    <div class="faq-content" id="faqContainer"></div>
+  </div>
+</section>
