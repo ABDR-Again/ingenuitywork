@@ -1,7 +1,7 @@
 <!-- ===================== HERO SECTION ===================== -->
 <style>
   :root {
-    --orange: #F2641E;
+    --yellow: #FACC15;
     --dark: #14110d;
     --muted: #6b6661;
     --line: #e9e6e2;
@@ -30,12 +30,12 @@
     gap: 10px;
     margin-bottom: 26px;
   }
-  .hero .eyebrow .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--orange); }
+  .hero .eyebrow .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--yellow); }
   .hero .eyebrow span {
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.22em;
-    color: var(--orange);
+    color: var(--yellow);
     text-transform: uppercase;
   }
 
@@ -76,24 +76,24 @@
     cursor: pointer;
     text-decoration: none;
     white-space: nowrap;
-    border: 2px solid var(--orange);
+    border: 2px solid var(--yellow);
     transition: background 0.35s ease, color 0.35s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
   }
   .hero .btn svg { width: 16px; height: 16px; transition: transform 0.3s ease; }
 
   /* primary: orange -> white bg, orange text on hover */
-  .hero .btn-primary { background: var(--orange); color: #fff; }
+  .hero .btn-primary { background: var(--yellow); color: #fff; }
   .hero .btn-primary:hover {
-    background: #fff; color: var(--orange);
+    background: #fff; color: var(--yellow);
     transform: translateY(-3px);
     box-shadow: 0 14px 28px rgba(242,100,30,0.32);
   }
   .hero .btn-primary:hover svg { transform: translate(3px,-3px); }
 
   /* secondary: white -> orange bg, white text on hover */
-  .hero .btn-secondary { background: #fff; color: var(--orange); }
+  .hero .btn-secondary { background: #fff; color: var(--yellow); }
   .hero .btn-secondary:hover {
-    background: var(--orange); color: #fff;
+    background: var(--yellow); color: #fff;
     transform: translateY(-3px);
     box-shadow: 0 14px 28px rgba(242,100,30,0.32);
   }
@@ -113,7 +113,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: var(--orange);
+    background: var(--yellow);
     clip-path: polygon(28% 0, 100% 0, 100% 100%, 62% 100%);
     z-index: 0;
   }
@@ -170,7 +170,6 @@
     width: 100%; height: 100%;
     object-fit: cover;
     display: block;
-    filter: grayscale(100%);
     background: linear-gradient(135deg,#cfcfcf,#a8a8a8);
   }
 
@@ -185,7 +184,7 @@
     z-index: 4;
     min-width: 150px;
   }
-  .hero .badge-years .big { font-size: 34px; font-weight: 800; color: var(--orange); line-height: 1; }
+  .hero .badge-years .big { font-size: 34px; font-weight: 800; color: var(--yellow); line-height: 1; }
   .hero .badge-years .sub { font-size: 13px; font-weight: 600; color: var(--dark); margin-top: 8px; line-height: 1.3; }
 
   /* ---- floating ROI badge (circle) ---- */
@@ -208,7 +207,7 @@
     width: 38px; height: 38px;
     border-radius: 50%;
     background: #fff5ef;
-    color: var(--orange);
+    color: var(--yellow);
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 8px;
   }
@@ -231,7 +230,7 @@
     max-width: 150px;
   }
   .hero .strip .trusted p { font-size: 14px; line-height: 1.35; color: var(--dark); font-weight: 600; }
-  .hero .strip .trusted .swoosh { margin-top: 6px; color: var(--orange); }
+  .hero .strip .trusted .swoosh { margin-top: 6px; color: var(--yellow); }
   .hero .strip .trusted .swoosh svg { width: 60px; height: 14px; }
 
   .hero .marquee-wrap {
@@ -267,7 +266,7 @@
     padding-left: 20px;
     border-left: 1px solid #e0ddd8;
   }
-  .hero .rating .stars { color: var(--orange); font-size: 15px; letter-spacing: 1px; }
+  .hero .rating .stars { color: var(--yellow); font-size: 15px; letter-spacing: 1px; }
   .hero .rating .score { font-size: 18px; font-weight: 800; display: inline-block; margin-left: 4px; vertical-align: middle; }
   .hero .rating .src { font-size: 12px; color: var(--muted); margin-top: 2px; }
 
@@ -341,10 +340,9 @@
 
     <!-- rotating images -->
     <div class="img-mask" id="slideshow">
-      <div class="slide active"><img src="" alt="Team meeting 1" loading="lazy" decoding="async"></div>
-      <div class="slide"><img src="" alt="Team meeting 2" loading="lazy" decoding="async"></div>
-      <div class="slide"><img src="" alt="Team meeting 3" loading="lazy" decoding="async"></div>
-      <div class="slide"><img src="" alt="Team meeting 4" loading="lazy" decoding="async"></div>
+      <div class="slide active"><img src="/optimized/hero-1.webp" alt="Digital Marketing Strategy 1"></div>
+      <div class="slide"><img src="/optimized/hero-2.webp" alt="Digital Marketing Strategy 2"></div>
+      <div class="slide"><img src="/optimized/hero-3.webp" alt="Digital Marketing Strategy 3"></div>
     </div>
 
     <!-- floating badges -->

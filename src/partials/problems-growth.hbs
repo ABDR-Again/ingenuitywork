@@ -1,9 +1,9 @@
 <!-- ===================== PROBLEMS & GROWTH SECTION ===================== -->
 <style>
   :root {
-    --orange: #F26A1B;
-    --orange-soft: #fff3ea;
-    --orange-line: #f7d6bd;
+    --yellow: #FACC15;
+    --yellow-soft: #FEF9C3;
+    --yellow-line: #FEF08A;
     --dark: #16130f;
     --muted: #6f6b67;
     --line: #ededed;
@@ -24,8 +24,8 @@
     display: flex; align-items: center; justify-content: center;
     gap: 7px; margin-bottom: 22px;
   }
-  .problems-growth .eyebrow .line { width: 32px; height: 3px; background: var(--orange); border-radius: 2px; }
-  .problems-growth .eyebrow .dot { width: 7px; height: 7px; background: var(--orange); border-radius: 50%; }
+  .problems-growth .eyebrow .line { width: 32px; height: 3px; background: var(--yellow); border-radius: 2px; }
+  .problems-growth .eyebrow .dot { width: 7px; height: 7px; background: var(--yellow); border-radius: 50%; }
 
   .problems-growth .head h1 {
     font-size: clamp(34px, 5.2vw, 64px);
@@ -58,8 +58,8 @@
     transition: transform 0.35s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.35s ease, border-color 0.35s ease;
   }
   .problems-growth .card.solution {
-    background: var(--orange-soft);
-    border-color: var(--orange-line);
+    background: var(--yellow-soft);
+    border-color: var(--yellow-line);
   }
   .problems-growth .card:hover {
     transform: translateY(-8px);
@@ -84,7 +84,7 @@
     height: 1px;
     background: var(--line);
   }
-  .problems-growth .card.solution .row:not(:last-child)::after { background: var(--orange-line); }
+  .problems-growth .card.solution .row:not(:last-child)::after { background: var(--yellow-line); }
 
   /* hover interaction on individual rows */
   .problems-growth .row:not(.row-head):hover { transform: translateX(6px); }
@@ -101,10 +101,10 @@
   }
   .problems-growth .icon svg { width: 26px; height: 26px; }
 
-  .problems-growth .card.solution .icon { background: #fde4d2; color: var(--orange); }
+  .problems-growth .card.solution .icon { background: #FEF08A; color: var(--yellow); }
 
   .problems-growth .row-head .icon { background: var(--gray-icon-bg); }
-  .problems-growth .card.solution .row-head .icon { background: #fde4d2; }
+  .problems-growth .card.solution .row-head .icon { background: #FEF08A; }
 
   .problems-growth .row-text h3 {
     font-size: 19px;
@@ -112,7 +112,7 @@
     line-height: 1.2;
   }
   .problems-growth .row-head .row-text h3 { font-size: 22px; }
-  .problems-growth .card.solution .row-head .row-text h3 { color: var(--orange); }
+  .problems-growth .card.solution .row-head .row-text h3 { color: var(--yellow); }
 
   .problems-growth .row-text p {
     font-size: 15px;
@@ -129,12 +129,12 @@
     align-items: center;
     gap: 12px;
     padding: 18px 40px;
-    background: var(--orange);
+    background: var(--yellow);
     color: #fff;
     font-family: inherit;
     font-size: 18px;
     font-weight: 700;
-    border: 2px solid var(--orange);
+    border: 2px solid var(--yellow);
     border-radius: 12px;
     cursor: pointer;
     text-decoration: none;
@@ -144,7 +144,7 @@
   .problems-growth .btn svg { width: 20px; height: 20px; transition: transform 0.3s ease; }
   .problems-growth .btn:hover {
     background: #ffffff;
-    color: var(--orange);
+    color: var(--yellow);
     transform: translateY(-3px);
     box-shadow: 0 16px 32px rgba(242,106,27,0.30);
   }

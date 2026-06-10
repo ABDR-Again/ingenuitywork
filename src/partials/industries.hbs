@@ -5,8 +5,8 @@
     --ind-bg-white: #FFFFFF;
     --ind-text-dark: #111827;
     --ind-text-muted: #6B7280;
-    --ind-primary-orange: #F05A28;
-    --ind-orange-light: #FFF5F0;
+    --ind-primary-yellow: #FACC15;
+    --ind-yellow-light: #FEF9C3;
     --ind-border-color: #E5E7EB;
   }
 
@@ -26,18 +26,18 @@
   }
 
   .industries-section .section-tag {
-    font-size: 0.8rem; font-weight: 700; color: var(--ind-primary-orange);
+    font-size: 0.8rem; font-weight: 700; color: var(--ind-primary-yellow);
     text-transform: uppercase; letter-spacing: 1.5px;
     display: flex; align-items: center; gap: 15px;
   }
   .industries-section .section-tag::after {
-    content: ''; height: 2px; width: 40px; background-color: var(--ind-primary-orange);
+    content: ''; height: 2px; width: 40px; background-color: var(--ind-primary-yellow);
   }
 
   .industries-section .main-heading {
     font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 700; line-height: 1.1; letter-spacing: -1px;
   }
-  .industries-section .main-heading span { color: var(--ind-primary-orange); }
+  .industries-section .main-heading span { color: var(--ind-primary-yellow); }
 
   .industries-section .sub-heading {
     font-size: 1.1rem; color: var(--ind-text-muted); line-height: 1.6;
@@ -48,7 +48,7 @@
     background-color: var(--ind-bg-white); border: 1px solid var(--ind-border-color);
     padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); margin-top: 1rem;
   }
-  .industries-section .info-icon { width: 24px; height: 24px; color: var(--ind-primary-orange); flex-shrink: 0; }
+  .industries-section .info-icon { width: 24px; height: 24px; color: var(--ind-primary-yellow); flex-shrink: 0; }
   .industries-section .info-text { font-size: 0.95rem; color: var(--ind-text-muted); line-height: 1.5; }
 
   .industries-section .slider-col { position: relative; width: 100%; }
@@ -84,24 +84,24 @@
 
   .industries-section .card-badge {
     position: absolute; top: 15px; left: 15px;
-    background-color: var(--ind-primary-orange); color: var(--ind-bg-white);
+    background-color: var(--ind-primary-yellow); color: var(--ind-bg-white);
     font-size: 0.75rem; font-weight: 700; padding: 4px 8px; border-radius: 12px;
     opacity: 0; transform: translateY(-10px); transition: all 0.3s ease;
   }
   .industries-section .card-sparkle {
-    position: absolute; top: 15px; right: 15px; color: var(--ind-primary-orange);
+    position: absolute; top: 15px; right: 15px; color: var(--ind-primary-yellow);
     opacity: 0; transition: all 0.3s ease;
   }
 
   .industries-section .industry-card:hover {
-    border-color: var(--ind-primary-orange);
+    border-color: var(--ind-primary-yellow);
     box-shadow: 0 10px 30px rgba(240, 90, 40, 0.1);
     transform: translateY(-5px) !important;
   }
   .industries-section .industry-card:hover .icon-wrapper {
-    background-color: var(--ind-orange-light); border-color: var(--ind-orange-light); color: var(--ind-primary-orange);
+    background-color: var(--ind-yellow-light); border-color: var(--ind-yellow-light); color: var(--ind-primary-yellow);
   }
-  .industries-section .industry-card:hover .card-divider { background-color: var(--ind-primary-orange); width: 30px; }
+  .industries-section .industry-card:hover .card-divider { background-color: var(--ind-primary-yellow); width: 30px; }
   .industries-section .industry-card:hover .card-badge { opacity: 1; transform: translateY(0); }
   .industries-section .industry-card:hover .card-sparkle { opacity: 1; }
   .industries-section .industry-card:active { transform: scale(0.96) !important; }
@@ -115,7 +115,7 @@
     display: flex; justify-content: center; align-items: center;
     cursor: pointer; color: var(--ind-text-dark); transition: all 0.2s ease;
   }
-  .industries-section .slider-arrow:hover { background: var(--ind-primary-orange); border-color: var(--ind-primary-orange); color: var(--ind-bg-white); }
+  .industries-section .slider-arrow:hover { background: var(--ind-primary-yellow); border-color: var(--ind-primary-yellow); color: var(--ind-bg-white); }
   .industries-section .slider-arrow:active { transform: scale(0.9); }
   .industries-section .slider-arrow svg { width: 20px; height: 20px; stroke: currentColor; }
 

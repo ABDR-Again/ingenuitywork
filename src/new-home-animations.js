@@ -6,6 +6,11 @@
 
 gsap.registerPlugin(ScrollTrigger);
 
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 document.addEventListener("DOMContentLoaded", () => {
 
   // =========================================
@@ -20,6 +25,23 @@ document.addEventListener("DOMContentLoaded", () => {
     ease: "power3.out",
     delay: 0.1
   });
+
+  // Header hide on scroll down, show on scroll up
+  const headerElement = document.querySelector('.gsap-header');
+  if (headerElement) {
+    let lastScrollY = window.scrollY;
+    ScrollTrigger.create({
+      start: "top -80",
+      onUpdate: (self) => {
+        if (self.direction === 1) { // scrolling down
+          gsap.to(headerElement, { yPercent: -100, duration: 0.3, ease: "power2.out" });
+        } else if (self.direction === -1) { // scrolling up
+          gsap.to(headerElement, { yPercent: 0, duration: 0.3, ease: "power2.out" });
+        }
+      }
+    });
+  }
+
 
   // 1b. Desktop Dropdown Logic
   const servicesTrigger = document.querySelector('.has-dropdown');
@@ -476,7 +498,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!procSection) return;
 
     var activeState = {
-      '--card-bg': '#F97316', '--card-text': '#FFFFFF',
+      '--card-bg': '#FACC15', '--card-text': '#FFFFFF',
       '--card-desc': '#FFEDD5', '--icon-color': '#FFFFFF',
       opacity: 1, y: 0, ease: 'power2.out', duration: 0.8
     };

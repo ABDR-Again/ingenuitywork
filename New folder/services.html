@@ -16,6 +16,13 @@
     --card-h: 95vh;
     --card-max-width: 1400px;
     --stack-top: 2.5vh;
+
+    --y-deep:   #E8A800;
+    --y-mid:    #F5C518;
+    --y-soft:   #FBD94B;
+    --y-pale:   #FFF3C4;
+    --y-border: #F0C419;
+    --ink:      #1c1500;
   }
 
   html { scroll-behavior: smooth; }
@@ -23,18 +30,13 @@
   body {
     background: #ffffff;
     font-family: "DM Sans", sans-serif;
-    color: #111;
+    color: #1a1a1a;
     -webkit-font-smoothing: antialiased;
   }
 
-  /* spacer so the first card starts off-screen and scrolls up into view */
   .intro-spacer { height: 60vh; }
 
-  .cards-wrapper {
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 0 140px;
-  }
+  .cards-wrapper { width: 100%; margin: 0 auto; padding: 0 0 140px; }
 
   .card-slot {
     height: 110vh;
@@ -51,7 +53,7 @@
     height: var(--card-h);
     border-radius: var(--card-radius);
     overflow: hidden;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.22);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
     will-change: transform;
   }
 
@@ -61,7 +63,6 @@
     height: 100%;
   }
 
-  /* Alternating layout: even cards put image on the right */
   .card.reverse .card-media { order: 2; }
   .card.reverse .card-content { order: 1; padding: 5vh 1.5vw 5vh 4vw; }
 
@@ -77,7 +78,6 @@
     max-height: 78vh;
     object-fit: contain;
     border-radius: 16px;
-    background: rgba(255,255,255,0.18);
   }
 
   .card-content {
@@ -102,18 +102,22 @@
   }
 
   .card-content h2 {
-    font-size: clamp(32px, 3.6vw, 52px);
+    font-size: clamp(30px, 3.4vw, 50px);
     font-weight: 800;
-    line-height: 1.03;
+    line-height: 1.04;
     letter-spacing: -0.025em;
     margin-bottom: 20px;
   }
 
+  /* subheading kept to a single line */
   .card-content .desc {
     font-size: clamp(15px, 1.15vw, 18px);
     line-height: 1.55;
     margin-bottom: 32px;
-    max-width: 560px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
 
   .features {
@@ -137,9 +141,7 @@
     cursor: pointer;
   }
   .feat-icon svg { width: 22px; height: 22px; transition: transform 0.35s ease; }
-
-  /* ICON HOVER ANIMATION */
-  .features li:hover .feat-icon { transform: translateY(-4px) scale(1.12) rotate(-6deg); box-shadow: 0 10px 24px rgba(0,0,0,0.28); }
+  .features li:hover .feat-icon { transform: translateY(-4px) scale(1.12) rotate(-6deg); box-shadow: 0 8px 18px rgba(0,0,0,0.16); }
   .features li:hover .feat-icon svg { transform: scale(1.05); }
 
   .feat-text strong {
@@ -148,10 +150,7 @@
     font-weight: 700;
     margin-bottom: 4px;
   }
-  .feat-text span {
-    font-size: clamp(13px, 0.95vw, 15px);
-    line-height: 1.45;
-  }
+  .feat-text span { font-size: clamp(13px, 0.95vw, 15px); line-height: 1.45; }
 
   .actions { display: flex; gap: 16px; flex-wrap: wrap; }
 
@@ -169,87 +168,68 @@
     text-decoration: none;
     font-family: inherit;
     overflow: hidden;
-    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
     z-index: 0;
   }
   .btn svg { width: 17px; height: 17px; transition: transform 0.3s ease; }
-
-  /* BUTTON HOVER ANIMATION */
   .btn::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(255,255,255,0.18);
+    background: rgba(0,0,0,0.10);
     transform: translateX(-101%);
     transition: transform 0.45s cubic-bezier(0.65,0,0.35,1);
     z-index: -1;
   }
-  .btn:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(0,0,0,0.28); }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(0,0,0,0.16); }
   .btn:hover::after { transform: translateX(0); }
   .btn:hover svg { transform: translateX(5px); }
   .btn:active { transform: translateY(-1px) scale(0.98); }
 
-  /* 1 - SEO : yellow card */
-  .theme-seo { background: #F5C518; color: #1A1A1A; }
-  .theme-seo .tag { background: rgba(0,0,0,0.08); color: #1A1A1A; }
-  .theme-seo .desc { color: #2c2c2c; }
-  .theme-seo .feat-icon { background: #1A1A1A; color: #F5C518; }
-  .theme-seo .feat-text span { color: #3a3a3a; }
-  .theme-seo .btn-primary { background: #1A1A1A; color: #fff; }
-  .theme-seo .btn-outline { background: transparent; border: 1.5px solid rgba(0,0,0,0.25); color: #1A1A1A; }
-  .theme-seo .btn-outline::after { background: rgba(0,0,0,0.08); }
+  /* Clearly visible buttons:
+     Primary = solid dark ink, white text (high contrast on every card)
+     Secondary = white fill, 2px dark border                              */
+  .btn-primary {
+    background: var(--ink);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.16);
+  }
+  .btn-primary:hover { color: #ffffff; }
+  .btn-secondary {
+    background: #ffffff;
+    color: var(--ink);
+    border: 2px solid var(--ink);
+  }
+  .btn-secondary:hover { background: var(--ink); color: #ffffff; }
 
-  /* 2 - Website Development : red */
-  .theme-web { background: #F0503A; color: #ffffff; }
-  .theme-web .tag { background: rgba(255,255,255,0.18); color: #fff; }
-  .theme-web .desc { color: rgba(255,255,255,0.92); }
-  .theme-web .feat-icon { background: rgba(255,255,255,0.18); color: #fff; }
-  .theme-web .feat-text span { color: rgba(255,255,255,0.85); }
-  .theme-web .btn-primary { background: #ffffff; color: #F0503A; }
-  .theme-web .btn-primary::after { background: rgba(0,0,0,0.06); }
-  .theme-web .btn-outline { background: transparent; border: 1.5px solid rgba(255,255,255,0.5); color: #fff; }
+  /* ===== Card themes — alternating yellow shades / white+border ===== */
+  .theme-fill-deep { background: var(--y-deep); color: var(--ink); }
+  .theme-fill-deep .tag { background: rgba(0,0,0,0.10); color: var(--ink); }
+  .theme-fill-deep .desc { color: #2b2200; }
+  .theme-fill-deep .feat-icon { background: var(--ink); color: var(--y-mid); }
+  .theme-fill-deep .feat-text span { color: #3a2e00; }
+  .theme-fill-deep .card-media img { background: rgba(255,255,255,0.35); }
 
-  /* 3 - Google Ads : blue */
-  .theme-ads { background: #1F52E0; color: #ffffff; }
-  .theme-ads .tag { background: rgba(255,255,255,0.16); color: #fff; }
-  .theme-ads .desc { color: rgba(255,255,255,0.92); }
-  .theme-ads .feat-icon { background: rgba(255,255,255,0.16); color: #fff; }
-  .theme-ads .feat-text span { color: rgba(255,255,255,0.82); }
-  .theme-ads .btn-primary { background: #F5C518; color: #1A1A1A; }
-  .theme-ads .btn-primary::after { background: rgba(0,0,0,0.08); }
-  .theme-ads .btn-outline { background: #ffffff; border: 1.5px solid #fff; color: #1F52E0; }
-  .theme-ads .btn-outline::after { background: rgba(0,0,0,0.06); }
+  .theme-border { background: #ffffff; color: #1a1a1a; border: 2.5px solid var(--y-border); }
+  .theme-border .tag { background: var(--y-pale); color: #7a5c00; }
+  .theme-border .desc { color: #555; }
+  .theme-border .feat-icon { background: var(--y-pale); color: #B58900; }
+  .theme-border .feat-text span { color: #666; }
+  .theme-border .card-media img { background: #fbfaf6; }
 
-  /* 4 - WordPress : purple */
-  .theme-wp { background: #5B2BC9; color: #ffffff; }
-  .theme-wp .tag { background: rgba(255,255,255,0.16); color: #fff; }
-  .theme-wp .desc { color: rgba(255,255,255,0.9); }
-  .theme-wp .feat-icon { background: rgba(255,255,255,0.16); color: #fff; }
-  .theme-wp .feat-text span { color: rgba(255,255,255,0.8); }
-  .theme-wp .btn-primary { background: #ffffff; color: #5B2BC9; }
-  .theme-wp .btn-primary::after { background: rgba(0,0,0,0.06); }
-  .theme-wp .btn-outline { background: transparent; border: 1.5px solid rgba(255,255,255,0.5); color: #fff; }
+  .theme-fill-mid { background: var(--y-mid); color: var(--ink); }
+  .theme-fill-mid .tag { background: rgba(0,0,0,0.10); color: var(--ink); }
+  .theme-fill-mid .desc { color: #2b2200; }
+  .theme-fill-mid .feat-icon { background: var(--ink); color: var(--y-mid); }
+  .theme-fill-mid .feat-text span { color: #3a2e00; }
+  .theme-fill-mid .card-media img { background: rgba(255,255,255,0.35); }
 
-  /* 5 - Shopify : orange */
-  .theme-shopify { background: #F4511E; color: #ffffff; }
-  .theme-shopify .tag { background: rgba(255,255,255,0.18); color: #fff; }
-  .theme-shopify .desc { color: rgba(255,255,255,0.92); }
-  .theme-shopify .feat-icon { background: rgba(255,255,255,0.18); color: #fff; }
-  .theme-shopify .feat-text span { color: rgba(255,255,255,0.85); }
-  .theme-shopify .btn-primary { background: #F5C518; color: #1A1A1A; }
-  .theme-shopify .btn-primary::after { background: rgba(0,0,0,0.08); }
-  .theme-shopify .btn-outline { background: #ffffff; border: 1.5px solid #fff; color: #F4511E; }
-  .theme-shopify .btn-outline::after { background: rgba(0,0,0,0.06); }
-
-  /* 6 - Custom Website : green */
-  .theme-custom { background: #18A07A; color: #ffffff; }
-  .theme-custom .tag { background: rgba(255,255,255,0.16); color: #fff; }
-  .theme-custom .desc { color: rgba(255,255,255,0.92); }
-  .theme-custom .feat-icon { background: rgba(255,255,255,0.16); color: #fff; }
-  .theme-custom .feat-text span { color: rgba(255,255,255,0.82); }
-  .theme-custom .btn-primary { background: #ffffff; color: #18A07A; }
-  .theme-custom .btn-primary::after { background: rgba(0,0,0,0.06); }
-  .theme-custom .btn-outline { background: transparent; border: 1.5px solid rgba(255,255,255,0.5); color: #fff; }
+  .theme-fill-soft { background: var(--y-soft); color: var(--ink); }
+  .theme-fill-soft .tag { background: rgba(0,0,0,0.09); color: var(--ink); }
+  .theme-fill-soft .desc { color: #2b2200; }
+  .theme-fill-soft .feat-icon { background: var(--ink); color: var(--y-soft); }
+  .theme-fill-soft .feat-text span { color: #3a2e00; }
+  .theme-fill-soft .card-media img { background: rgba(255,255,255,0.4); }
 
   /* TABLET */
   @media (max-width: 1024px) {
@@ -258,36 +238,36 @@
     .card-content { padding: 4vh 4vw 4vh 2vw; }
     .card.reverse .card-content { padding: 4vh 2vw 4vh 4vw; }
     .features { gap: 16px; }
+    /* allow wrap on tablet so text isn't clipped in the narrower column */
+    .card-content .desc { white-space: normal; }
   }
 
-  /* MOBILE */
+  /* MOBILE — remove images, single column */
   @media (max-width: 700px) {
     :root { --card-w: 92vw; --card-h: auto; --card-radius: 22px; --stack-top: 4vh; }
 
     .intro-spacer { height: 45vh; }
     .cards-wrapper { padding: 0 0 90px; }
 
-    .card-slot { height: auto; min-height: 92vh; align-items: flex-start; }
-    .card { height: auto; min-height: 80vh; box-shadow: 0 16px 44px rgba(0,0,0,0.22); }
+    .card-slot { height: auto; min-height: 88vh; align-items: flex-start; }
+    .card { height: auto; min-height: 70vh; }
 
-    /* force image-top on mobile regardless of reverse */
     .card-inner { grid-template-columns: 1fr; }
-    .card.reverse .card-media,
-    .card-media { order: 1; padding: 22px 22px 0; }
-    .card.reverse .card-content,
-    .card-content { order: 2; padding: 24px 22px 30px; }
 
-    .card-media img { max-height: 30vh; }
+    /* hide images entirely on mobile */
+    .card-media { display: none !important; }
+    .card.reverse .card-content,
+    .card-content { padding: 30px 24px 34px; }
 
     .card-content h2 { font-size: 26px; }
-    .card-content .desc { font-size: 14.5px; margin-bottom: 22px; }
+    .card-content .desc { font-size: 14.5px; margin-bottom: 22px; white-space: normal; }
 
     .features { gap: 14px; margin-bottom: 24px; }
     .feat-icon { width: 38px; height: 38px; }
     .feat-icon svg { width: 19px; height: 19px; }
 
-    .actions { gap: 10px; }
-    .btn { padding: 13px 20px; font-size: 14px; flex: 1; justify-content: center; }
+    .actions { gap: 12px; }
+    .btn { padding: 14px 22px; font-size: 14.5px; flex: 1; justify-content: center; min-width: 130px; }
   }
 </style>
 </head>
@@ -297,216 +277,216 @@
 
   <main class="cards-wrapper">
 
-    <!-- CARD 1 : SEO (yellow) - image LEFT -->
+    <!-- CARD 1 : Google Ads — filled deep amber — image LEFT -->
     <div class="card-slot">
-      <article class="card theme-seo">
-        <div class="card-inner">
-          <div class="card-media"><img src="" alt="SEO dashboard"></div>
-          <div class="card-content">
-            <span class="tag anim">SEO Service</span>
-            <h2 class="anim">Search Engine Optimization</h2>
-            <p class="desc anim">We help you rank higher on search engines, attract qualified visitors, and grow your business with data-driven SEO strategies that deliver results.</p>
-            <ul class="features">
-              <li class="anim">
-                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg></span>
-                <span class="feat-text"><strong>Higher Rankings &amp; Visibility</strong><span>Improve your position on Google and get found by more users.</span></span>
-              </li>
-              <li class="anim">
-                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-                <span class="feat-text"><strong>More Organic Traffic</strong><span>Attract high-intent visitors without paying for ads.</span></span>
-              </li>
-              <li class="anim">
-                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 9 16 14 18 22 12 17 6 22 8 14 2 9 9 9"/></svg></span>
-                <span class="feat-text"><strong>Better User Experience</strong><span>Optimized content and structure that users love.</span></span>
-              </li>
-              <li class="anim">
-                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
-                <span class="feat-text"><strong>Measurable Results</strong><span>Transparent reporting and data-backed strategies.</span></span>
-              </li>
-            </ul>
-            <div class="actions anim">
-              <a class="btn btn-primary" href="#">View Service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-              <a class="btn btn-outline" href="#">Get Free Audit</a>
-            </div>
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <!-- CARD 2 : Website Development (red) - image RIGHT -->
-    <div class="card-slot">
-      <article class="card theme-web reverse">
-        <div class="card-inner">
-          <div class="card-media"><img src="" alt="Website development"></div>
-          <div class="card-content">
-            <span class="tag anim">Our Core Service</span>
-            <h2 class="anim">Website Development</h2>
-            <p class="desc anim">We design and develop fast, modern, and conversion-focused websites that not only look stunning but also deliver measurable results for your business.</p>
-            <ul class="features">
-              <li class="anim">
-                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
-                <span class="feat-text"><strong>High-Performance Websites</strong><span>Built for speed, SEO, and flawless performance.</span></span>
-              </li>
-              <li class="anim">
-                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></span>
-                <span class="feat-text"><strong>Fully Responsive</strong><span>Seamless experience across all devices and screens.</span></span>
-              </li>
-              <li class="anim">
-                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
-                <span class="feat-text"><strong>Conversion Focused</strong><span>Strategic layouts that turn visitors into customers.</span></span>
-              </li>
-              <li class="anim">
-                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
-                <span class="feat-text"><strong>Secure &amp; Scalable</strong><span>Clean code, best practices, and room to grow.</span></span>
-              </li>
-            </ul>
-            <div class="actions anim">
-              <a class="btn btn-primary" href="#">View Service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-              <a class="btn btn-outline" href="#">See Portfolio</a>
-            </div>
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <!-- CARD 3 : Google Ads (blue) - image LEFT -->
-    <div class="card-slot">
-      <article class="card theme-ads">
+      <article class="card theme-fill-deep">
         <div class="card-inner">
           <div class="card-media"><img src="" alt="Google Ads dashboard"></div>
           <div class="card-content">
             <span class="tag anim">Paid Advertising</span>
-            <h2 class="anim">Google Ads Services</h2>
-            <p class="desc anim">Drive highly targeted traffic, generate quality leads, and increase conversions with data-driven Google Ads strategies that deliver measurable ROI.</p>
+            <h2 class="anim">Google Ads</h2>
+            <p class="desc anim">Targeted campaigns that drive quality leads and real ROI.</p>
             <ul class="features">
               <li class="anim">
                 <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
-                <span class="feat-text"><strong>Target the Right Audience</strong><span>Reach customers actively searching for your products or services.</span></span>
+                <span class="feat-text"><strong>Target the Right Audience</strong><span>Reach customers actively searching for your services.</span></span>
               </li>
               <li class="anim">
                 <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg></span>
-                <span class="feat-text"><strong>Maximize ROI</strong><span>Optimized campaigns that reduce costs and increase conversions.</span></span>
+                <span class="feat-text"><strong>Maximize ROI</strong><span>Optimized campaigns that reduce wasted spend.</span></span>
               </li>
               <li class="anim">
                 <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-                <span class="feat-text"><strong>Data-Driven Strategy</strong><span>Continuous testing and analytics to improve performance every day.</span></span>
-              </li>
-              <li class="anim">
-                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>
-                <span class="feat-text"><strong>Transparent Reporting</strong><span>Clear insights and regular reports so you always know where you stand.</span></span>
-              </li>
-            </ul>
-            <div class="actions anim">
-              <a class="btn btn-primary" href="#">View Service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-              <a class="btn btn-outline" href="#">Start Campaign</a>
-            </div>
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <!-- CARD 4 : WordPress (purple) - image RIGHT -->
-    <div class="card-slot">
-      <article class="card theme-wp reverse">
-        <div class="card-inner">
-          <div class="card-media"><img src="" alt="WordPress development"></div>
-          <div class="card-content">
-            <span class="tag anim">Our Service</span>
-            <h2 class="anim">WordPress Development</h2>
-            <p class="desc anim">We build custom WordPress websites that are fast, secure, and scalable. From stunning themes to powerful plugins, we create digital experiences that grow with your business.</p>
-            <ul class="features">
-              <li class="anim">
-                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
-                <span class="feat-text"><strong>Custom &amp; Scalable</strong><span>Tailored solutions built to scale with your business.</span></span>
-              </li>
-              <li class="anim">
-                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
-                <span class="feat-text"><strong>Secure &amp; Reliable</strong><span>Following best practices for a safe and secure website.</span></span>
-              </li>
-              <li class="anim">
-                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
-                <span class="feat-text"><strong>Fast &amp; Optimized</strong><span>Optimized for speed, performance and SEO.</span></span>
-              </li>
-              <li class="anim">
-                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.4 13a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
-                <span class="feat-text"><strong>Flexible &amp; Extensible</strong><span>Easy to manage, extend and integrate with any tool.</span></span>
-              </li>
-            </ul>
-            <div class="actions anim">
-              <a class="btn btn-primary" href="#">View Service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-              <a class="btn btn-outline" href="#">Talk to Us</a>
-            </div>
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <!-- CARD 5 : Shopify (orange) - image LEFT -->
-    <div class="card-slot">
-      <article class="card theme-shopify">
-        <div class="card-inner">
-          <div class="card-media"><img src="" alt="Shopify development"></div>
-          <div class="card-content">
-            <span class="tag anim">Ecommerce Solutions</span>
-            <h2 class="anim">Shopify Development</h2>
-            <p class="desc anim">We build high-converting Shopify stores that not only look amazing but are designed to sell. From custom themes to seamless integrations, we create powerful eCommerce experiences that drive real results.</p>
-            <ul class="features">
-              <li class="anim">
-                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span>
-                <span class="feat-text"><strong>Conversion-Focused Design</strong><span>Built to turn visitors into paying customers.</span></span>
-              </li>
-              <li class="anim">
-                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></span>
-                <span class="feat-text"><strong>Fully Responsive &amp; Fast</strong><span>Optimized for speed and flawless on every device.</span></span>
-              </li>
-              <li class="anim">
-                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z"/></svg></span>
-                <span class="feat-text"><strong>Custom Features &amp; Integrations</strong><span>Tailored solutions that scale with your business.</span></span>
+                <span class="feat-text"><strong>Data-Driven Strategy</strong><span>Continuous testing to improve performance daily.</span></span>
               </li>
               <li class="anim">
                 <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
-                <span class="feat-text"><strong>Analytics &amp; Growth Tracking</strong><span>Data-driven insights to grow your store sales.</span></span>
+                <span class="feat-text"><strong>Transparent Reporting</strong><span>Clear insights on where your budget goes.</span></span>
               </li>
             </ul>
             <div class="actions anim">
-              <a class="btn btn-primary" href="#">Build My Store <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-              <a class="btn btn-outline" href="#">View Service</a>
+              <a class="btn btn-primary" href="#">View Service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <a class="btn btn-secondary" href="#">Start Campaign</a>
             </div>
           </div>
         </div>
       </article>
     </div>
 
-    <!-- CARD 6 : Custom Website (green) - image RIGHT -->
+    <!-- CARD 2 : Google Business Profile — white + yellow border — image RIGHT -->
     <div class="card-slot">
-      <article class="card theme-custom reverse">
+      <article class="card theme-border reverse">
         <div class="card-inner">
-          <div class="card-media"><img src="" alt="Custom website services"></div>
+          <div class="card-media"><img src="" alt="Google Business Profile"></div>
           <div class="card-content">
-            <span class="tag anim">Our Core Service</span>
-            <h2 class="anim">Custom Website Services</h2>
-            <p class="desc anim">We design and build custom websites that reflect your brand, engage your audience, and drive real results. Tailored solutions. Modern designs. Powerful performance.</p>
+            <span class="tag anim">Local SEO</span>
+            <h2 class="anim">Google Business Profile Optimization</h2>
+            <p class="desc anim">Get found by local customers and turn searches into calls.</p>
             <ul class="features">
               <li class="anim">
-                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
-                <span class="feat-text"><strong>Tailored to Your Goals</strong><span>Every detail aligned with your business objectives.</span></span>
+                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+                <span class="feat-text"><strong>Rank in Local Search</strong><span>Show up in Maps and the local 3-pack.</span></span>
               </li>
               <li class="anim">
-                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg></span>
-                <span class="feat-text"><strong>Better User Experience</strong><span>Intuitive interfaces that keep users engaged.</span></span>
+                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 9 16 14 18 22 12 17 6 22 8 14 2 9 9 9"/></svg></span>
+                <span class="feat-text"><strong>More 5-Star Reviews</strong><span>Build trust with review strategies that win customers.</span></span>
               </li>
               <li class="anim">
-                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
-                <span class="feat-text"><strong>Optimized Performance</strong><span>Fast, responsive, and built for all devices.</span></span>
+                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+                <span class="feat-text"><strong>Drive Calls &amp; Visits</strong><span>Turn profile views into real calls and visits.</span></span>
               </li>
               <li class="anim">
-                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
-                <span class="feat-text"><strong>Scalable &amp; Secure</strong><span>Future-ready websites that grow with your business.</span></span>
+                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="7" y1="2" x2="7" y2="6"/><line x1="17" y1="2" x2="17" y2="6"/></svg></span>
+                <span class="feat-text"><strong>Fresh, Active Profile</strong><span>Regular posts and photos that keep you relevant.</span></span>
               </li>
             </ul>
             <div class="actions anim">
               <a class="btn btn-primary" href="#">View Service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-              <a class="btn btn-outline" href="#">Request Quote</a>
+              <a class="btn btn-secondary" href="#">Optimize My Profile</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- CARD 3 : Website Development — filled core yellow — image LEFT -->
+    <div class="card-slot">
+      <article class="card theme-fill-mid">
+        <div class="card-inner">
+          <div class="card-media"><img src="" alt="Website development"></div>
+          <div class="card-content">
+            <span class="tag anim">Web Development</span>
+            <h2 class="anim">Website Development</h2>
+            <p class="desc anim">Shopify, WordPress, and custom sites built to convert.</p>
+            <ul class="features">
+              <li class="anim">
+                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></span>
+                <span class="feat-text"><strong>Shopify Stores</strong><span>High-converting eCommerce stores designed to sell.</span></span>
+              </li>
+              <li class="anim">
+                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg></span>
+                <span class="feat-text"><strong>WordPress Websites</strong><span>Flexible, scalable sites that are easy to manage.</span></span>
+              </li>
+              <li class="anim">
+                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+                <span class="feat-text"><strong>Custom Development</strong><span>Bespoke, hand-coded sites built for your needs.</span></span>
+              </li>
+              <li class="anim">
+                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+                <span class="feat-text"><strong>Fast &amp; Responsive</strong><span>Optimized for speed, SEO, and every device.</span></span>
+              </li>
+            </ul>
+            <div class="actions anim">
+              <a class="btn btn-primary" href="#">View Service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <a class="btn btn-secondary" href="#">See Portfolio</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- CARD 4 : Social Media Marketing — white + yellow border — image RIGHT -->
+    <div class="card-slot">
+      <article class="card theme-border reverse">
+        <div class="card-inner">
+          <div class="card-media"><img src="" alt="Social media marketing"></div>
+          <div class="card-content">
+            <span class="tag anim">Social Media</span>
+            <h2 class="anim">Social Media Marketing</h2>
+            <p class="desc anim">Content and campaigns that grow and engage your audience.</p>
+            <ul class="features">
+              <li class="anim">
+                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                <span class="feat-text"><strong>Grow Your Audience</strong><span>Build an engaged following of loyal customers.</span></span>
+              </li>
+              <li class="anim">
+                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>
+                <span class="feat-text"><strong>Scroll-Stopping Content</strong><span>Creative posts and reels that capture attention.</span></span>
+              </li>
+              <li class="anim">
+                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+                <span class="feat-text"><strong>Community Engagement</strong><span>Active management that builds real relationships.</span></span>
+              </li>
+              <li class="anim">
+                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+                <span class="feat-text"><strong>Paid Social Campaigns</strong><span>Targeted ads on Meta, TikTok, and more.</span></span>
+              </li>
+            </ul>
+            <div class="actions anim">
+              <a class="btn btn-primary" href="#">View Service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <a class="btn btn-secondary" href="#">Grow My Brand</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- CARD 5 : GoHighLevel — filled soft yellow — image LEFT -->
+    <div class="card-slot">
+      <article class="card theme-fill-soft">
+        <div class="card-inner">
+          <div class="card-media"><img src="" alt="GoHighLevel CRM automation"></div>
+          <div class="card-content">
+            <span class="tag anim">CRM &amp; Automation</span>
+            <h2 class="anim">GoHighLevel</h2>
+            <p class="desc anim">Funnels and automations that capture and close leads.</p>
+            <ul class="features">
+              <li class="anim">
+                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4z"/></svg></span>
+                <span class="feat-text"><strong>Lead Capture Funnels</strong><span>High-converting funnels that collect leads.</span></span>
+              </li>
+              <li class="anim">
+                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.2 5.2l2.1 2.1M16.7 16.7l2.1 2.1M18.8 5.2l-2.1 2.1M7.3 16.7l-2.1 2.1"/></svg></span>
+                <span class="feat-text"><strong>Workflow Automations</strong><span>Automated follow-ups via SMS, email, and calls.</span></span>
+              </li>
+              <li class="anim">
+                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></span>
+                <span class="feat-text"><strong>Pipeline Management</strong><span>Track every lead from first touch to closed deal.</span></span>
+              </li>
+              <li class="anim">
+                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6" r="3"/><path d="M8 11h8a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2z"/><path d="m6.5 13 5.5 3.5L17.5 13"/></svg></span>
+                <span class="feat-text"><strong>Nurture &amp; Convert</strong><span>Stay top-of-mind until leads are ready to buy.</span></span>
+              </li>
+            </ul>
+            <div class="actions anim">
+              <a class="btn btn-primary" href="#">View Service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <a class="btn btn-secondary" href="#">Automate My Business</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- CARD 6 : Landing Pages — white + yellow border — image RIGHT -->
+    <div class="card-slot">
+      <article class="card theme-border reverse">
+        <div class="card-inner">
+          <div class="card-media"><img src="" alt="Landing page design"></div>
+          <div class="card-content">
+            <span class="tag anim">Conversion Design</span>
+            <h2 class="anim">Landing Pages</h2>
+            <p class="desc anim">High-converting pages that turn clicks into customers.</p>
+            <ul class="features">
+              <li class="anim">
+                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+                <span class="feat-text"><strong>Conversion-Focused</strong><span>Layouts engineered to turn visitors into leads.</span></span>
+              </li>
+              <li class="anim">
+                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+                <span class="feat-text"><strong>Fast Load Times</strong><span>Lightning-quick pages that keep visitors.</span></span>
+              </li>
+              <li class="anim">
+                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></span>
+                <span class="feat-text"><strong>Mobile Optimized</strong><span>Flawless on phones, tablets, and desktops.</span></span>
+              </li>
+              <li class="anim">
+                <span class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+                <span class="feat-text"><strong>A/B Tested</strong><span>Data-backed testing to lift every conversion.</span></span>
+              </li>
+            </ul>
+            <div class="actions anim">
+              <a class="btn btn-primary" href="#">View Service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <a class="btn btn-secondary" href="#">Build My Page</a>
             </div>
           </div>
         </div>
@@ -522,29 +502,18 @@
     window.addEventListener('load', function () {
       if (!window.gsap) return;
       gsap.registerPlugin(ScrollTrigger);
-
-      // Fade-in each animatable element (tag, heading, desc, each feature, buttons)
-      // grouped per card, triggered as the card scrolls into view.
       document.querySelectorAll('.card').forEach(function (card) {
         var items = card.querySelectorAll('.anim');
         gsap.set(items, { opacity: 0, y: 32 });
-
         ScrollTrigger.create({
           trigger: card,
           start: 'top 75%',
           once: true,
           onEnter: function () {
-            gsap.to(items, {
-              opacity: 1,
-              y: 0,
-              duration: 0.7,
-              ease: 'power3.out',
-              stagger: 0.12
-            });
+            gsap.to(items, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.12 });
           }
         });
       });
-
       ScrollTrigger.refresh();
     });
   </script>
